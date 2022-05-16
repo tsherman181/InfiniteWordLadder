@@ -12,20 +12,25 @@ import Foundation
 class GameInfo: ObservableObject {
     var points: Int
     
-    // var [ClueAnswer]
-        //clue, answer
+    let answerClues: [AnswerClue]
     
-    
+    var currentClue: String
+    var currentWord: String
     var guessCorrect: Bool
     
     init () {
         points = 12
         guessCorrect = false
+        let url = Bundle.main.url(forResource: "TEST", withExtension: ".json")!
+        let data = try! Data(contentsOf: url)
+        answerClues = try! JSONDecoder().decode([AnswerClue].self, from: data)
+        currentClue = answerClues[0].cluelist[0]
+        currentWord = answerClues[0].answer
     }
     //static let begin = Status (points: 12, guessCorrect: false, guess: "")
     
     func guessing(guess: String) {
-        if guess == "win" {
+        if guess == currentWord {
             points += 1
             guessCorrect = true
         }

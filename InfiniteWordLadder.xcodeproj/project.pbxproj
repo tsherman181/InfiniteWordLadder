@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC780C342831D3820080F758 /* TEST.json in Resources */ = {isa = PBXBuildFile; fileRef = BC780C332831D3820080F758 /* TEST.json */; };
+		BC780C362831D5350080F758 /* AnswerClue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC780C352831D5350080F758 /* AnswerClue.swift */; };
 		F33BCCBF282C8BB400BDFB27 /* InfiniteWordLadderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33BCCBE282C8BB400BDFB27 /* InfiniteWordLadderApp.swift */; };
 		F33BCCC1282C8BB400BDFB27 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33BCCC0282C8BB400BDFB27 /* ContentView.swift */; };
 		F33BCCC3282C8BB700BDFB27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F33BCCC2282C8BB700BDFB27 /* Assets.xcassets */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC780C332831D3820080F758 /* TEST.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TEST.json; sourceTree = "<group>"; };
+		BC780C352831D5350080F758 /* AnswerClue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerClue.swift; sourceTree = "<group>"; };
 		F33BCCBB282C8BB400BDFB27 /* InfiniteWordLadder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InfiniteWordLadder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F33BCCBE282C8BB400BDFB27 /* InfiniteWordLadderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteWordLadderApp.swift; sourceTree = "<group>"; };
 		F33BCCC0282C8BB400BDFB27 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +60,8 @@
 				F33BCCBE282C8BB400BDFB27 /* InfiniteWordLadderApp.swift */,
 				F3B2C5D2282F3ADF00766218 /* GameInfo.swift */,
 				F33BCCC0282C8BB400BDFB27 /* ContentView.swift */,
+				BC780C352831D5350080F758 /* AnswerClue.swift */,
+				BC780C332831D3820080F758 /* TEST.json */,
 				F33BCCC2282C8BB700BDFB27 /* Assets.xcassets */,
 				F33BCCC4282C8BB700BDFB27 /* Preview Content */,
 			);
@@ -129,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F33BCCC6282C8BB700BDFB27 /* Preview Assets.xcassets in Resources */,
+				BC780C342831D3820080F758 /* TEST.json in Resources */,
 				F33BCCC3282C8BB700BDFB27 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC780C362831D5350080F758 /* AnswerClue.swift in Sources */,
 				F33BCCC1282C8BB400BDFB27 /* ContentView.swift in Sources */,
 				F33BCCBF282C8BB400BDFB27 /* InfiniteWordLadderApp.swift in Sources */,
 				F3B2C5D3282F3ADF00766218 /* GameInfo.swift in Sources */,

@@ -24,33 +24,40 @@ struct ContentView: View {
                 HStack{
                     Spacer()
                     Text("Points:")
-                        .foregroundColor(.primary)
+                        .foregroundColor(.white)
                     Text(String(gameinfo.points))
-                        .foregroundColor(.primary)
+                        .foregroundColor(.white)
                         .padding(.trailing)
                 }
-                Text("Clue here!")
+                Text(gameinfo.answerClues[0].cluelist[0])
                     .font(.largeTitle)
                     .bold()
                     .multilineTextAlignment(.center)
                     .padding(.bottom)
-                    .foregroundColor(.green)
+                    .foregroundColor(.white)
                 TextField(
                     "Guess",
                     text: $username
                 )
-                    .textInputAutocapitalization(.never)
+                    .textInputAutocapitalization(.characters)
                     .disableAutocorrection(true)
                     .border(.secondary)
                     .padding(.horizontal)
                     .textFieldStyle(.roundedBorder)
-                    .shadow(color: .green, radius: 5, x: 5, y: 5) //change color later
+                    //.shadow(color: .white, radius: 5, x: 5, y: 5) //change color later
                     .onSubmit {
                 //Text(username)
                         gameinfo.guessing(guess: username)
                         username = ""
                     }
                 Text(username)
+                Button("Hint") {
+                    //button function
+                }
+                .background(.blue)
+                .clipShape(Capsule())
+                .font(.title2)
+                .foregroundColor(.white)
             }
             Text("")
         }
