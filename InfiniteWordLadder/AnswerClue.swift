@@ -8,8 +8,8 @@
 import Foundation
 
 struct AnswerClue: Decodable {
-    let index: Int
-    let answer: String
     let cluelist: [String]
+    let num_clues: Int
+    let answer: String
     //static let example = AnswerClue(id: 1, answer: "tree", clue: ["pine", "oak", "binary..."])
 }

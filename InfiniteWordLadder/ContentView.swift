@@ -15,6 +15,8 @@ import SwiftUI
 struct ContentView: View {
     @State private var username: String = ""
     @StateObject var gameinfo = GameInfo()
+    @State private var clue = ""
+    //@State private var clueCurrent: String = ""
 
     var body: some View {
         VStack(spacing: 335){
@@ -29,12 +31,16 @@ struct ContentView: View {
                         .foregroundColor(.white)
                         .padding(.trailing)
                 }
-                Text(gameinfo.answerClues[0].cluelist[0])
+                Text(gameinfo.currentClue)
+                    .foregroundColor(.white)
                     .font(.largeTitle)
                     .bold()
                     .multilineTextAlignment(.center)
                     .padding(.bottom)
-                    .foregroundColor(.white)
+                    .onChange(of: clue) { newValue in
+                        print ("changed")
+                    }
+
                 TextField(
                     "Guess",
                     text: $username
@@ -52,7 +58,9 @@ struct ContentView: View {
                     }
                 Text(username)
                 Button("Hint") {
-                    //button function
+                    gameinfo.hint()
+                    clue = gameinfo.currentClue
+                    print(gameinfo.currentClue)
                 }
                 .background(.blue)
                 .clipShape(Capsule())

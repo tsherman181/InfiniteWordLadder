@@ -14,6 +14,7 @@
 		F33BCCC3282C8BB700BDFB27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F33BCCC2282C8BB700BDFB27 /* Assets.xcassets */; };
 		F33BCCC6282C8BB700BDFB27 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F33BCCC5282C8BB700BDFB27 /* Preview Assets.xcassets */; };
 		F3B2C5D3282F3ADF00766218 /* GameInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2C5D2282F3ADF00766218 /* GameInfo.swift */; };
+		F3B35A82283327EA0000796E /* full.json in Resources */ = {isa = PBXBuildFile; fileRef = F3B35A81283327EA0000796E /* full.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		F33BCCC2282C8BB700BDFB27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F33BCCC5282C8BB700BDFB27 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F3B2C5D2282F3ADF00766218 /* GameInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfo.swift; sourceTree = "<group>"; };
+		F3B35A81283327EA0000796E /* full.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = full.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				F33BCCC0282C8BB400BDFB27 /* ContentView.swift */,
 				BC780C352831D5350080F758 /* AnswerClue.swift */,
 				BC780C332831D3820080F758 /* TEST.json */,
+				F3B35A81283327EA0000796E /* full.json */,
 				F33BCCC2282C8BB700BDFB27 /* Assets.xcassets */,
 				F33BCCC4282C8BB700BDFB27 /* Preview Content */,
 			);
@@ -134,6 +137,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3B35A82283327EA0000796E /* full.json in Resources */,
 				F33BCCC6282C8BB700BDFB27 /* Preview Assets.xcassets in Resources */,
 				BC780C342831D3820080F758 /* TEST.json in Resources */,
 				F33BCCC3282C8BB700BDFB27 /* Assets.xcassets in Resources */,
