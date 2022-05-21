@@ -54,6 +54,8 @@ struct ContentView: View {
                     .onSubmit {
                 //Text(username)
                         gameinfo.guessing(guess: username)
+                        clue = gameinfo.currentClue
+                        print(clue)
                         username = ""
                     }
                 Text(username)
