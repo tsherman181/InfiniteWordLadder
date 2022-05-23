@@ -68,6 +68,17 @@ struct ContentView: View {
                 .clipShape(Capsule())
                 .font(.title2)
                 .foregroundColor(.white)
+                Button("Give Up: -1 point") {
+                    gameinfo.change(gameinfo.currentWord)
+                    gameinfo.points -= 1
+                    clue = gameinfo.currentClue
+                    print(gameinfo.currentClue)
+                }
+                .padding(.vertical)
+                .background(.blue)
+                .clipShape(Capsule())
+                .font(.body)
+                .foregroundColor(.white)
             }
             Text("")
         }

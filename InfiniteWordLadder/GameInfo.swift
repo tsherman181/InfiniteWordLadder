@@ -20,12 +20,12 @@ class GameInfo: ObservableObject {
     var currentACIndex: Int
     
     init () {
-        points = 12
+        points = 0
         let url = Bundle.main.url(forResource: "full", withExtension: ".json")!
         let data = try! Data(contentsOf: url)
         answerClues = try! JSONDecoder().decode([AnswerClue].self, from: data)
         currentClueIndex = 0
-        currentACIndex = 0
+        currentACIndex = Int.random(in: 0..<answerClues.count)
         currentClue = answerClues[currentACIndex].cluelist[currentClueIndex]
         currentWord = answerClues[currentACIndex].answer
         var count = 0
@@ -47,7 +47,9 @@ class GameInfo: ObservableObject {
     func hint(){
         currentClueIndex += 1
         currentClue = answerClues[currentACIndex].cluelist[currentClueIndex]
-        //MARK: FIX INDEX OUT OF RANGE ISSUE
+        if currentClueIndex == answerClues[currentACIndex].cluelist.count {
+            currentClueIndex = 0;
+        }
     }
 
     
