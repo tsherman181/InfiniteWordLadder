@@ -9,15 +9,22 @@ import Foundation
 
 // @EnvironmentObject
 
+enum Page {
+    case p1
+    case p2
+}
+
+
 class GameInfo: ObservableObject {
+
     var points: Int
-    
     let answerClues: [AnswerClue]
     var ACDict: [String: Int] = [:]
     var currentClue: String
     var currentWord: String
     var currentClueIndex: Int
     var currentACIndex: Int
+    @Published var currPage: Page
     
     init () {
         points = 0
@@ -25,7 +32,8 @@ class GameInfo: ObservableObject {
         let data = try! Data(contentsOf: url)
         answerClues = try! JSONDecoder().decode([AnswerClue].self, from: data)
         currentClueIndex = 0
-        currentACIndex = Int.random(in: 0..<answerClues.count)
+        currentACIndex = 0 //MARK: This line is for testing purposes only
+        //currentACIndex = Int.random(in: 0..<answerClues.count)
         currentClue = answerClues[currentACIndex].cluelist[currentClueIndex]
         currentWord = answerClues[currentACIndex].answer
         var count = 0
@@ -33,14 +41,18 @@ class GameInfo: ObservableObject {
             ACDict[i.answer] = count
             count += 1
         }
-        
+        currPage = .p1
     }
     //static let begin = Status (points: 12, guessCorrect: false, guess: "")
     
     func guessing(guess: String) {
         if guess == currentWord {
             points += 1
+            currPage = .p2
             change(currentWord)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { // Change `2.0` to the desired number of seconds.
+                self.currPage = .p1
+            }
         }
     }
     

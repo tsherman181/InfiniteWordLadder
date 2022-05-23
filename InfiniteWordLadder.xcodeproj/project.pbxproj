@@ -15,6 +15,8 @@
 		F33BCCC6282C8BB700BDFB27 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F33BCCC5282C8BB700BDFB27 /* Preview Assets.xcassets */; };
 		F3B2C5D3282F3ADF00766218 /* GameInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2C5D2282F3ADF00766218 /* GameInfo.swift */; };
 		F3B35A82283327EA0000796E /* full.json in Resources */ = {isa = PBXBuildFile; fileRef = F3B35A81283327EA0000796E /* full.json */; };
+		F3D55565283C40A800A34232 /* MotherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D55564283C40A800A34232 /* MotherView.swift */; };
+		F3D55567283C413300A34232 /* Correct.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D55566283C413300A34232 /* Correct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		F33BCCC5282C8BB700BDFB27 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F3B2C5D2282F3ADF00766218 /* GameInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfo.swift; sourceTree = "<group>"; };
 		F3B35A81283327EA0000796E /* full.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = full.json; sourceTree = "<group>"; };
+		F3D55564283C40A800A34232 /* MotherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotherView.swift; sourceTree = "<group>"; };
+		F3D55566283C413300A34232 /* Correct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Correct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 			children = (
 				F33BCCBE282C8BB400BDFB27 /* InfiniteWordLadderApp.swift */,
 				F3B2C5D2282F3ADF00766218 /* GameInfo.swift */,
+				F3D55564283C40A800A34232 /* MotherView.swift */,
+				F3D55566283C413300A34232 /* Correct.swift */,
 				F33BCCC0282C8BB400BDFB27 /* ContentView.swift */,
 				BC780C352831D5350080F758 /* AnswerClue.swift */,
 				BC780C332831D3820080F758 /* TEST.json */,
@@ -155,6 +161,8 @@
 				F33BCCC1282C8BB400BDFB27 /* ContentView.swift in Sources */,
 				F33BCCBF282C8BB400BDFB27 /* InfiniteWordLadderApp.swift in Sources */,
 				F3B2C5D3282F3ADF00766218 /* GameInfo.swift in Sources */,
+				F3D55567283C413300A34232 /* Correct.swift in Sources */,
+				F3D55565283C40A800A34232 /* MotherView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

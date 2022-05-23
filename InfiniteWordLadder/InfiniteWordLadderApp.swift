@@ -9,10 +9,13 @@ import SwiftUI
 
 @main
 struct InfiniteWordLadderApp: App {
-    var state = GameInfo()
+    
+    @StateObject var gameinfo = GameInfo()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MotherView()
+                .environmentObject(gameinfo)
         }
     }
 }
