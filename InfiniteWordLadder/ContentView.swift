@@ -21,7 +21,7 @@ struct ContentView: View {
     var body: some View {
         ZStack{
             Color.blue
-            VStack(spacing: 335){
+            VStack(){
                 Text("")
                 VStack{
                     Text("")
@@ -38,28 +38,28 @@ struct ContentView: View {
                         .font(.largeTitle)
                         .bold()
                         .multilineTextAlignment(.center)
-                        .padding(.bottom)
-                        .frame(height: 200)
+                        .frame(height: 100)
                         .allowsTightening(true)
                         .onChange(of: clue) { newValue in
                             //print ("changed")
                         }
 
                     TextField(
-                        "Guess",
+                        "FOUR",
                         text: $username
                     )
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.white)
+                        .font(.system(size: 80))
+                        .font(Font.body.bold())
                         .textInputAutocapitalization(.characters)
                         .disableAutocorrection(true)
-                        .border(.secondary)
                         .padding(.horizontal)
-                        .textFieldStyle(.roundedBorder)
                         //.shadow(color: .white, radius: 5, x: 5, y: 5) //change color later
                         .onSubmit {
                     //Text(username)
                             gameinfo.guessing(guess: username)
                             clue = gameinfo.currentClue
-                            print(clue)
                             username = ""
                         }
                     Text(username)
@@ -81,10 +81,27 @@ struct ContentView: View {
                     .clipShape(Capsule())
                     .font(.body)
                     .foregroundColor(.white)
+                    HStack{
+                        Spacer()
+                        Button(){
+                            print("button")
+                            gameinfo.currPage = .p3
+                        }
+                        label: {
+                            Image(systemName: "questionmark.circle.fill")
+                        }
+                        .font(.system(size: 30))
+                        }
+                        .padding(.vertical)
+                        .clipShape(Capsule())
+                        .font(.body)
+                        .foregroundColor(.white)
+                        .padding()
+                    }
                 }
                 Text("")
             }
-        }
+            .ignoresSafeArea()
     }
 }
 

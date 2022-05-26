@@ -12,6 +12,7 @@ import Foundation
 enum Page {
     case p1
     case p2
+    case p3
 }
 
 
@@ -42,8 +43,15 @@ class GameInfo: ObservableObject {
             count += 1
         }
         currPage = .p1
+        
     }
     //static let begin = Status (points: 12, guessCorrect: false, guess: "")
+    
+    func insertSpaces(_ guess: String) -> String {
+        let str = Array(guess)
+        return str.map { "\($0)" }.joined(separator: "\n")
+    }
+    
     
     func guessing(guess: String) {
         if guess == currentWord {

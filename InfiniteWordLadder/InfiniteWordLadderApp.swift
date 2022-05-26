@@ -8,6 +8,7 @@
 import SwiftUI
 
 @main
+
 struct InfiniteWordLadderApp: App {
     
     @StateObject var gameinfo = GameInfo()

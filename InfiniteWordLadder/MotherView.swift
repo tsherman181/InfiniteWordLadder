@@ -17,6 +17,8 @@ struct MotherView: View {
             ContentView()
         case .p2:
             Correct()
+        case .p3:
+            Instructions()
         }
     }
 }
