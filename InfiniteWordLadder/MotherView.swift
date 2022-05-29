@@ -16,7 +16,7 @@ struct MotherView: View {
         case .menu:
             Menu()
                 .matchedGeometryEffect(id: "Shape", in: animation)
-        case .p1:
+        case .IWL:
             IWL()
                 .matchedGeometryEffect(id: "Shape", in: animation)
         case .correct:
@@ -27,6 +27,12 @@ struct MotherView: View {
                 .matchedGeometryEffect(id: "Shape", in: animation)
         case .giveup:
             GiveUp()
+                .matchedGeometryEffect(id: "Shape", in: animation)
+        case .achievements:
+            Achievements()
+                .matchedGeometryEffect(id: "Shape", in: animation)
+        case .stats:
+            Stats()
                 .matchedGeometryEffect(id: "Shape", in: animation)
         }
     }

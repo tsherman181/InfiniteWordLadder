@@ -17,7 +17,7 @@ struct Instructions: View {
             VStack{
                 Text("Instructions Here")
                 Button("back"){
-                    gameinfo.currPage = .p1
+                    gameinfo.currPage = .IWL
                 }
             }
             .foregroundColor(.white)

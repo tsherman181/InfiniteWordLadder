@@ -9,10 +9,12 @@ import Foundation
 
 enum Page {
     case menu
-    case p1
+    case IWL
     case correct
     case instructions
     case giveup
+    case achievements
+    case stats
 }
 
 
@@ -58,7 +60,7 @@ class GameInfo: ObservableObject {
             currPage = .correct
             change(currentWord, lastWord)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { // Change `2.0` to the desired number of seconds.
-                self.currPage = .p1
+                self.currPage = .IWL
             }
             self.incrementPoint(1)
         }
@@ -97,7 +99,7 @@ class GameInfo: ObservableObject {
         currPage = .giveup
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.change(guess, last)
-            self.currPage = .p1
+            self.currPage = .IWL
         }
         self.incrementPoint(-1)
     }

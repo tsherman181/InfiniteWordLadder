@@ -17,22 +17,37 @@ struct IWL: View {
     @State private var username: String = ""
     @State private var clue = ""
 
+    var deviceWidth: CGFloat {
+        UIScreen.main.bounds.width
+    }
+
+    var deviceHeight: CGFloat {
+        UIScreen.main.bounds.height
+    }
+    
+    
     var body: some View {
         ZStack{
             Color.blue
-            VStack(){
+            VStack{
                 Text("")
                 VStack{
                     Text("")
                     HStack{
+                        Button("Menu"){
+                            gameinfo.currPage = .menu
+                        }
+                        .foregroundColor(.white)
+                        .padding()
                         Spacer()
                         Text("Points:")
                             .foregroundColor(.white)
+                            .padding(.leading)
                         Text(String(gameinfo.points))
                             .foregroundColor(.white)
+                            .padding(.trailing)
                     }
                     .padding()
-                    .padding(.trailing)
                     Text(gameinfo.currentClue)
                         .foregroundColor(.white)
                         .font(.largeTitle)
@@ -122,5 +137,6 @@ struct IWL_Previews: PreviewProvider {
     static var previews: some View {
         IWL()
             .environmentObject(GameInfo())
+            .previewInterfaceOrientation(.portraitUpsideDown)
     }
 }
