@@ -100,11 +100,8 @@ struct IWL: View {
                     .font(.title2)
                     .foregroundColor(.white)
                     Button("Give Up: -1 point") {
-                        //gameinfo.currPage = .giveup
-                        //gameinfo.change(gameinfo.currentWord, gameinfo.lastWord)
                         gameinfo.giveUp(gameinfo.currentWord, gameinfo.lastWord)
                         clue = gameinfo.currentClue
-                        //print(gameinfo.currentClue)
                     }
                     .padding(.vertical)
                     .clipShape(Capsule())
@@ -113,7 +110,6 @@ struct IWL: View {
                     HStack{
                         Spacer()
                         Button(){
-                            print("button")
                             gameinfo.currPage = .instructions
                         }
                         label: {
@@ -137,6 +133,5 @@ struct IWL_Previews: PreviewProvider {
     static var previews: some View {
         IWL()
             .environmentObject(GameInfo())
-            .previewInterfaceOrientation(.portraitUpsideDown)
     }
 }

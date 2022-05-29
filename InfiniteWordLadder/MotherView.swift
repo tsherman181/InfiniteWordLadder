@@ -12,6 +12,7 @@ struct MotherView: View {
     @EnvironmentObject var gameinfo: GameInfo
     @Namespace private var animation
     var body: some View {
+        VStack{
         switch gameinfo.currPage {
         case .menu:
             Menu()
@@ -34,6 +35,7 @@ struct MotherView: View {
         case .stats:
             Stats()
                 .matchedGeometryEffect(id: "Shape", in: animation)
+        }
         }
     }
 }

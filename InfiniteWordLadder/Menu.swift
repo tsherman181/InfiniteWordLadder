@@ -12,6 +12,9 @@ struct Menu: View {
     @EnvironmentObject var gameinfo: GameInfo
     @State var color1 = Color(red:0.0, green:0.0, blue:1.0)
     @State var color2 = Color(red:0.0, green:0.5, blue:1.0)
+    @State private var angle = 0.0
+    @State private var opacity = 1.0
+    @State private var scale = 1.0
     
     var deviceWidth: CGFloat {
         UIScreen.main.bounds.width
@@ -27,7 +30,12 @@ struct Menu: View {
             Color(red:0.0, green:0.5, blue:1.0)
             VStack{
                 Button("Infinite Word Ladder"){
-                    gameinfo.currPage = .IWL
+                    angle += 360.0
+                    opacity -= 1
+                    scale -= 1
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                        gameinfo.currPage = .IWL
+                    }
                 }
                 .font(.system(size: 20, weight: .bold, design: .rounded))
                 .padding()
@@ -36,6 +44,12 @@ struct Menu: View {
                 .cornerRadius(40)
                 .foregroundColor(Color.blue)
                 .padding()
+//                .rotationEffect(.degrees(angle))
+//                .animation(.easeInOut, value: angle)
+//                .opacity(opacity)
+//                .animation(.easeInOut, value: opacity)
+//                .scaleEffect(scale)
+//                .animation(.easeIn, value: scale)
                 
                 Button("Instructions"){
                     gameinfo.currPage = .instructions
@@ -47,6 +61,12 @@ struct Menu: View {
                 .cornerRadius(40)
                 .foregroundColor(Color.blue)
                 .padding()
+//                .rotationEffect(.degrees(angle))
+//                .animation(.easeInOut, value: angle)
+//                .opacity(opacity)
+//                .animation(.easeInOut, value: opacity)
+//                .scaleEffect(scale)
+//                .animation(.easeIn, value: scale)
                 
                 Button("Statistics"){
                     gameinfo.currPage = .stats
@@ -58,6 +78,12 @@ struct Menu: View {
                 .cornerRadius(40)
                 .foregroundColor(Color.blue)
                 .padding()
+//                .rotationEffect(.degrees(angle))
+//                .animation(.easeInOut, value: angle)
+//                .opacity(opacity)
+//                .animation(.easeInOut, value: opacity)
+//                .scaleEffect(scale)
+//                .animation(.easeIn, value: scale)
                 
                 Button("Acheivements"){
                     gameinfo.currPage = .achievements
@@ -69,7 +95,19 @@ struct Menu: View {
                 .cornerRadius(40)
                 .foregroundColor(Color.blue)
                 .padding()
+//                .rotationEffect(.degrees(angle))
+//                .animation(.easeInOut, value: angle)
+//                .opacity(opacity)
+//                .animation(.easeInOut, value: opacity)
+//                .scaleEffect(scale)
+//                .animation(.easeIn, value: scale)
             }
+            //.rotationEffect(.degrees(angle))
+            //.animation(.easeInOut, value: angle)
+            .opacity(opacity)
+            .animation(.easeOut, value: opacity)
+            .scaleEffect(scale)
+            .animation(.easeOut, value: scale)
         }
         .ignoresSafeArea()
     }
