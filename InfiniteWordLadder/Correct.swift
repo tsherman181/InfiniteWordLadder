@@ -10,7 +10,7 @@ import SwiftUI
 struct Correct: View {
     
     @EnvironmentObject var gameinfo: GameInfo
-    
+    @State var animationAmount = 1
     
     
     var body: some View {

@@ -10,15 +10,24 @@ import SwiftUI
 struct MotherView: View {
     
     @EnvironmentObject var gameinfo: GameInfo
-    
+    @Namespace private var animation
     var body: some View {
         switch gameinfo.currPage {
+        case .menu:
+            Menu()
+                .matchedGeometryEffect(id: "Shape", in: animation)
         case .p1:
-            ContentView()
-        case .p2:
+            IWL()
+                .matchedGeometryEffect(id: "Shape", in: animation)
+        case .correct:
             Correct()
-        case .p3:
+                .matchedGeometryEffect(id: "Shape", in: animation)
+        case .instructions:
             Instructions()
+                .matchedGeometryEffect(id: "Shape", in: animation)
+        case .giveup:
+            GiveUp()
+                .matchedGeometryEffect(id: "Shape", in: animation)
         }
     }
 }

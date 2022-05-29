@@ -7,12 +7,12 @@
 
 import Foundation
 
-// @EnvironmentObject
-
 enum Page {
+    case menu
     case p1
-    case p2
-    case p3
+    case correct
+    case instructions
+    case giveup
 }
 
 
@@ -25,6 +25,7 @@ class GameInfo: ObservableObject {
     var currentWord: String
     var currentClueIndex: Int
     var currentACIndex: Int
+    var lastWord: String
     @Published var currPage: Page
     
     init () {
@@ -42,10 +43,9 @@ class GameInfo: ObservableObject {
             ACDict[i.answer] = count
             count += 1
         }
-        currPage = .p1
-        
+        currPage = .menu
+        lastWord = ""
     }
-    //static let begin = Status (points: 12, guessCorrect: false, guess: "")
     
     func insertSpaces(_ guess: String) -> String {
         let str = Array(guess)
@@ -55,32 +55,34 @@ class GameInfo: ObservableObject {
     
     func guessing(guess: String) {
         if guess == currentWord {
-            points += 1
-            currPage = .p2
-            change(currentWord)
+            currPage = .correct
+            change(currentWord, lastWord)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { // Change `2.0` to the desired number of seconds.
                 self.currPage = .p1
             }
+            self.incrementPoint(1)
         }
     }
     
     func hint(){
         currentClueIndex += 1
-        currentClue = answerClues[currentACIndex].cluelist[currentClueIndex]
         if currentClueIndex == answerClues[currentACIndex].cluelist.count {
             currentClueIndex = 0;
         }
+        currentClue = answerClues[currentACIndex].cluelist[currentClueIndex]
     }
 
     
-    func change(_ guess: String){
+    func change(_ guess: String, _ last: String){
         var newWord = guess
         while (newWord == guess){
             var chars = Array(newWord)
             chars[Int.random(in: 0...3)] = Character(UnicodeScalar(Int.random(in: 65...90))!)
             let temp = String(chars)
             if (ACDict[temp] != nil){
-                newWord = temp
+                if (last != temp){
+                    newWord = temp
+                }//MARK: Need to create set of past few clues to make sure no repeats, and then come up with solution for case where our only options are repeats or to break the cycle
             }
         }
         currentACIndex = ACDict[newWord]!
@@ -88,6 +90,19 @@ class GameInfo: ObservableObject {
         currentClue = answerClues[currentACIndex].cluelist[currentClueIndex]
         //MARK: Note, perhaps get creative with 'currentClueIndex' assignment and try to prevent repeating hints/answers
         currentWord = answerClues[currentACIndex].answer
+        lastWord = guess
     }
     
+    func giveUp( _ guess: String, _ last: String){
+        currPage = .giveup
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.change(guess, last)
+            self.currPage = .p1
+        }
+        self.incrementPoint(-1)
+    }
+    
+    func incrementPoint( _ num: Int){
+        points += num
+    }
 }

@@ -12,11 +12,18 @@ struct Instructions: View {
     @EnvironmentObject var gameinfo: GameInfo
     
     var body: some View {
-        Text("Instructions Here")
-        Button("back"){
-            gameinfo.currPage = .p1
+        ZStack{
+            Color.blue
+            VStack{
+                Text("Instructions Here")
+                Button("back"){
+                    gameinfo.currPage = .p1
+                }
+            }
+            .foregroundColor(.white)
+            .font(.system(size: 50, weight: .bold, design: .rounded))
         }
-    }
+        .ignoresSafeArea()
 }
 
 struct Instructions_Previews: PreviewProvider {
@@ -24,4 +31,5 @@ struct Instructions_Previews: PreviewProvider {
         Instructions()
             .environmentObject(GameInfo())
     }
+}
 }

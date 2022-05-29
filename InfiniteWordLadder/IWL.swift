@@ -12,11 +12,10 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct IWL: View {
     @EnvironmentObject var gameinfo: GameInfo
     @State private var username: String = ""
     @State private var clue = ""
-    //@State private var clueCurrent: String = ""
 
     var body: some View {
         ZStack{
@@ -31,8 +30,9 @@ struct ContentView: View {
                             .foregroundColor(.white)
                         Text(String(gameinfo.points))
                             .foregroundColor(.white)
-                            .padding(.trailing)
                     }
+                    .padding()
+                    .padding(.trailing)
                     Text(gameinfo.currentClue)
                         .foregroundColor(.white)
                         .font(.largeTitle)
@@ -40,13 +40,14 @@ struct ContentView: View {
                         .multilineTextAlignment(.center)
                         .frame(height: 100)
                         .allowsTightening(true)
+                        .multilineTextAlignment(.center)
                         .onChange(of: clue) { newValue in
-                            //print ("changed")
                         }
 
                     TextField(
-                        "FOUR",
+                        "Here",
                         text: $username
+                            
                     )
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
@@ -54,15 +55,27 @@ struct ContentView: View {
                         .font(Font.body.bold())
                         .textInputAutocapitalization(.characters)
                         .disableAutocorrection(true)
-                        .padding(.horizontal)
-                        //.shadow(color: .white, radius: 5, x: 5, y: 5) //change color later
+                        .onChange(of: username){ newValue in
+                            let i = Array(username)
+                            var num = 0
+                            var newUsername: [Character] = []
+                            while (num < 4 && num < i.count){
+                                newUsername.append(i[num])
+                                num += 1
+                            }
+                            username = String(newUsername)
+                        }//MARK: keeps username <= 4 characters
                         .onSubmit {
-                    //Text(username)
                             gameinfo.guessing(guess: username)
                             clue = gameinfo.currentClue
                             username = ""
-                        }
-                    Text(username)
+                        }//MARK: clears usnername upon submission
+                    HStack{
+                        Text("Last word:")
+                        Text(gameinfo.lastWord)
+                    }
+                    .foregroundColor(.white)
+                    .padding()
                     Button("Hint") {
                         gameinfo.hint()
                         clue = gameinfo.currentClue
@@ -72,10 +85,11 @@ struct ContentView: View {
                     .font(.title2)
                     .foregroundColor(.white)
                     Button("Give Up: -1 point") {
-                        gameinfo.change(gameinfo.currentWord)
-                        gameinfo.points -= 1
+                        //gameinfo.currPage = .giveup
+                        //gameinfo.change(gameinfo.currentWord, gameinfo.lastWord)
+                        gameinfo.giveUp(gameinfo.currentWord, gameinfo.lastWord)
                         clue = gameinfo.currentClue
-                        print(gameinfo.currentClue)
+                        //print(gameinfo.currentClue)
                     }
                     .padding(.vertical)
                     .clipShape(Capsule())
@@ -85,7 +99,7 @@ struct ContentView: View {
                         Spacer()
                         Button(){
                             print("button")
-                            gameinfo.currPage = .p3
+                            gameinfo.currPage = .instructions
                         }
                         label: {
                             Image(systemName: "questionmark.circle.fill")
@@ -99,15 +113,14 @@ struct ContentView: View {
                         .padding()
                     }
                 }
-                Text("")
             }
             .ignoresSafeArea()
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct IWL_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        IWL()
             .environmentObject(GameInfo())
     }
 }
