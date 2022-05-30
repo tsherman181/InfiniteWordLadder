@@ -62,7 +62,6 @@ struct IWL: View {
                     TextField(
                         "Here",
                         text: $username
-                            
                     )
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)

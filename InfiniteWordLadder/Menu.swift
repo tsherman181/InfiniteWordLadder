@@ -28,6 +28,21 @@ struct Menu: View {
     var body: some View {
         ZStack{
             Color(red:0.0, green:0.5, blue:1.0)
+            ZStack{
+            HStack{
+                Rectangle()
+                   .fill(.white)
+                   .frame(width: deviceWidth/8, height: deviceHeight/1.75)
+                   .cornerRadius(20)
+                   .padding(.trailing)
+                   .padding(.trailing)
+                Rectangle()
+                   .fill(.white)
+                   .frame(width: deviceWidth/8, height: deviceHeight/1.75)
+                   .cornerRadius(20)
+                   .padding(.leading)
+                   .padding(.leading)
+            }
             VStack{
                 Button("Infinite Word Ladder"){
                     angle += 360.0
@@ -104,10 +119,11 @@ struct Menu: View {
             }
             //.rotationEffect(.degrees(angle))
             //.animation(.easeInOut, value: angle)
-            .opacity(opacity)
-            .animation(.easeOut, value: opacity)
-            .scaleEffect(scale)
-            .animation(.easeOut, value: scale)
+        }
+        .opacity(opacity)
+        .animation(.easeOut, value: opacity)
+        .scaleEffect(scale)
+        .animation(.easeOut, value: scale)
         }
         .ignoresSafeArea()
     }
