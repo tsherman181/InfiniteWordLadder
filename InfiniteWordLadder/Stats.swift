@@ -10,7 +10,16 @@ import SwiftUI
 struct Stats: View {
     @EnvironmentObject var gameinfo: GameInfo
     var body: some View {
-        Text("Statistics screen goes here")
+        ZStack {
+            Color.blue
+            VStack {
+                Text("Average number of guesses per word: ")
+                    .padding()
+                Text("Average number of hints used per word: ")
+            }
+        }
+        .ignoresSafeArea()
+        .foregroundColor(.white)
     }
 }
 

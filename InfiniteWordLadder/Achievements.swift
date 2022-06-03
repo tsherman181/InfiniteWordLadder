@@ -15,7 +15,16 @@ struct Achievements: View {
     @EnvironmentObject var gameinfo: GameInfo
     
     var body: some View {
-        Text("Cool Achievements Screen will go here")
+        ZStack {
+            Color.blue
+            VStack {
+                Text("Highest score: ")
+                    .padding()
+                Text("Most guesses in a row: ")
+            }
+        }
+        .foregroundColor(.white)
+        .ignoresSafeArea()
     }
 }
 
