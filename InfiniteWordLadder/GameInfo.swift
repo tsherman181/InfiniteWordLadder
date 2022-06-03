@@ -7,6 +7,8 @@
 
 import Foundation
 
+import AVFoundation
+
 enum Page {
     case menu
     case IWL
@@ -30,6 +32,7 @@ class GameInfo: ObservableObject {
     var lastWord: String
     let defaults: UserDefaults
     @Published var currPage: Page
+    var music: AVAudioPlayer!
     
     init () {
         defaults = UserDefaults.standard
@@ -37,9 +40,14 @@ class GameInfo: ObservableObject {
         let url = Bundle.main.url(forResource: "full", withExtension: ".json")!
         let data = try! Data(contentsOf: url)
         answerClues = try! JSONDecoder().decode([AnswerClue].self, from: data)
-        currentClueIndex = 0
-        currentACIndex = 0 //MARK: This line is for testing purposes only
-        //currentACIndex = Int.random(in: 0..<answerClues.count)
+        currentClueIndex = defaults.integer(forKey: "Current Clue Index") //can be 0 on first download, nobody cares
+        currentACIndex = defaults.integer(forKey: "Current AC Index")
+        if (!defaults.bool(forKey: "First Time Download")){
+            currentACIndex = Int.random(in: 0..<answerClues.count)
+            print(currentACIndex)
+            print(answerClues.count)
+            defaults.set(true, forKey: "First Time Download")
+        }
         currentClue = defaults.string(forKey: "Current Clue") ?? answerClues[currentACIndex].cluelist[currentClueIndex]
         currentWord = defaults.string(forKey: "Current Word") ?? answerClues[currentACIndex].answer
         var count = 0
@@ -49,6 +57,17 @@ class GameInfo: ObservableObject {
         }
         currPage = .menu
         lastWord = defaults.string(forKey: "Last Word") ?? ""
+        if let musicURL = Bundle.main.url(forResource: "PhantomFromSpace", withExtension: "mp3"){
+            if let audioPlayer = try? AVAudioPlayer(contentsOf: musicURL){
+                music = audioPlayer
+                music.numberOfLoops = -1
+                music.play()
+            }
+        }
+        else{
+            music = nil
+        }
+        
     }
     
     func insertSpaces(_ guess: String) -> String {
@@ -70,6 +89,7 @@ class GameInfo: ObservableObject {
     
     func hint(){
         currentClueIndex += 1
+        defaults.set(currentClue, forKey: "Current Clue Index")
         if currentClueIndex == answerClues[currentACIndex].cluelist.count {
             currentClueIndex = 0;
         }
@@ -91,6 +111,7 @@ class GameInfo: ObservableObject {
             }
         }
         currentACIndex = ACDict[newWord]!
+        defaults.set(currentACIndex, forKey: "Current AC Index")
         currentClueIndex = 0
         currentClue = answerClues[currentACIndex].cluelist[currentClueIndex]
         defaults.set(currentClue, forKey: "Current Clue")
@@ -116,4 +137,15 @@ class GameInfo: ObservableObject {
     }//MARK: Function not only increments point, but also sets the key so devices remembers the number of points when the user exits the application
     
     //MARK: A function is needed to keep track of the various animations that need to be preformed when a screen is exited out of/entered
+    
+    func playMusic() {
+        if let musicURL = Bundle.main.url(forResource: "PhantomFromSpace", withExtension: "mp3") {
+            if let audioPlayer = try? AVAudioPlayer(contentsOf: musicURL) {
+                music = audioPlayer
+                music.numberOfLoops = -1
+                music.play()
+            }
+        }
+    }
+    
 }

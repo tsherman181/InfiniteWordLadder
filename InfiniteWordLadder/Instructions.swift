@@ -39,7 +39,7 @@ struct Instructions: View {
                 .padding()
                 Text("What is a word ladder?")
                     .font(.title)
-                Text("A word puzzle game where given a clue, you must guess its corresponding four letter word. After that, you are given another clue with an answer one letter different than the previous one. Here's an example:")
+                Text("A word ladder is a word puzzle game where given a clue, you must guess its corresponding four letter word. After that, you are given another clue with an answer one letter different than the previous one. Here's an example:")
                     .padding()
                 HStack{
                     VStack{
@@ -58,7 +58,9 @@ struct Instructions: View {
                     .padding()
                 }
                 Text("If you need help, hit the hint button and you will get a different hint for that word!")
+                    .padding(.horizontal)
                 Text("If you are out of guesses, you can hit the give up button. It will tell you the word but deduct 1 point :(")
+                    .padding()
                 Button("Ready to play the game?"){
                     gameinfo.currPage = .IWL
                 }

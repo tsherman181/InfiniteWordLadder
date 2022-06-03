@@ -16,7 +16,8 @@ struct IWL: View {
     @EnvironmentObject var gameinfo: GameInfo
     @State private var username: String = ""
     @State private var clue = ""
-
+    
+    
     var deviceWidth: CGFloat {
         UIScreen.main.bounds.width
     }
@@ -132,5 +133,7 @@ struct IWL_Previews: PreviewProvider {
     static var previews: some View {
         IWL()
             .environmentObject(GameInfo())
+            //.previewInterfaceOrientation(.landscapeLeft)
     }
 }
+
