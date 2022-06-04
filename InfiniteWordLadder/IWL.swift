@@ -34,9 +34,12 @@ struct IWL: View {
                 Text("")
                 VStack{
                     Text("")
-                    HStack{
-                        Button("Menu"){
+                    HStack(){
+                        Button{
                             gameinfo.currPage = .menu
+                        }label:{
+                            Label("", systemImage: "list.dash")
+                                .font(.system(size: 20, weight: .bold, design: .default))
                         }
                         .foregroundColor(.white)
                         .padding()
@@ -133,6 +136,7 @@ struct IWL_Previews: PreviewProvider {
     static var previews: some View {
         IWL()
             .environmentObject(GameInfo())
+            .previewInterfaceOrientation(.portraitUpsideDown)
             //.previewInterfaceOrientation(.landscapeLeft)
     }
 }

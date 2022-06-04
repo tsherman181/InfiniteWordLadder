@@ -13,6 +13,16 @@ struct Stats: View {
         ZStack {
             Color.blue
             VStack {
+                HStack{
+                    Button{
+                        gameinfo.currPage = .menu
+                    }label:{
+                        Label("", systemImage: "list.dash")
+                            .font(.system(size: 20, weight: .bold, design: .default))
+                    Spacer()
+                    }
+                }
+                .padding()
                 Text("Average number of guesses per word: ")
                     .padding()
                 Text("Average number of hints used per word: ")
