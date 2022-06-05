@@ -33,6 +33,7 @@ class GameInfo: ObservableObject {
     let defaults: UserDefaults
     @Published var currPage: Page
     var music: AVAudioPlayer!
+    var achievements: [Int]
     
     init () {
         defaults = UserDefaults.standard
@@ -57,17 +58,18 @@ class GameInfo: ObservableObject {
         }
         currPage = .menu
         lastWord = defaults.string(forKey: "Last Word") ?? ""
-        if let musicURL = Bundle.main.url(forResource: "PhantomFromSpace", withExtension: "mp3"){
-            if let audioPlayer = try? AVAudioPlayer(contentsOf: musicURL){
-                music = audioPlayer
-                music.numberOfLoops = -1
-                music.play()
-            }
-        }
-        else{
-            music = nil
-        }
-        
+//        if let musicURL = Bundle.main.url(forResource: "PhantomFromSpace", withExtension: "mp3"){
+//            if let audioPlayer = try? AVAudioPlayer(contentsOf: musicURL){
+//                music = audioPlayer
+//                music.numberOfLoops = -1
+//                music.play()
+//            }
+//        }
+//        else{
+//            music = nil
+//        }
+        music = nil
+        achievements = [0]
     }
     
     func insertSpaces(_ guess: String) -> String {
