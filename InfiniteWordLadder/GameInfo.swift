@@ -131,7 +131,7 @@ class GameInfo: ObservableObject {
             self.currPage = .IWL
         }
         self.incrementPoint(-1)
-    } //MARK: Some issues still persist in regards to remembering negative points, I do not know why
+    }
     
     func incrementPoint( _ num: Int){
         points += num

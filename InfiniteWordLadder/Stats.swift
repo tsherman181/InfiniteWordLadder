@@ -26,6 +26,11 @@ struct Stats: View {
                 Text("Average number of guesses per word: ")
                     .padding()
                 Text("Average number of hints used per word: ")
+                    .padding()
+                Text("Highest score: ")
+                    .padding()
+                Text("Most guesses in a row: ")
+                    .padding()
             }
         }
         .ignoresSafeArea()
