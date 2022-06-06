@@ -23,6 +23,7 @@
 		F3D55565283C40A800A34232 /* MotherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D55564283C40A800A34232 /* MotherView.swift */; };
 		F3D55567283C413300A34232 /* Correct.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D55566283C413300A34232 /* Correct.swift */; };
 		F3D55569283DB76A00A34232 /* Instructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D55568283DB76A00A34232 /* Instructions.swift */; };
+		F3F78451284D90C60043B69D /* StatsAchievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F78450284D90C60043B69D /* StatsAchievements.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		F3D55564283C40A800A34232 /* MotherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotherView.swift; sourceTree = "<group>"; };
 		F3D55566283C413300A34232 /* Correct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Correct.swift; sourceTree = "<group>"; };
 		F3D55568283DB76A00A34232 /* Instructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instructions.swift; sourceTree = "<group>"; };
+		F3F78450284D90C60043B69D /* StatsAchievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsAchievements.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				F3D55568283DB76A00A34232 /* Instructions.swift */,
 				F33BCCBE282C8BB400BDFB27 /* InfiniteWordLadderApp.swift */,
 				F3B2C5D2282F3ADF00766218 /* GameInfo.swift */,
+				F3F78450284D90C60043B69D /* StatsAchievements.swift */,
 				F3D55564283C40A800A34232 /* MotherView.swift */,
 				F37C68FA28438E9300820459 /* Stats.swift */,
 				F37C68FC28438EA600820459 /* Achievements.swift */,
@@ -181,6 +184,7 @@
 				F37C68FD28438EA600820459 /* Achievements.swift in Sources */,
 				F33BCCC1282C8BB400BDFB27 /* IWL.swift in Sources */,
 				F33BCCBF282C8BB400BDFB27 /* InfiniteWordLadderApp.swift in Sources */,
+				F3F78451284D90C60043B69D /* StatsAchievements.swift in Sources */,
 				F37C68FB28438E9300820459 /* Stats.swift in Sources */,
 				F3B2C5D3282F3ADF00766218 /* GameInfo.swift in Sources */,
 				F3D55567283C413300A34232 /* Correct.swift in Sources */,

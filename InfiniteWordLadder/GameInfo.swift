@@ -33,14 +33,19 @@ class GameInfo: ObservableObject {
     let defaults: UserDefaults
     @Published var currPage: Page
     var music: AVAudioPlayer!
-    var achievements: [Int]
+    var achievements: [Int] //delete this variable eventually and replace with achievement struct
+    var prevWords: [String]
     
     init () {
+        //we initialize our defaults
         defaults = UserDefaults.standard
+        //we set our points
         points = defaults.integer(forKey: "Points")
+        //we read the relevant JSON
         let url = Bundle.main.url(forResource: "full", withExtension: ".json")!
         let data = try! Data(contentsOf: url)
         answerClues = try! JSONDecoder().decode([AnswerClue].self, from: data)
+        //we read in the correct clues, indecies, etc.
         currentClueIndex = defaults.integer(forKey: "Current Clue Index") //can be 0 on first download, nobody cares
         currentACIndex = defaults.integer(forKey: "Current AC Index")
         if (!defaults.bool(forKey: "First Time Download")){
@@ -51,13 +56,21 @@ class GameInfo: ObservableObject {
         }
         currentClue = defaults.string(forKey: "Current Clue") ?? answerClues[currentACIndex].cluelist[currentClueIndex]
         currentWord = defaults.string(forKey: "Current Word") ?? answerClues[currentACIndex].answer
-        var count = 0
-        for i in answerClues{
-            ACDict[i.answer] = count
-            count += 1
+        
+        //creates our hashing method to deal with quick lookup for the JSON
+        ACDict = defaults.object(forKey: "Hash") as? [String : Int] ?? [String : Int]()
+        if (ACDict.isEmpty){
+            var count = 0
+            for i in answerClues{
+                ACDict[i.answer] = count
+                count += 1
+            }
+            defaults.set(ACDict, forKey: "Hash")
         }
+        //sets current page and last word to defaults
         currPage = .menu
         lastWord = defaults.string(forKey: "Last Word") ?? ""
+        //deal with music
 //        if let musicURL = Bundle.main.url(forResource: "PhantomFromSpace", withExtension: "mp3"){
 //            if let audioPlayer = try? AVAudioPlayer(contentsOf: musicURL){
 //                music = audioPlayer
@@ -70,6 +83,9 @@ class GameInfo: ObservableObject {
 //        }
         music = nil
         achievements = [0]
+        //deal with previous words
+        prevWords = defaults.object(forKey: "Previous Words") as? [String] ?? [String]()
+        
     }
     
     func insertSpaces(_ guess: String) -> String {
@@ -100,18 +116,54 @@ class GameInfo: ObservableObject {
     }
 
     
+    func addToPrev(_ word: String){
+        var count = min(9, prevWords.count)
+        if (count < 10){
+            let empty = ""
+            prevWords.append(empty)
+        }
+        while (count > 0){
+            prevWords[count] = prevWords[count-1]
+            count -= 1
+        }
+        if (prevWords.isEmpty){
+            prevWords.append(word)
+        }
+        prevWords[0] = word
+        defaults.set(prevWords, forKey: "Previous Words")
+        print("START")
+        for i in prevWords{
+            print(i)
+        }
+    }
+    
+    
     func change(_ guess: String, _ last: String){
         var newWord = guess
+        //let's deal with the previous words
+        addToPrev(guess)
+        //The above code should populate our previous words array correctly
+        var count = 0
         while (newWord == guess){
+            var stop = false
             var chars = Array(newWord)
             chars[Int.random(in: 0...3)] = Character(UnicodeScalar(Int.random(in: 65...90))!)
-            let temp = String(chars)
+            let temp = String(chars) //temp is our new word
             if (ACDict[temp] != nil){
-                if (last != temp){
+                if (count < 10000){
+                    for i in prevWords{
+                        if (i == temp){
+                            stop = true
+                        }
+                    }
+                }
+                if (!stop && temp != guess){
                     newWord = temp
-                }//MARK: Need to create set of past few clues to make sure no repeats, and then come up with solution for case where our only options are repeats or to break the cycle
-            }
+                }
+                count += 1
+            }//anything inside of this if statement is a valid word
         }
+        
         currentACIndex = ACDict[newWord]!
         defaults.set(currentACIndex, forKey: "Current AC Index")
         currentClueIndex = 0
@@ -123,8 +175,10 @@ class GameInfo: ObservableObject {
         lastWord = guess
         defaults.set(lastWord, forKey: "Last Word")
     }
+    //MARK: THIS FUNCTION SHOULD KEEP OUR WORD LADDER INFINITE IF WE KNOW EACH WORD CAN BE REACH BY AT LEAST ONE OTHER WORD
     
     func giveUp( _ guess: String, _ last: String){
+        //addToPrev(guess)
         currPage = .giveup
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.change(guess, last)
@@ -149,5 +203,7 @@ class GameInfo: ObservableObject {
             }
         }
     }
+    
+    
     
 }

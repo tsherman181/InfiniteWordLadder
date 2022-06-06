@@ -97,7 +97,7 @@ struct IWL: View {
                     Button("Hint") {
                         gameinfo.hint()
                         clue = gameinfo.currentClue
-                        print(gameinfo.currentClue)
+                        //print(gameinfo.currentClue)
                     }
                     .clipShape(Capsule())
                     .font(.title2)
