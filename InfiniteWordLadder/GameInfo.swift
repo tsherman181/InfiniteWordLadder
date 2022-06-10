@@ -33,8 +33,9 @@ class GameInfo: ObservableObject {
     let defaults: UserDefaults
     @Published var currPage: Page
     var music: AVAudioPlayer!
-    var achievements: [Int] //delete this variable eventually and replace with achievement struct
     var prevWords: [String]
+    var saobj: SA
+    
     
     init () {
         //we initialize our defaults
@@ -82,9 +83,9 @@ class GameInfo: ObservableObject {
 //            music = nil
 //        }
         music = nil
-        achievements = [0]
         //deal with previous words
         prevWords = defaults.object(forKey: "Previous Words") as? [String] ?? [String]()
+        saobj = SA()
         
     }
     
@@ -102,6 +103,8 @@ class GameInfo: ObservableObject {
                 self.currPage = .IWL
             }
             self.incrementPoint(1)
+            saobj.inRow(true)
+            saobj.check_achievements(guess, points)
         }
     }
     
@@ -179,12 +182,13 @@ class GameInfo: ObservableObject {
     
     func giveUp( _ guess: String, _ last: String){
         //addToPrev(guess)
+        saobj.inRow(false)
         currPage = .giveup
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.change(guess, last)
             self.currPage = .IWL
         }
-        self.incrementPoint(-1)
+        incrementPoint(-1)
     }
     
     func incrementPoint( _ num: Int){

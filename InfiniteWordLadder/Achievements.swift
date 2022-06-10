@@ -13,7 +13,7 @@ import SwiftUI
 struct Achievements: View {
     
     @EnvironmentObject var gameinfo: GameInfo
-    @State private var animationAmount = 0.0
+    @State private var animationAmount = Array(repeating: 0.0, count: 3)
     @State private var rX = 0.0
     @State private var rY = 0.0
     
@@ -58,10 +58,10 @@ struct Achievements: View {
                 HStack{
                 Spacer()
                 Button(action: {
-                    if (min(Double(gameinfo.achievements[0])+0.5, 1.0) == 1){
+                    if (min(Double(gameinfo.saobj.achievements[0])+0.5, 1.0) == 1){
                         rX = Double(Float.random(in: 0..<1))
                         rY = Double(Float.random(in: 0..<1))
-                        withAnimation{animationAmount+=360}
+                        withAnimation{animationAmount[0]+=Double(360*gameinfo.saobj.achievements[0])}
                     }
                 }){
                     Image(systemName: "star.circle.fill")
@@ -74,15 +74,16 @@ struct Achievements: View {
                                 .ultraThickMaterial,
                                 .ultraThinMaterial
                             )
-                        .rotation3DEffect(.degrees(animationAmount), axis: (x:rX, y:rY, z:0))
-                        .opacity(min(Double(gameinfo.achievements[0])+0.5, 1.0))
+                        .rotation3DEffect(.degrees(animationAmount[0]), axis: (x:rX, y:rY, z:0))
+                        .opacity(min(Double(gameinfo.saobj.achievements[0])+0.5, 1.0))
                     }
                 Spacer()
                 Button(action: {
-                    if (min(Double(gameinfo.achievements[0])+0.5, 1.0) == 1){
+                    if (min(Double(gameinfo.saobj.achievements[1])+0.5, 1.0) == 1){
                         rX = Double(Float.random(in: 0..<1))
                         rY = Double(Float.random(in: 0..<1))
-                        withAnimation{animationAmount+=360}
+                        withAnimation{animationAmount[1]+=Double(gameinfo.saobj.achievements[1]*360)
+                        }
                     }
                 }){
                     Image(systemName: "star.circle.fill")
@@ -95,15 +96,15 @@ struct Achievements: View {
                                 .ultraThickMaterial,
                                 .ultraThinMaterial
                             )
-                        .rotation3DEffect(.degrees(animationAmount), axis: (x:rX, y:rY, z:0))
-                        .opacity(min(Double(gameinfo.achievements[0])+0.5, 1.0))
+                        .rotation3DEffect(.degrees(animationAmount[1]), axis: (x:rX, y:rY, z:0))
+                        .opacity(min(Double(gameinfo.saobj.achievements[1])+0.5, 1.0))
                     }
                 Spacer()
                 Button(action: {
-                    if (min(Double(gameinfo.achievements[0])+0.5, 1.0) == 1){
+                    if (min(Double(gameinfo.saobj.achievements[2])+0.5, 1.0) == 1){
                         rX = Double(Float.random(in: 0..<1))
                         rY = Double(Float.random(in: 0..<1))
-                        withAnimation{animationAmount+=360}
+                        withAnimation{animationAmount[2]+=Double(gameinfo.saobj.achievements[2]*360)}
                     }
                 }){
                     Image(systemName: "star.circle.fill")
@@ -116,8 +117,8 @@ struct Achievements: View {
                                 .ultraThickMaterial,
                                 .ultraThinMaterial
                             )
-                        .rotation3DEffect(.degrees(animationAmount), axis: (x:rX, y:rY, z:0))
-                        .opacity(min(Double(gameinfo.achievements[0])+0.5, 1.0))
+                        .rotation3DEffect(.degrees(animationAmount[2]), axis: (x:rX, y:rY, z:0))
+                        .opacity(min(Double(gameinfo.saobj.achievements[2])+0.5, 1.0))
                     }
                 Spacer()
                 }

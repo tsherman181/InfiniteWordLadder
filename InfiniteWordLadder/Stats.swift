@@ -27,9 +27,11 @@ struct Stats: View {
                     .padding()
                 Text("Average number of hints used per word: ")
                     .padding()
-                Text("Highest score: ")
+                Text("High Score: " + String(gameinfo.saobj.highscore))
                     .padding()
-                Text("Most guesses in a row: ")
+                Text("Current number in a row:" + String(gameinfo.saobj.numInRow))
+                    .padding()
+                Text("Most guesses in a row: " + String(gameinfo.saobj.maxInRow))
                     .padding()
             }
         }
