@@ -35,6 +35,8 @@ class GameInfo: ObservableObject {
     var music: AVAudioPlayer!
     var prevWords: [String]
     var saobj: SA
+    var difficulty: Int
+    var diffDict: [String: Int] = [:]
     
     
     init () {
@@ -43,7 +45,7 @@ class GameInfo: ObservableObject {
         //we set our points
         points = defaults.integer(forKey: "Points")
         //we read the relevant JSON
-        let url = Bundle.main.url(forResource: "full", withExtension: ".json")!
+        let url = Bundle.main.url(forResource: "connected", withExtension: ".json")!
         let data = try! Data(contentsOf: url)
         answerClues = try! JSONDecoder().decode([AnswerClue].self, from: data)
         //we read in the correct clues, indecies, etc.
@@ -87,6 +89,18 @@ class GameInfo: ObservableObject {
         prevWords = defaults.object(forKey: "Previous Words") as? [String] ?? [String]()
         saobj = SA()
         
+        if (diffDict.isEmpty){
+            difficulty = 197
+            for i in answerClues{
+                diffDict[i.answer] = i.num_clues
+            }
+            defaults.set(difficulty, forKey: "Difficulty")
+            defaults.set(diffDict, forKey: "Hash Difficulty")
+        }
+        else{
+            difficulty = defaults.integer(forKey: "Difficulty")
+            diffDict = defaults.object(forKey: "Hash Difficulty") as? [String : Int] ?? [String : Int]()
+        }
     }
     
     func insertSpaces(_ guess: String) -> String {
@@ -137,6 +151,9 @@ class GameInfo: ObservableObject {
         print("START")
         for i in prevWords{
             print(i)
+            if (i != ""){
+                print(String(diffDict[i]!))
+            }
         }
     }
     
@@ -153,17 +170,19 @@ class GameInfo: ObservableObject {
             chars[Int.random(in: 0...3)] = Character(UnicodeScalar(Int.random(in: 65...90))!)
             let temp = String(chars) //temp is our new word
             if (ACDict[temp] != nil){
-                if (count < 10000){
-                    for i in prevWords{
-                        if (i == temp){
-                            stop = true
+                if (diffDict[temp]! >= Int(Double(difficulty)/(1.0+Double(count/1000))) || count > 10000){
+                    if (count < 50000){
+                        for i in prevWords{
+                            if (i == temp){
+                                stop = true
+                            }
                         }
                     }
+                    if (!stop && temp != guess){
+                        newWord = temp
+                    }
                 }
-                if (!stop && temp != guess){
-                    newWord = temp
-                }
-                count += 1
+                    count += 1
             }//anything inside of this if statement is a valid word
         }
         
