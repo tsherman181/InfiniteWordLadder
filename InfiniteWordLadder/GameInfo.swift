@@ -90,7 +90,7 @@ class GameInfo: ObservableObject {
         saobj = SA()
         
         if (diffDict.isEmpty){
-            difficulty = 197
+            difficulty = 97
             for i in answerClues{
                 diffDict[i.answer] = i.num_clues
             }
