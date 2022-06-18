@@ -17,6 +17,7 @@ enum Page {
     case giveup
     case achievements
     case stats
+    case settings
 }
 
 
@@ -90,9 +91,9 @@ class GameInfo: ObservableObject {
         saobj = SA()
         
         if (diffDict.isEmpty){
-            difficulty = 97
+            difficulty = 50
             for i in answerClues{
-                diffDict[i.answer] = i.num_clues
+                diffDict[i.answer] = i.difficulty
             }
             defaults.set(difficulty, forKey: "Difficulty")
             defaults.set(diffDict, forKey: "Hash Difficulty")
@@ -150,8 +151,8 @@ class GameInfo: ObservableObject {
         defaults.set(prevWords, forKey: "Previous Words")
         print("START")
         for i in prevWords{
-            print(i)
             if (i != ""){
+                print(i)
                 print(String(diffDict[i]!))
             }
         }
@@ -164,26 +165,35 @@ class GameInfo: ObservableObject {
         addToPrev(guess)
         //The above code should populate our previous words array correctly
         var count = 0
+        var bestDiffWord = ""
+        var bestDiff = 0
+        var currentMetric = Double(difficulty)
         while (newWord == guess){
-            var stop = false
             var chars = Array(newWord)
             chars[Int.random(in: 0...3)] = Character(UnicodeScalar(Int.random(in: 65...90))!)
             let temp = String(chars) //temp is our new word
+            var inPrev = false
             if (ACDict[temp] != nil){
-                if (diffDict[temp]! >= Int(Double(difficulty)/(1.0+Double(count/1000))) || count > 10000){
-                    if (count < 50000){
-                        for i in prevWords{
-                            if (i == temp){
-                                stop = true
-                            }
+                if (currentMetric > 5){
+                    for i in prevWords{
+                        if i == temp{
+                            inPrev = true
                         }
-                    }
-                    if (!stop && temp != guess){
-                        newWord = temp
-                    }
+                    }//checks if in prev
+                }//if the current metric is below 5, we must use previous words
+                
+                if (!inPrev && diffDict[temp]! > bestDiff && temp != guess){
+                    bestDiff = diffDict[temp]!
+                    bestDiffWord = temp
+                }//update our best word if we find something better
+                
+                if (Double(bestDiff) > currentMetric && bestDiffWord != ""){
+                    newWord = bestDiffWord
                 }
-                    count += 1
             }//anything inside of this if statement is a valid word
+            currentMetric -= 0.025
+            count += 1
+            
         }
         
         currentACIndex = ACDict[newWord]!
@@ -197,7 +207,6 @@ class GameInfo: ObservableObject {
         lastWord = guess
         defaults.set(lastWord, forKey: "Last Word")
     }
-    //MARK: THIS FUNCTION SHOULD KEEP OUR WORD LADDER INFINITE IF WE KNOW EACH WORD CAN BE REACH BY AT LEAST ONE OTHER WORD
     
     func giveUp( _ guess: String, _ last: String){
         //addToPrev(guess)
