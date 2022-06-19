@@ -10,9 +10,7 @@ import SwiftUI
 struct Settings: View {
     
     @EnvironmentObject var gameinfo: GameInfo
-    
-    @State private var difficultySetter = 50.0
-    
+    @State private var difficultyLevel = 50
     
     var body: some View {
         ZStack {
@@ -29,21 +27,25 @@ struct Settings: View {
                     .foregroundColor(.white)
                     .padding()
                 }
-                Slider(value: $difficultySetter, in: 0...100)
-                    .onChange(of: difficultySetter){
-                        newValue in
-                        gameinfo.difficulty = Int(difficultySetter)
-                        gameinfo.defaults.set(gameinfo.difficulty, forKey: "Difficulty")
-                    }
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(.white)
-                Text("Settings go here")
-                Text(String(gameinfo.difficulty))
-                Text(String(difficultySetter))
-            }
+                Picker("Difficulty", selection: $difficultyLevel){
+                    Text("Beginner").tag(95)
+                    Text("Intermediate").tag(63)
+                    Text("Hard").tag(56)
+                    Text("Challenging").tag(50)
+                    Text("Expert").tag(41)
+                }
+                .pickerStyle(.segmented)
+                .foregroundColor(.white)
             .onAppear{
-                difficultySetter = Double(gameinfo.difficulty)
+                difficultyLevel = gameinfo.difficulty
+            }
+                Text("Gameinfo Level: \(gameinfo.difficulty) Difficulty Level \(difficultyLevel)")
+            Text("Settings go here")
+        }
+            .onChange(of: difficultyLevel){
+                newValue in
+                gameinfo.defaults.set(difficultyLevel, forKey: "Difficulty")
+                gameinfo.difficulty = gameinfo.defaults.integer(forKey: "Difficulty")
             }
         }
         .ignoresSafeArea()
