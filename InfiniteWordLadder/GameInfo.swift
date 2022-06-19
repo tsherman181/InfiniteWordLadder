@@ -98,10 +98,9 @@ class GameInfo: ObservableObject {
             defaults.set(difficulty, forKey: "Difficulty")
             defaults.set(diffDict, forKey: "Hash Difficulty")
         }
-        else{
-            difficulty = defaults.integer(forKey: "Difficulty")
-            diffDict = defaults.object(forKey: "Hash Difficulty") as? [String : Int] ?? [String : Int]()
-        }
+        
+        difficulty = defaults.integer(forKey: "Difficulty")
+        diffDict = defaults.object(forKey: "Hash Difficulty") as? [String : Int] ?? [String : Int]()
     }
     
     func insertSpaces(_ guess: String) -> String {
@@ -191,7 +190,7 @@ class GameInfo: ObservableObject {
                     newWord = bestDiffWord
                 }
             }//anything inside of this if statement is a valid word
-            currentMetric -= 0.025
+            currentMetric -= 0.0025
             count += 1
             
         }

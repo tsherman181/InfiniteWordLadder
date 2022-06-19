@@ -7,10 +7,26 @@
 
 import SwiftUI
 
+class selectedState: ObservableObject {
+    
+    init(){
+        
+    }
+    
+    @Published var state: Int = 60
+}
+
+
+
+
+
+
+
 struct Settings: View {
     
     @EnvironmentObject var gameinfo: GameInfo
-    @State private var difficultyLevel = 50
+    @StateObject var sS = selectedState()
+    
     
     var body: some View {
         ZStack {
@@ -27,7 +43,7 @@ struct Settings: View {
                     .foregroundColor(.white)
                     .padding()
                 }
-                Picker("Difficulty", selection: $difficultyLevel){
+                Picker("Difficulty", selection: $sS.state){
                     Text("Beginner").tag(95)
                     Text("Intermediate").tag(63)
                     Text("Hard").tag(56)
@@ -36,15 +52,16 @@ struct Settings: View {
                 }
                 .pickerStyle(.segmented)
                 .foregroundColor(.white)
-            .onAppear{
-                difficultyLevel = gameinfo.difficulty
-            }
-                Text("Gameinfo Level: \(gameinfo.difficulty) Difficulty Level \(difficultyLevel)")
-            Text("Settings go here")
+                .onAppear{
+                    sS.state = gameinfo.difficulty
+                    print(sS.state)
+                }
+                Text("Gameinfo Level: \(gameinfo.difficulty) Difficulty Level \(sS.state)")
+                Text("Settings go here")
         }
-            .onChange(of: difficultyLevel){
+            .onChange(of: sS.state){
                 newValue in
-                gameinfo.defaults.set(difficultyLevel, forKey: "Difficulty")
+                gameinfo.defaults.set(sS.state, forKey: "Difficulty")
                 gameinfo.difficulty = gameinfo.defaults.integer(forKey: "Difficulty")
             }
         }
