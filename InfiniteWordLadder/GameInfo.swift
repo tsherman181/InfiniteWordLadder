@@ -37,7 +37,11 @@ class GameInfo: ObservableObject {
     var prevWords: [String]
     var saobj: SA
     var difficulty: Int
+    var lettersShown: Int
     var diffDict: [String: Int] = [:]
+    var fiveLetters: String
+    var tenLetters: String
+    var fifteenLetters: String
     
     
     init () {
@@ -101,6 +105,25 @@ class GameInfo: ObservableObject {
         
         difficulty = defaults.integer(forKey: "Difficulty")
         diffDict = defaults.object(forKey: "Hash Difficulty") as? [String : Int] ?? [String : Int]()
+        
+        
+        fiveLetters = defaults.string(forKey: "Five Letters") ?? ""
+        tenLetters = defaults.string(forKey: "Ten Letters") ?? ""
+        fifteenLetters = defaults.string(forKey: "Fifteen Letters") ?? ""
+        lettersShown = defaults.integer(forKey: "Letters Shown")
+        
+        if(lettersShown == 0){
+            lettersShown = 5
+        }
+        defaults.set(lettersShown, forKey: "Letters Shown")
+        
+        if (fiveLetters.isEmpty || tenLetters.isEmpty || fifteenLetters.isEmpty){
+            changeRelevantLetters()
+        }
+        defaults.set(fiveLetters, forKey: "Five Letters")
+        defaults.set(tenLetters, forKey: "Ten Letters")
+        defaults.set(fifteenLetters, forKey: "Fifteen Letters")
+        
     }
     
     func insertSpaces(_ guess: String) -> String {
@@ -205,6 +228,7 @@ class GameInfo: ObservableObject {
         defaults.set(currentWord, forKey: "Current Word")
         lastWord = guess
         defaults.set(lastWord, forKey: "Last Word")
+        changeRelevantLetters()
     }
     
     func giveUp( _ guess: String, _ last: String){
@@ -224,6 +248,35 @@ class GameInfo: ObservableObject {
     }//MARK: Function not only increments point, but also sets the key so devices remembers the number of points when the user exits the application
     
     //MARK: A function is needed to keep track of the various animations that need to be preformed when a screen is exited out of/entered
+    
+    func changeRelevantLetters(){
+        var L5Set = Set<Character>()
+        for i in Array(currentWord){
+            L5Set.insert(i)
+        }
+        for i in Array(lastWord){
+            L5Set.insert(i)
+        }
+        while L5Set.count < 5{
+            L5Set.insert(Character(UnicodeScalar(Int.random(in: 65...90))!))
+        }
+        L5Set = Set(Array(L5Set.shuffled()))//this shuold mix up the relevant Letters
+        fiveLetters = String(Array(L5Set))
+        
+        while L5Set.count < 10{
+            L5Set.insert(Character(UnicodeScalar(Int.random(in: 65...90))!))
+        }
+        L5Set = Set(Array(L5Set.shuffled()))//this shuold mix up the relevant Letters
+        tenLetters = String(Array(L5Set))
+        
+        while L5Set.count < 15 {
+            L5Set.insert(Character(UnicodeScalar(Int.random(in: 65...90))!))
+        }
+        L5Set = Set(Array(L5Set.shuffled()))//this shuold mix up the relevant Letters
+        fifteenLetters = String(Array(L5Set))
+        
+        
+    }//MARK: To be done AFTER the current word and previous word have been changed
     
     func playMusic() {
         if let musicURL = Bundle.main.url(forResource: "PhantomFromSpace", withExtension: "mp3") {

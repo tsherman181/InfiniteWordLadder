@@ -117,6 +117,59 @@ struct IWL: View {
                     Spacer()
                     }
                     .padding(.vertical)
+                    if (gameinfo.lettersShown != 26){
+                        HStack{
+                            Group{
+                            Spacer()
+                            Button(String(Array(gameinfo.fiveLetters)[0])){
+                                username.append(contentsOf: String(Array(gameinfo.fiveLetters)[0]))
+                            }
+                                .padding()
+                                .foregroundColor(.blue)
+                                .background(.white)
+                                .font(.callout)
+                                .cornerRadius(10)
+                            Spacer()
+                            Button(String(Array(gameinfo.fiveLetters)[1])){
+                                username.append(contentsOf: String(Array(gameinfo.fiveLetters)[1]))
+                            }
+                                .padding()
+                                .foregroundColor(.blue)
+                                .background(.white)
+                                .font(.callout)
+                                .cornerRadius(10)
+                            Spacer()
+                            Button(String(Array(gameinfo.fiveLetters)[2])){
+                                username.append(contentsOf: String(Array(gameinfo.fiveLetters)[2]))
+                            }
+                                .padding()
+                                .foregroundColor(.blue)
+                                .background(.white)
+                                .font(.callout)
+                                .cornerRadius(10)
+                            Spacer()
+                            Button(String(Array(gameinfo.fiveLetters)[3])){
+                                username.append(contentsOf: String(Array(gameinfo.fiveLetters)[3]))
+                            }
+                                .padding()
+                                .foregroundColor(.blue)
+                                .background(.white)
+                                .font(.callout)
+                                .cornerRadius(10)
+                            Spacer()
+                            Button(String(Array(gameinfo.fiveLetters)[4])){
+                                username.append(contentsOf: String(Array(gameinfo.fiveLetters)[4]))
+                            }
+                                .padding()
+                                .foregroundColor(.blue)
+                                .background(.white)
+                                .font(.callout)
+                                .cornerRadius(10)
+                            }
+                            Spacer()
+                        }
+                    }
+                    //Text(gameinfo.fiveLetters + " " + gameinfo.tenLetters + " " + gameinfo.fifteenLetters) //MARK: For testing purposes
                     Spacer()
                     }
                     .navigationBarHidden(true)
