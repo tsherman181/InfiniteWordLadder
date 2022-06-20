@@ -96,7 +96,8 @@ struct IWL: View {
                         Text(gameinfo.lastWord)
                     }
                     .foregroundColor(.white)
-                    .padding()
+                    HStack{
+                    Spacer()
                     Button("Hint") {
                         gameinfo.hint()
                         clue = gameinfo.currentClue
@@ -105,29 +106,17 @@ struct IWL: View {
                     .clipShape(Capsule())
                     .font(.title2)
                     .foregroundColor(.white)
+                    Spacer()
                     Button("Give Up: -1 point") {
                         gameinfo.giveUp(gameinfo.currentWord, gameinfo.lastWord)
                         clue = gameinfo.currentClue
                     }
-                    .padding(.vertical)
                     .clipShape(Capsule())
                     .font(.body)
                     .foregroundColor(.white)
-                    HStack{
-                        Spacer()
-                        Button(){
-                            gameinfo.currPage = .instructions
-                        }
-                        label: {
-                            Image(systemName: "questionmark.circle.fill")
-                        }
-                        .font(.system(size: 30))
-                        }
-                        .padding(.vertical)
-                        .clipShape(Capsule())
-                        .font(.body)
-                        .foregroundColor(.white)
-                        .padding()
+                    Spacer()
+                    }
+                    .padding(.vertical)
                     Spacer()
                     }
                     .navigationBarHidden(true)
