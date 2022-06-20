@@ -113,7 +113,7 @@ class GameInfo: ObservableObject {
         lettersShown = defaults.integer(forKey: "Letters Shown")
         
         if(lettersShown == 0){
-            lettersShown = 5
+            lettersShown = 10
         }
         defaults.set(lettersShown, forKey: "Letters Shown")
         

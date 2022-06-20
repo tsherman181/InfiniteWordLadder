@@ -117,7 +117,7 @@ struct IWL: View {
                     Spacer()
                     }
                     .padding(.vertical)
-                    if (gameinfo.lettersShown != 26){
+                    if (gameinfo.lettersShown == 5){
                         HStack{
                             Group{
                             Spacer()
@@ -170,6 +170,113 @@ struct IWL: View {
                         }
                     }
                     //Text(gameinfo.fiveLetters + " " + gameinfo.tenLetters + " " + gameinfo.fifteenLetters) //MARK: For testing purposes
+                    
+                    else if (gameinfo.lettersShown == 10){
+                        VStack{
+                            HStack{
+                                Group{
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[0])){
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[0]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[1])){
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[1]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[2])){
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[2]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[3])){
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[3]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[4])){
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[4]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                }
+                                Spacer()
+                            }
+                            .padding()
+                            HStack{
+                                Group{
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[5])){
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[5]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[6])){
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[6]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[7])){
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[7]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[8])){
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[8]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[9])){
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[9]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                    f
+                                }
+                                Spacer()
+                            }
+                        }
+                    }
                     Spacer()
                     }
                     .navigationBarHidden(true)
