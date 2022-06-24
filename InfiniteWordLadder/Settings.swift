@@ -7,26 +7,12 @@
 
 import SwiftUI
 
-class selectedState: ObservableObject {
-    
-    init(){
-        
-    }
-    
-    @Published var state: Int = 60
-}
-
-
-
-
 
 
 
 struct Settings: View {
-    
+    @State var state = -100
     @EnvironmentObject var gameinfo: GameInfo
-    @StateObject var sS = selectedState()
-    
     
     var body: some View {
         ZStack {
@@ -43,27 +29,34 @@ struct Settings: View {
                     .foregroundColor(.white)
                     .padding()
                 }
-                Picker("Difficulty", selection: $sS.state){
+                Picker("Difficulty", selection: $state){
                     Text("Beginner").tag(95)
+                        .font(.system(size: 6))
                     Text("Intermediate").tag(63)
+                        .font(.system(size: 6))
                     Text("Hard").tag(56)
+                        .font(.system(size: 6))
                     Text("Challenging").tag(50)
+                        .font(.system(size: 6))
                     Text("Expert").tag(41)
+                        .font(.system(size: 6))
                 }
                 .pickerStyle(.segmented)
                 .foregroundColor(.white)
                 .onAppear{
-                    sS.state = gameinfo.difficulty
-                    print(sS.state)
+                    state = gameinfo.difficulty
+                    print(state)
                 }
-                Text("Gameinfo Level: \(gameinfo.difficulty) Difficulty Level \(sS.state)")
+                .onChange(of: state){
+                    newValue in
+                    gameinfo.changeDiff(state)
+                    print(state)
+                    print(gameinfo.difficulty)
+                }
+                Text("Gameinfo Level: \(self.gameinfo.difficulty) Difficulty Level \(state)")
+                    .onChange(of: gameinfo.difficulty){newValue in}
                 Text("Settings go here")
         }
-            .onChange(of: sS.state){
-                newValue in
-                gameinfo.defaults.set(sS.state, forKey: "Difficulty")
-                gameinfo.difficulty = gameinfo.defaults.integer(forKey: "Difficulty")
-            }
         }
         .ignoresSafeArea()
     }

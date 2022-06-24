@@ -264,6 +264,7 @@ struct IWL: View {
                                     .cornerRadius(10)
                                 Spacer()
                                 Button(String(Array(gameinfo.tenLetters)[9])){
+                     
                                     username.append(contentsOf: String(Array(gameinfo.tenLetters)[9]))
                                 }
                                     .padding()
@@ -271,7 +272,6 @@ struct IWL: View {
                                     .background(.white)
                                     .font(.callout)
                                     .cornerRadius(10)
-                                    f
                                 }
                                 Spacer()
                             }

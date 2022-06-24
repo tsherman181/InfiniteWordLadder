@@ -133,7 +133,6 @@ struct Menu: View {
 //                .scaleEffect(scale)
 //                .animation(.easeIn, value: scale)
             }
-            Text("Gameinfo Level: \(gameinfo.difficulty)")
             //.rotationEffect(.degrees(angle))
             //.animation(.easeInOut, value: angle)
         }

@@ -94,8 +94,12 @@ class GameInfo: ObservableObject {
         prevWords = defaults.object(forKey: "Previous Words") as? [String] ?? [String]()
         saobj = SA()
         
+        
+        diffDict = defaults.object(forKey: "Hash Difficulty") as? [String : Int] ?? [String : Int]()
+        
         if (diffDict.isEmpty){
-            difficulty = 50
+            print("Diff dict is empty")
+            difficulty = 63
             for i in answerClues{
                 diffDict[i.answer] = i.difficulty
             }
@@ -104,7 +108,7 @@ class GameInfo: ObservableObject {
         }
         
         difficulty = defaults.integer(forKey: "Difficulty")
-        diffDict = defaults.object(forKey: "Hash Difficulty") as? [String : Int] ?? [String : Int]()
+        print("starting difficulty: \(difficulty)")
         
         
         fiveLetters = defaults.string(forKey: "Five Letters") ?? ""
@@ -275,8 +279,13 @@ class GameInfo: ObservableObject {
         L5Set = Set(Array(L5Set.shuffled()))//this shuold mix up the relevant Letters
         fifteenLetters = String(Array(L5Set))
         
-        
     }//MARK: To be done AFTER the current word and previous word have been changed
+    //MARK: Maybe make these strings alphabetical
+    
+    func changeDiff(_ num: Int){
+        defaults.set(num, forKey: "Difficulty")
+        difficulty = defaults.integer(forKey: "Difficulty")
+    }
     
     func playMusic() {
         if let musicURL = Bundle.main.url(forResource: "PhantomFromSpace", withExtension: "mp3") {
