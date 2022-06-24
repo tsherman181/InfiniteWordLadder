@@ -23,6 +23,9 @@ struct MotherView: View {
         case .correct:
             Correct()
                 .matchedGeometryEffect(id: "Shape", in: animation)
+        case .gameover:
+            Gameover()
+                .matchedGeometryEffect(id: "Shape", in: animation)
         case .instructions:
             Instructions()
                 .matchedGeometryEffect(id: "Shape", in: animation)

@@ -13,6 +13,7 @@ enum Page {
     case menu
     case IWL
     case correct
+    case gameover
     case instructions
     case giveup
     case achievements
@@ -189,6 +190,13 @@ class GameInfo: ObservableObject {
             self.currPage = .IWL
         }
         incrementPoint(-1)
+        if points == -15 {
+            currPage = .gameover
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                self.currPage = .menu
+            }
+        }
+                
     }
     
     func incrementPoint( _ num: Int){
@@ -199,7 +207,7 @@ class GameInfo: ObservableObject {
     //MARK: A function is needed to keep track of the various animations that need to be preformed when a screen is exited out of/entered
     
     func playMusic() {
-        if let musicURL = Bundle.main.url(forResource: "PhantomFromSpace", withExtension: "mp3") {
+        if let musicURL = Bundle.main.url(forResource: "motivational-day-112790", withExtension: "mp3") {
             if let audioPlayer = try? AVAudioPlayer(contentsOf: musicURL) {
                 music = audioPlayer
                 music.numberOfLoops = -1
