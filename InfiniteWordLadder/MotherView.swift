@@ -38,8 +38,12 @@ struct MotherView: View {
         case .stats:
             Stats()
                 .matchedGeometryEffect(id: "Shape", in: animation)
+        case .settings:
+            Settings()
+                .matchedGeometryEffect(id: "Shape", in: animation)
         }
         }
+        
     }
 }
 

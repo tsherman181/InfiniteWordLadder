@@ -18,6 +18,7 @@ enum Page {
     case giveup
     case achievements
     case stats
+    case settings
 }
 
 
@@ -36,6 +37,12 @@ class GameInfo: ObservableObject {
     var music: AVAudioPlayer!
     var prevWords: [String]
     var saobj: SA
+    var difficulty: Int
+    var lettersShown: Int
+    var diffDict: [String: Int] = [:]
+    var fiveLetters: String
+    var tenLetters: String
+    var fifteenLetters: String
     
     
     init () {
@@ -44,7 +51,7 @@ class GameInfo: ObservableObject {
         //we set our points
         points = defaults.integer(forKey: "Points")
         //we read the relevant JSON
-        let url = Bundle.main.url(forResource: "full", withExtension: ".json")!
+        let url = Bundle.main.url(forResource: "connected", withExtension: ".json")!
         let data = try! Data(contentsOf: url)
         answerClues = try! JSONDecoder().decode([AnswerClue].self, from: data)
         //we read in the correct clues, indecies, etc.
@@ -87,6 +94,40 @@ class GameInfo: ObservableObject {
         //deal with previous words
         prevWords = defaults.object(forKey: "Previous Words") as? [String] ?? [String]()
         saobj = SA()
+        
+        
+        diffDict = defaults.object(forKey: "Hash Difficulty") as? [String : Int] ?? [String : Int]()
+        
+        if (diffDict.isEmpty){
+            print("Diff dict is empty")
+            difficulty = 63
+            for i in answerClues{
+                diffDict[i.answer] = i.difficulty
+            }
+            defaults.set(difficulty, forKey: "Difficulty")
+            defaults.set(diffDict, forKey: "Hash Difficulty")
+        }
+        
+        difficulty = defaults.integer(forKey: "Difficulty")
+        print("starting difficulty: \(difficulty)")
+        
+        
+        fiveLetters = defaults.string(forKey: "Five Letters") ?? ""
+        tenLetters = defaults.string(forKey: "Ten Letters") ?? ""
+        fifteenLetters = defaults.string(forKey: "Fifteen Letters") ?? ""
+        lettersShown = defaults.integer(forKey: "Letters Shown")
+        
+        if(lettersShown == 0){
+            lettersShown = 10
+        }
+        defaults.set(lettersShown, forKey: "Letters Shown")
+        
+        if (fiveLetters.isEmpty || tenLetters.isEmpty || fifteenLetters.isEmpty){
+            changeRelevantLetters()
+        }
+        defaults.set(fiveLetters, forKey: "Five Letters")
+        defaults.set(tenLetters, forKey: "Ten Letters")
+        defaults.set(fifteenLetters, forKey: "Fifteen Letters")
         
     }
     
@@ -137,7 +178,10 @@ class GameInfo: ObservableObject {
         defaults.set(prevWords, forKey: "Previous Words")
         print("START")
         for i in prevWords{
-            print(i)
+            if (i != ""){
+                print(i)
+                print(String(diffDict[i]!))
+            }
         }
     }
     
@@ -148,24 +192,35 @@ class GameInfo: ObservableObject {
         addToPrev(guess)
         //The above code should populate our previous words array correctly
         var count = 0
+        var bestDiffWord = ""
+        var bestDiff = 0
+        var currentMetric = Double(difficulty)
         while (newWord == guess){
-            var stop = false
             var chars = Array(newWord)
             chars[Int.random(in: 0...3)] = Character(UnicodeScalar(Int.random(in: 65...90))!)
             let temp = String(chars) //temp is our new word
+            var inPrev = false
             if (ACDict[temp] != nil){
-                if (count < 10000){
+                if (currentMetric > 5){
                     for i in prevWords{
-                        if (i == temp){
-                            stop = true
+                        if i == temp{
+                            inPrev = true
                         }
-                    }
+                    }//checks if in prev
+                }//if the current metric is below 5, we must use previous words
+                
+                if (!inPrev && diffDict[temp]! > bestDiff && temp != guess){
+                    bestDiff = diffDict[temp]!
+                    bestDiffWord = temp
+                }//update our best word if we find something better
+                
+                if (Double(bestDiff) > currentMetric && bestDiffWord != ""){
+                    newWord = bestDiffWord
                 }
-                if (!stop && temp != guess){
-                    newWord = temp
-                }
-                count += 1
             }//anything inside of this if statement is a valid word
+            currentMetric -= 0.0025
+            count += 1
+            
         }
         
         currentACIndex = ACDict[newWord]!
@@ -178,8 +233,8 @@ class GameInfo: ObservableObject {
         defaults.set(currentWord, forKey: "Current Word")
         lastWord = guess
         defaults.set(lastWord, forKey: "Last Word")
+        changeRelevantLetters()
     }
-    //MARK: THIS FUNCTION SHOULD KEEP OUR WORD LADDER INFINITE IF WE KNOW EACH WORD CAN BE REACH BY AT LEAST ONE OTHER WORD
     
     func giveUp( _ guess: String, _ last: String){
         //addToPrev(guess)
@@ -205,6 +260,40 @@ class GameInfo: ObservableObject {
     }//MARK: Function not only increments point, but also sets the key so devices remembers the number of points when the user exits the application
     
     //MARK: A function is needed to keep track of the various animations that need to be preformed when a screen is exited out of/entered
+    
+    func changeRelevantLetters(){
+        var L5Set = Set<Character>()
+        for i in Array(currentWord){
+            L5Set.insert(i)
+        }
+        for i in Array(lastWord){
+            L5Set.insert(i)
+        }
+        while L5Set.count < 5{
+            L5Set.insert(Character(UnicodeScalar(Int.random(in: 65...90))!))
+        }
+        L5Set = Set(Array(L5Set.shuffled()))//this shuold mix up the relevant Letters
+        fiveLetters = String(Array(L5Set))
+        
+        while L5Set.count < 10{
+            L5Set.insert(Character(UnicodeScalar(Int.random(in: 65...90))!))
+        }
+        L5Set = Set(Array(L5Set.shuffled()))//this shuold mix up the relevant Letters
+        tenLetters = String(Array(L5Set))
+        
+        while L5Set.count < 15 {
+            L5Set.insert(Character(UnicodeScalar(Int.random(in: 65...90))!))
+        }
+        L5Set = Set(Array(L5Set.shuffled()))//this shuold mix up the relevant Letters
+        fifteenLetters = String(Array(L5Set))
+        
+    }//MARK: To be done AFTER the current word and previous word have been changed
+    //MARK: Maybe make these strings alphabetical
+    
+    func changeDiff(_ num: Int){
+        defaults.set(num, forKey: "Difficulty")
+        difficulty = defaults.integer(forKey: "Difficulty")
+    }
     
     func playMusic() {
         if let musicURL = Bundle.main.url(forResource: "motivational-day-112790", withExtension: "mp3") {

@@ -16,7 +16,7 @@ struct IWL: View {
     @EnvironmentObject var gameinfo: GameInfo
     @State private var username: String = ""
     @State private var clue = ""
-    
+    @FocusState private var focus: Bool
     
     var deviceWidth: CGFloat {
         UIScreen.main.bounds.width
@@ -30,11 +30,9 @@ struct IWL: View {
     var body: some View {
         ZStack{
             Color.blue
-            VStack{
-                Text("")
+                .ignoresSafeArea()
                 VStack{
-                    Text("")
-                    HStack(){
+                    HStack{
                         Button{
                             gameinfo.currPage = .menu
                         }label:{
@@ -51,13 +49,12 @@ struct IWL: View {
                             .foregroundColor(.white)
                             .padding(.trailing)
                     }
-                    .padding()
                     Text(gameinfo.currentClue)
                         .foregroundColor(.white)
                         .font(.largeTitle)
                         .bold()
                         .multilineTextAlignment(.center)
-                        .frame(height: 100)
+                        //.frame(height: 100)
                         .allowsTightening(true)
                         .multilineTextAlignment(.center)
                         .onChange(of: clue) { newValue in
@@ -67,6 +64,10 @@ struct IWL: View {
                         "Here",
                         text: $username
                     )
+                    .onAppear{
+                        focus = true
+                    }
+                        .focused($focus)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
                         .font(.system(size: 80))
@@ -83,17 +84,20 @@ struct IWL: View {
                             }
                             username = String(newUsername)
                         }//MARK: keeps username <= 4 characters
-                        .onSubmit {
-                            gameinfo.guessing(guess: username)
-                            clue = gameinfo.currentClue
-                            username = ""
+                        .onChange(of: username) { newValue in
+                            if (username.count == 4){
+                                gameinfo.guessing(guess: username)
+                                clue = gameinfo.currentClue
+                                username = ""
+                            }
                         }//MARK: clears usnername upon submission
                     HStack{
                         Text("Last word:")
                         Text(gameinfo.lastWord)
                     }
                     .foregroundColor(.white)
-                    .padding()
+                    HStack{
+                    Spacer()
                     Button("Hint") {
                         gameinfo.hint()
                         clue = gameinfo.currentClue
@@ -102,33 +106,182 @@ struct IWL: View {
                     .clipShape(Capsule())
                     .font(.title2)
                     .foregroundColor(.white)
+                    Spacer()
                     Button("Give Up: -1 point") {
                         gameinfo.giveUp(gameinfo.currentWord, gameinfo.lastWord)
                         clue = gameinfo.currentClue
                     }
-                    .padding(.vertical)
                     .clipShape(Capsule())
                     .font(.body)
                     .foregroundColor(.white)
-                    HStack{
-                        Spacer()
-                        Button(){
-                            gameinfo.currPage = .instructions
-                        }
-                        label: {
-                            Image(systemName: "questionmark.circle.fill")
-                        }
-                        .font(.system(size: 30))
-                        }
-                        .padding(.vertical)
-                        .clipShape(Capsule())
-                        .font(.body)
-                        .foregroundColor(.white)
-                        .padding()
+                    Spacer()
                     }
-                }
+                    .padding(.vertical)
+                    if (gameinfo.lettersShown == 5){
+                        HStack{
+                            Group{
+                            Spacer()
+                            Button(String(Array(gameinfo.fiveLetters)[0])){
+                                username.append(contentsOf: String(Array(gameinfo.fiveLetters)[0]))
+                            }
+                                .padding()
+                                .foregroundColor(.blue)
+                                .background(.white)
+                                .font(.callout)
+                                .cornerRadius(10)
+                            Spacer()
+                            Button(String(Array(gameinfo.fiveLetters)[1])){
+                                username.append(contentsOf: String(Array(gameinfo.fiveLetters)[1]))
+                            }
+                                .padding()
+                                .foregroundColor(.blue)
+                                .background(.white)
+                                .font(.callout)
+                                .cornerRadius(10)
+                            Spacer()
+                            Button(String(Array(gameinfo.fiveLetters)[2])){
+                                username.append(contentsOf: String(Array(gameinfo.fiveLetters)[2]))
+                            }
+                                .padding()
+                                .foregroundColor(.blue)
+                                .background(.white)
+                                .font(.callout)
+                                .cornerRadius(10)
+                            Spacer()
+                            Button(String(Array(gameinfo.fiveLetters)[3])){
+                                username.append(contentsOf: String(Array(gameinfo.fiveLetters)[3]))
+                            }
+                                .padding()
+                                .foregroundColor(.blue)
+                                .background(.white)
+                                .font(.callout)
+                                .cornerRadius(10)
+                            Spacer()
+                            Button(String(Array(gameinfo.fiveLetters)[4])){
+                                username.append(contentsOf: String(Array(gameinfo.fiveLetters)[4]))
+                            }
+                                .padding()
+                                .foregroundColor(.blue)
+                                .background(.white)
+                                .font(.callout)
+                                .cornerRadius(10)
+                            }
+                            Spacer()
+                        }
+                    }
+                    //Text(gameinfo.fiveLetters + " " + gameinfo.tenLetters + " " + gameinfo.fifteenLetters) //MARK: For testing purposes
+                    
+                    else if (gameinfo.lettersShown == 10){
+                        VStack{
+                            HStack{
+                                Group{
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[0])){
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[0]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[1])){
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[1]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[2])){
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[2]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[3])){
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[3]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[4])){
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[4]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                }
+                                Spacer()
+                            }
+                            .padding()
+                            HStack{
+                                Group{
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[5])){
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[5]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[6])){
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[6]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[7])){
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[7]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[8])){
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[8]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                Spacer()
+                                Button(String(Array(gameinfo.tenLetters)[9])){
+                     
+                                    username.append(contentsOf: String(Array(gameinfo.tenLetters)[9]))
+                                }
+                                    .padding()
+                                    .foregroundColor(.blue)
+                                    .background(.white)
+                                    .font(.callout)
+                                    .cornerRadius(10)
+                                }
+                                Spacer()
+                            }
+                        }
+                    }
+                    Spacer()
+                    }
+                    .navigationBarHidden(true)
+                    .edgesIgnoringSafeArea(.bottom)
             }
-            .ignoresSafeArea()
     }
 }
 

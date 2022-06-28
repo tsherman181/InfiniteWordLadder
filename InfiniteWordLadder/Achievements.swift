@@ -12,6 +12,7 @@ import SwiftUI
 
 struct Achievements: View {
     
+    let strings = ["afsjkld", "ljkasfjkldsaflkj", "jkafsd", "asdf"]
     @EnvironmentObject var gameinfo: GameInfo
     @State private var animationAmount = Array(repeating: 0.0, count: 3)
     @State private var rX = 0.0
@@ -26,6 +27,54 @@ struct Achievements: View {
     }
     
     
+    var body: some View {
+        ZStack{
+        Color.blue
+        Text("Acheivements")
+            .font(.largeTitle)
+            .foregroundColor(.white)
+        HStack{
+            ForEach(0..<3, id: \.self){ index1 in
+                VStack{
+                    ForEach(0..<3) {index2 in
+                        Button (action: {
+                        if (min(Double(gameinfo.saobj.achievements[2])+0.5, 1.0) == 1){
+                            rX = Double(Float.random(in: 0..<1))
+                            rY = Double(Float.random(in: 0..<1))
+                            withAnimation{animationAmount[2]+=Double(gameinfo.saobj.achievements[2]*360)}
+                        }})
+                    {
+                    Image(systemName: "star.circle.fill")
+                        .symbolRenderingMode(.palette)
+                        .foregroundStyle(.yellow, .orange)
+                        //.opacity(50)
+                        .font(.largeTitle.weight(.bold))
+                        .imageScale(.large)
+                        .foregroundStyle(
+                                .ultraThickMaterial,
+                                .ultraThinMaterial
+                            )
+                        .rotation3DEffect(.degrees(animationAmount[1]), axis: (x:rX, y:rY, z:0))
+                        .opacity(min(Double(gameinfo.saobj.achievements[1])+0.5, 1.0))
+                    }
+                        Text(gameinfo.saobj.achievementNames[index1*3 + index2])
+                    }
+                    }
+                }
+            }
+        }
+    }
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*
     var body: some View {
         ZStack {
             Color.blue
@@ -127,11 +176,11 @@ struct Achievements: View {
         .ignoresSafeArea()
     }
 }
+*/
 
 struct Achievements_Previews: PreviewProvider {
     static var previews: some View {
         Achievements()
             .environmentObject(GameInfo())
-            .previewInterfaceOrientation(.portraitUpsideDown)
     }
 }

@@ -116,6 +116,22 @@ struct Menu: View {
 //                .animation(.easeInOut, value: opacity)
 //                .scaleEffect(scale)
 //                .animation(.easeIn, value: scale)
+                Button("Settings"){
+                    gameinfo.currPage = .settings
+                }
+                .font(.system(size: 20, weight: .bold, design: .rounded))
+                .padding()
+                .frame(width: deviceWidth/1.5, alignment: .center)
+                .background(Color.white)
+                .cornerRadius(40)
+                .foregroundColor(Color.blue)
+                .padding()
+//                .rotationEffect(.degrees(angle))
+//                .animation(.easeInOut, value: angle)
+//                .opacity(opacity)
+//                .animation(.easeInOut, value: opacity)
+//                .scaleEffect(scale)
+//                .animation(.easeIn, value: scale)
             }
             //.rotationEffect(.degrees(angle))
             //.animation(.easeInOut, value: angle)

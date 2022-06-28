@@ -11,6 +11,7 @@ import Foundation
 class SA: ObservableObject{
     
     var achievements: [Int]
+    let achievementNames = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
     var highscore: Int
     var numInRow: Int
     var maxInRow: Int
