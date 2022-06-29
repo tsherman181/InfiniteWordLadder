@@ -11,7 +11,7 @@ import Foundation
 class SA: ObservableObject{
     
     var achievements: [Int]
-    let achievementNames = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
+    let achievementNames = ["Score 10 Points", "Score 50 Points", "Score 100 Points", "3 in a Row", "5 in a Row", "10 in a Row", "Wine and Dine", "Life is Good", "Stats Addict", "Coin Flipper", "Mr. Dictionary", "Something here", "Something here", "Something here", "Something here"]
     var highscore: Int
     var numInRow: Int
     var maxInRow: Int
@@ -20,7 +20,7 @@ class SA: ObservableObject{
     let numAch: Int
     
     init (){
-        numAch = 3
+        numAch = achievementNames.count
         defaults = UserDefaults.standard
         highscore = defaults.integer(forKey: "High Score")
         numInRow = defaults.integer(forKey: "Number In A Row")
