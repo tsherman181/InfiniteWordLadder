@@ -62,6 +62,10 @@ class SA: ObservableObject{
         defaults.set(achievements, forKey: "Achievements")
         defaults.set(highscore, forKey: "High Score")
         //defaults.set(relevantWords, forKey: "Relevant Words")
+        
+        //MARK: This code still needs work. We need to craft interesting acheivements and have them update as we go. This would be a good project to complete sometime.
+        
+        
     }
     
     

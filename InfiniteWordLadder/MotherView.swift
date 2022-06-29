@@ -16,24 +16,31 @@ struct MotherView: View {
         switch gameinfo.currPage {
         case .menu:
             Menu()
+                .environmentObject(gameinfo)
                 .matchedGeometryEffect(id: "Shape", in: animation)
         case .IWL:
             IWL()
+                .environmentObject(gameinfo)
                 .matchedGeometryEffect(id: "Shape", in: animation)
         case .correct:
             Correct()
+                .environmentObject(gameinfo)
                 .matchedGeometryEffect(id: "Shape", in: animation)
         case .instructions:
             Instructions()
+                .environmentObject(gameinfo)
                 .matchedGeometryEffect(id: "Shape", in: animation)
         case .giveup:
             GiveUp()
+                .environmentObject(gameinfo)
                 .matchedGeometryEffect(id: "Shape", in: animation)
         case .achievements:
             Achievements()
+                .environmentObject(gameinfo)
                 .matchedGeometryEffect(id: "Shape", in: animation)
         case .stats:
             Stats()
+                .environmentObject(gameinfo)
                 .matchedGeometryEffect(id: "Shape", in: animation)
         case .settings:
             Settings()
@@ -50,3 +57,4 @@ struct MotherView_Previews: PreviewProvider {
             .environmentObject(GameInfo())
     }
 }
+

@@ -296,7 +296,11 @@ class GameInfo: ObservableObject {
             }
         }
     }
-    
-    
-    
+ 
 }
+
+
+
+    
+
+

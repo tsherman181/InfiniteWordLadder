@@ -12,11 +12,19 @@ import SwiftUI
 
 struct Settings: View {
     @State var state = -100
+    @State var state2 = 2.0
+    @State var diffLevel = ""
+    @State var diffColor = Color.blue
     @EnvironmentObject var gameinfo: GameInfo
     
     var body: some View {
         ZStack {
             Color.blue
+                .ignoresSafeArea()
+            VStack{
+            MenuButton()
+                .environmentObject(gameinfo)
+            /*
             VStack {
                 HStack{
                     Button{
@@ -29,6 +37,81 @@ struct Settings: View {
                     .foregroundColor(.white)
                     .padding()
                 }
+             */
+                HStack{
+                    Spacer()
+                    Text("Difficulty")
+                        .font(.largeTitle)
+                    Spacer()
+                }
+                Slider(value: $state2, in: 1.0...5.0)
+                    .onAppear{
+                        state = gameinfo.difficulty
+                        print(state)
+                        if (state == 95){
+                            state2 = 1
+                            diffLevel = "Basic"
+                            diffColor = Color.green
+                        }
+                        else if (state == 63){
+                            state2 = 2
+                            diffLevel = "Beginner"
+                            diffColor = Color.yellow
+                        }
+                        else if (state == 56){
+                            state2 = 3
+                            diffLevel = "Intermediate"
+                            diffColor = Color.orange
+                        }
+                        else if (state == 50){
+                            state2 = 4
+                            diffLevel = "Hard"
+                            diffColor = Color.red
+                        }
+                        else{
+                            state2 = 5
+                            diffLevel = "Expert"
+                            diffColor = Color.black
+                        }
+                    }
+                    .onChange(of: state2){
+                        newValue in
+                        if (round(state2) == 1){
+                            state = 95
+                            diffLevel = "Basic"
+                            diffColor = Color.green
+                        }
+                        else if (round(state2) == 2){
+                            state = 63
+                            diffLevel = "Beginner"
+                            diffColor = Color.yellow
+                        }
+                        else if (round(state2) == 3){
+                            state = 56
+                            diffLevel = "Intermediate"
+                            diffColor = Color.orange
+                        }
+                        else if (round(state2) == 4){
+                            state = 50
+                            diffLevel = "Hard"
+                            diffColor = Color.red
+                        }
+                        else{
+                            state = 41
+                            diffLevel = "Expert"
+                            diffColor = Color.black
+                        }
+                        gameinfo.changeDiff(state)
+                        print(state)
+                        print(gameinfo.difficulty)
+                    }
+                    .foregroundColor(.white)
+                    .accentColor(.white)
+                    .padding(.horizontal)
+                Text(diffLevel)
+                    .foregroundColor(diffColor)
+                    .font(.largeTitle)
+                /*
                 Picker("Difficulty", selection: $state){
                     Text("Beginner").tag(95)
                         .font(.system(size: 6))
@@ -56,11 +139,11 @@ struct Settings: View {
                 Text("Gameinfo Level: \(self.gameinfo.difficulty) Difficulty Level \(state)")
                     .onChange(of: gameinfo.difficulty){newValue in}
                 Text("Settings go here")
+                 */
         }
         }
-        .ignoresSafeArea()
+        }
     }
-}
 
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {

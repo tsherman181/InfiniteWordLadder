@@ -13,7 +13,7 @@ import SwiftUI
 struct Achievements: View {
     
     @EnvironmentObject var gameinfo: GameInfo
-    @State private var animationAmount = Array(repeating: 0.0, count: 3)
+    @State private var animationAmount = Array(repeating: 0.0, count: 15)
     @State private var rX = 0.0
     @State private var rY = 0.0
     
@@ -24,11 +24,11 @@ struct Achievements: View {
             VStack{
                 MenuButton()
                     .environmentObject(gameinfo)
-                Text("Acheivements")
-                    .font(.largeTitle)
-                    .foregroundColor(.white)
                 GeometryReader { geo in
                     ScrollView(.vertical){
+                        Text("Acheivements")
+                            .font(.largeTitle)
+                            .foregroundColor(.white)
                         HStack{
                             Spacer()
                             ForEach(0..<3){ index1 in
@@ -39,7 +39,9 @@ struct Achievements: View {
                                             .frame(width: geo.size.width*0.3, height: geo.size.width*0.15, alignment: .center)
                                             .multilineTextAlignment(.center)
                                         Button(action: {
-                                            if (min(Double(gameinfo.saobj.achievements[index1+index2*3])+0.5, 1.0) == 1){
+                                            print("here")
+                                            if (min(Double(gameinfo.saobj.achievements[index1+index2*3])+0.5, 1.0) == 1.0){
+                                                print("here1")
                                                 rX = Double(Float.random(in: 0..<1))
                                                 rY = Double(Float.random(in: 0..<1))
                                                 withAnimation{animationAmount[index1+index2*3]+=Double(gameinfo.saobj.achievements[index1+index2*3]*360)
@@ -63,8 +65,10 @@ struct Achievements: View {
                                                     .ultraThinMaterial
                                                 )
                                         }
+                                        .opacity(min(Double(gameinfo.saobj.achievements[index1+index2*3])+0.5, 1.0))
+                                        .rotation3DEffect(.degrees(animationAmount[index1+index2*3]), axis: (x:rX, y:rY, z:0))
+                                        .frame(width: geo.size.width*0.15, height: geo.size.width*0.15, alignment: .center)
                                         .padding([.bottom, .horizontal])
-                                        .frame(width: geo.size.width*0.3, height: geo.size.width*0.3, alignment: .center)
                                     }//ForEach
                                 }//VStack
                             }//ForEach
@@ -83,25 +87,6 @@ struct Achievements: View {
     }//View
 }//Achievements
 
-struct MenuButton: View{
-    @EnvironmentObject var gameinfo: GameInfo
-    
-    var body: some View{
-        HStack{
-            Button{
-                gameinfo.currPage = .menu
-            }label:{
-                Label("", systemImage: "list.dash")
-                    .font(.system(size: 20, weight: .bold, design: .default))
-            }
-            .foregroundColor(.white)
-            .padding()
-            Spacer()
-        }
-        .padding(.bottom)
-}
-}
-    
     
 
 
@@ -249,6 +234,28 @@ struct MenuButton: View{
     }
 }
 */
+
+
+struct MenuButton: View{
+    @EnvironmentObject var gameinfo: GameInfo
+    
+    var body: some View{
+        HStack{
+            Button{
+                gameinfo.currPage = .menu
+            }label:{
+                Label("", systemImage: "list.dash")
+                    .font(.system(size: 20, weight: .bold, design: .default))
+            }
+            .foregroundColor(.white)
+            .padding()
+            Spacer()
+        }
+        .padding(.bottom)
+}
+}
+
+
 
 struct Achievements_Previews: PreviewProvider {
     static var previews: some View {
