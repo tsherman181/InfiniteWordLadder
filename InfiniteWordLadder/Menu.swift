@@ -10,8 +10,6 @@ import SwiftUI
 struct Menu: View {
     
     @EnvironmentObject var gameinfo: GameInfo
-    @State var color1 = Color(red:0.0, green:0.0, blue:1.0)
-    @State var color2 = Color(red:0.0, green:0.5, blue:1.0)
     @State private var angle = 0.0
     @State private var opacity = 1.0
     @State private var scale = 1.0
@@ -32,23 +30,26 @@ struct Menu: View {
             HStack{
                 Rectangle()
                    .fill(.white)
-                   .frame(width: deviceWidth/8, height: deviceHeight/1.75)
+                   .frame(width: deviceWidth/8, height: deviceHeight/1.5)
                    .cornerRadius(20)
                    .padding(.trailing)
                    .padding(.trailing)
                 Rectangle()
                    .fill(.white)
-                   .frame(width: deviceWidth/8, height: deviceHeight/1.75)
+                   .frame(width: deviceWidth/8, height: deviceHeight/1.5)
                    .cornerRadius(20)
                    .padding(.leading)
                    .padding(.leading)
             }
             VStack{
                 Button("Infinite Word Ladder"){
-                    angle += 360.0
+                    //withAnimation{
+                    //    angle += 360.0
+                    //}
+                    //For rotation
                     opacity -= 1
                     scale -= 1
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         gameinfo.currPage = .IWL
                     }
                 }
@@ -67,7 +68,12 @@ struct Menu: View {
 //                .animation(.easeIn, value: scale)
                 
                 Button("Instructions"){
-                    gameinfo.currPage = .instructions
+                    angle += 360.0
+                    opacity -= 1
+                    scale -= 1
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        gameinfo.currPage = .instructions
+                    }
                 }
                 .font(.system(size: 20, weight: .bold, design: .rounded))
                 .padding()
@@ -84,7 +90,12 @@ struct Menu: View {
 //                .animation(.easeIn, value: scale)
                 
                 Button("Statistics"){
-                    gameinfo.currPage = .stats
+                    angle += 360.0
+                    opacity -= 1
+                    scale -= 1
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        gameinfo.currPage = .stats
+                    }
                 }
                 .font(.system(size: 20, weight: .bold, design: .rounded))
                 .padding()
@@ -101,7 +112,12 @@ struct Menu: View {
 //                .animation(.easeIn, value: scale)
                 
                 Button("Acheivements"){
-                    gameinfo.currPage = .achievements
+                    angle += 360.0
+                    opacity -= 1
+                    scale -= 1
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        gameinfo.currPage = .achievements
+                    }
                 }
                 .font(.system(size: 20, weight: .bold, design: .rounded))
                 .padding()
@@ -117,7 +133,12 @@ struct Menu: View {
 //                .scaleEffect(scale)
 //                .animation(.easeIn, value: scale)
                 Button("Settings"){
-                    gameinfo.currPage = .settings
+                    angle += 360.0
+                    opacity -= 1
+                    scale -= 1
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        gameinfo.currPage = .settings
+                    }
                 }
                 .font(.system(size: 20, weight: .bold, design: .rounded))
                 .padding()
@@ -140,6 +161,7 @@ struct Menu: View {
         .animation(.easeOut, value: opacity)
         .scaleEffect(scale)
         .animation(.easeOut, value: scale)
+        .rotationEffect(.degrees(angle))
         }
         .ignoresSafeArea()
     }

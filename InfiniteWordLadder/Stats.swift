@@ -12,17 +12,10 @@ struct Stats: View {
     var body: some View {
         ZStack {
             Color.blue
-            VStack {
-                HStack{
-                    Button{
-                        gameinfo.currPage = .menu
-                    }label:{
-                        Label("", systemImage: "list.dash")
-                            .font(.system(size: 20, weight: .bold, design: .default))
-                    Spacer()
-                    }
-                }
-                .padding()
+                .ignoresSafeArea()
+            VStack{
+                MenuButton()
+                    .environmentObject(gameinfo)
                 Text("Average number of guesses per word: ")
                     .padding()
                 Text("Average number of hints used per word: ")
@@ -33,13 +26,12 @@ struct Stats: View {
                     .padding()
                 Text("Most guesses in a row: " + String(gameinfo.saobj.maxInRow))
                     .padding()
+                Spacer()
             }
-        }
-        .ignoresSafeArea()
-        .foregroundColor(.white)
+            .foregroundColor(.white)
     }
 }
-
+}
 struct Stats_Previews: PreviewProvider {
     static var previews: some View {
         Stats()

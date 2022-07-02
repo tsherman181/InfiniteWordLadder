@@ -27,16 +27,8 @@ struct Instructions: View {
         ZStack{
             Color.blue
             VStack{
-                HStack{
-                    Button{
-                        gameinfo.currPage = .menu
-                    }label:{
-                        Label("", systemImage: "list.dash")
-                            .font(.system(size: 20, weight: .bold, design: .default))
-                    }
-                    Spacer()
-                }
-                .padding()
+                MenuButton()
+                    .environmentObject(gameinfo)
                 Text("What is a word ladder?")
                     .font(.title)
                 Text("A word ladder is a word puzzle game where given a clue, you must guess its corresponding four letter word. After that, you are given another clue with an answer one letter different than the previous one. Here's an example:")
