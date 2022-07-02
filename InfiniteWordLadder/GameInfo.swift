@@ -15,6 +15,7 @@ enum Page {
     case correct
     case instructions
     case giveup
+    case gameover
     case achievements
     case stats
     case settings
@@ -239,11 +240,24 @@ class GameInfo: ObservableObject {
         //addToPrev(guess)
         saobj.inRow(false)
         currPage = .giveup
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        if points > -10 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.change(guess, last)
             self.currPage = .IWL
+            }
+            incrementPoint(-1)
         }
-        incrementPoint(-1)
+        else if points <= -10 {
+            currPage = .giveup
+            points = 0
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                self.change(guess, last)
+                self.currPage = .gameover
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    self.currPage = .menu
+                }
+            }
+        }
     }
     
     func incrementPoint( _ num: Int){
@@ -288,7 +302,7 @@ class GameInfo: ObservableObject {
     }
     
     func playMusic() {
-        if let musicURL = Bundle.main.url(forResource: "PhantomFromSpace", withExtension: "mp3") {
+        if let musicURL = Bundle.main.url(forResource: "motivational-day-112790", withExtension: "mp3") {
             if let audioPlayer = try? AVAudioPlayer(contentsOf: musicURL) {
                 music = audioPlayer
                 music.numberOfLoops = -1

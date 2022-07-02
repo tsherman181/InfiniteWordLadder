@@ -34,6 +34,10 @@ struct MotherView: View {
             GiveUp()
                 .environmentObject(gameinfo)
                 .matchedGeometryEffect(id: "Shape", in: animation)
+        case .gameover:
+            Gameover()
+                .environmentObject(gameinfo)
+                .matchedGeometryEffect(id: "Shape", in: animation)
         case .achievements:
             Achievements()
                 .environmentObject(gameinfo)

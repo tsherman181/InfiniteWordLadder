@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC5E86BD286FD6B60007E18D /* inspirational-background-112290.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BC5E86BC286FD6B60007E18D /* inspirational-background-112290.mp3 */; };
+		BC5E86BF286FD6C80007E18D /* jazzy-abstract-beat-11254.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BC5E86BE286FD6C80007E18D /* jazzy-abstract-beat-11254.mp3 */; };
+		BC5E86C1286FD6D30007E18D /* chill-abstract-intention-12099.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BC5E86C0286FD6D30007E18D /* chill-abstract-intention-12099.mp3 */; };
+		BC5E86C3286FD6DD0007E18D /* motivational-day-112790.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BC5E86C2286FD6DC0007E18D /* motivational-day-112790.mp3 */; };
+		BC5E86C5286FD7A70007E18D /* Gameover.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5E86C4286FD7A60007E18D /* Gameover.swift */; };
 		BC780C342831D3820080F758 /* TEST.json in Resources */ = {isa = PBXBuildFile; fileRef = BC780C332831D3820080F758 /* TEST.json */; };
 		BC780C362831D5350080F758 /* AnswerClue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC780C352831D5350080F758 /* AnswerClue.swift */; };
-		F31B206428499E99002BDE77 /* PhantomFromSpace.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F31B206328499E99002BDE77 /* PhantomFromSpace.mp3 */; };
 		F33BCCBF282C8BB400BDFB27 /* InfiniteWordLadderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33BCCBE282C8BB400BDFB27 /* InfiniteWordLadderApp.swift */; };
 		F33BCCC1282C8BB400BDFB27 /* IWL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33BCCC0282C8BB400BDFB27 /* IWL.swift */; };
 		F33BCCC3282C8BB700BDFB27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F33BCCC2282C8BB700BDFB27 /* Assets.xcassets */; };
@@ -29,9 +33,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC5E86BC286FD6B60007E18D /* inspirational-background-112290.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "inspirational-background-112290.mp3"; sourceTree = "<group>"; };
+		BC5E86BE286FD6C80007E18D /* jazzy-abstract-beat-11254.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "jazzy-abstract-beat-11254.mp3"; sourceTree = "<group>"; };
+		BC5E86C0286FD6D30007E18D /* chill-abstract-intention-12099.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "chill-abstract-intention-12099.mp3"; sourceTree = "<group>"; };
+		BC5E86C2286FD6DC0007E18D /* motivational-day-112790.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "motivational-day-112790.mp3"; sourceTree = "<group>"; };
+		BC5E86C4286FD7A60007E18D /* Gameover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gameover.swift; sourceTree = "<group>"; };
 		BC780C332831D3820080F758 /* TEST.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TEST.json; sourceTree = "<group>"; };
 		BC780C352831D5350080F758 /* AnswerClue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerClue.swift; sourceTree = "<group>"; };
-		F31B206328499E99002BDE77 /* PhantomFromSpace.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PhantomFromSpace.mp3; sourceTree = "<group>"; };
 		F33BCCBB282C8BB400BDFB27 /* InfiniteWordLadder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InfiniteWordLadder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F33BCCBE282C8BB400BDFB27 /* InfiniteWordLadderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteWordLadderApp.swift; sourceTree = "<group>"; };
 		F33BCCC0282C8BB400BDFB27 /* IWL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWL.swift; sourceTree = "<group>"; };
@@ -81,11 +89,15 @@
 		F33BCCBD282C8BB400BDFB27 /* InfiniteWordLadder */ = {
 			isa = PBXGroup;
 			children = (
-				F31B206328499E99002BDE77 /* PhantomFromSpace.mp3 */,
+				BC5E86C2286FD6DC0007E18D /* motivational-day-112790.mp3 */,
+				BC5E86BC286FD6B60007E18D /* inspirational-background-112290.mp3 */,
+				BC5E86BE286FD6C80007E18D /* jazzy-abstract-beat-11254.mp3 */,
+				BC5E86C0286FD6D30007E18D /* chill-abstract-intention-12099.mp3 */,
 				F37C68F82842BBEB00820459 /* Menu.swift */,
 				F3D55568283DB76A00A34232 /* Instructions.swift */,
 				F33BCCBE282C8BB400BDFB27 /* InfiniteWordLadderApp.swift */,
 				F3B2C5D2282F3ADF00766218 /* GameInfo.swift */,
+				BC5E86C4286FD7A60007E18D /* Gameover.swift */,
 				F3F78450284D90C60043B69D /* StatsAchievements.swift */,
 				F3D55564283C40A800A34232 /* MotherView.swift */,
 				F37C68FA28438E9300820459 /* Stats.swift */,
@@ -170,12 +182,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F31B206428499E99002BDE77 /* PhantomFromSpace.mp3 in Resources */,
 				F35EAE5828558584005388C5 /* connected.json in Resources */,
+				BC5E86C3286FD6DD0007E18D /* motivational-day-112790.mp3 in Resources */,
 				F3B35A82283327EA0000796E /* full.json in Resources */,
+				BC5E86BD286FD6B60007E18D /* inspirational-background-112290.mp3 in Resources */,
 				F33BCCC6282C8BB700BDFB27 /* Preview Assets.xcassets in Resources */,
+				BC5E86C1286FD6D30007E18D /* chill-abstract-intention-12099.mp3 in Resources */,
 				BC780C342831D3820080F758 /* TEST.json in Resources */,
 				F33BCCC3282C8BB700BDFB27 /* Assets.xcassets in Resources */,
+				BC5E86BF286FD6C80007E18D /* jazzy-abstract-beat-11254.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +204,7 @@
 				F3D55569283DB76A00A34232 /* Instructions.swift in Sources */,
 				BC780C362831D5350080F758 /* AnswerClue.swift in Sources */,
 				F3E2E6D328566C5800F3850E /* Settings.swift in Sources */,
+				BC5E86C5286FD7A70007E18D /* Gameover.swift in Sources */,
 				F37C68FD28438EA600820459 /* Achievements.swift in Sources */,
 				F33BCCC1282C8BB400BDFB27 /* IWL.swift in Sources */,
 				F33BCCBF282C8BB400BDFB27 /* InfiniteWordLadderApp.swift in Sources */,
