@@ -22,6 +22,8 @@ struct Settings: View {
                 .environmentObject(gameinfo)
             DifficultySlider()
                     .environmentObject(gameinfo)
+            NumLetters()
+                    .environmentObject(gameinfo)
             /*
             VStack {
                 HStack{
@@ -69,6 +71,33 @@ struct Settings: View {
         }
         }
     }
+
+
+struct NumLetters: View{
+    @EnvironmentObject var gameinfo: GameInfo
+    @State var num = 0
+    
+    var body: some View{
+        VStack{
+            Picker("Number of Letters", selection: $num){
+                Text("5").tag(5)
+                Text("10").tag(10)
+                Text("15").tag(15)
+            }
+            .foregroundColor(.white)
+            .background(.red)
+            .onChange(of: num){ newValue in
+                gameinfo.lettersShown = num
+                gameinfo.defaults.set(gameinfo.lettersShown, forKey: "Letters Shown")
+            }
+        }
+        .onAppear{
+            num = gameinfo.lettersShown
+        }
+    }
+    
+}
+
 
 
 struct DifficultySlider: View{
