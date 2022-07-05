@@ -16,26 +16,26 @@ struct Menu: View {
     
     var body: some View {
         ZStack{
-            Color.blue.ignoresSafeArea()
+            Color(gameinfo.backgroundColor).ignoresSafeArea()
             GeometryReader{ geo in
                 ZStack{
                     HStack(spacing: 0) {
                         Rectangle()
-                            .foregroundColor(.blue)
+                            .foregroundColor(Color(gameinfo.backgroundColor))
                             .frame(width: geo.size.width * 0.20)
                         Rectangle()
                             .foregroundColor(.white)
                             .frame(width: geo.size.width * 0.20, height: geo.size.height*0.875)
                             .cornerRadius(30)
                         Rectangle()
-                            .foregroundColor(.blue)
+                            .foregroundColor(Color(gameinfo.backgroundColor))
                             .frame(width: geo.size.width * 0.20)
                         Rectangle()
                             .foregroundColor(.white)
                             .frame(width: geo.size.width * 0.20, height: geo.size.height*0.875)
                             .cornerRadius(30)
                         Rectangle()
-                            .foregroundColor(.blue)
+                            .foregroundColor(Color(gameinfo.backgroundColor))
                             .frame(width: geo.size.width * 0.20)
                     }
                     
@@ -55,7 +55,7 @@ struct Menu: View {
                         .frame(width: geo.size.width*0.85, height: geo.size.height*0.10)
                         .background(Color.white)
                         .cornerRadius(40)
-                        .foregroundColor(Color.blue)
+                        .foregroundColor(Color(gameinfo.backgroundColor))
                         .padding()
                         Button("Instructions"){
                             angle += 360.0
@@ -70,7 +70,7 @@ struct Menu: View {
                         .frame(width: geo.size.width*0.85, height: geo.size.height*0.10)
                         .background(Color.white)
                         .cornerRadius(40)
-                        .foregroundColor(Color.blue)
+                        .foregroundColor(Color(gameinfo.backgroundColor))
                         .padding()
                         Button("Statistics"){
                             angle += 360.0
@@ -85,7 +85,7 @@ struct Menu: View {
                         .frame(width: geo.size.width*0.85, height: geo.size.height*0.10)
                         .background(Color.white)
                         .cornerRadius(40)
-                        .foregroundColor(Color.blue)
+                        .foregroundColor(Color(gameinfo.backgroundColor))
                         .padding()
                         Button("Achievements"){
                             angle += 360.0
@@ -100,7 +100,7 @@ struct Menu: View {
                         .frame(width: geo.size.width*0.85, height: geo.size.height*0.10)
                         .background(Color.white)
                         .cornerRadius(40)
-                        .foregroundColor(Color.blue)
+                        .foregroundColor(Color(gameinfo.backgroundColor))
                         .padding()
                         Button("Settings"){
                             angle += 360.0
@@ -115,7 +115,7 @@ struct Menu: View {
                         .frame(width: geo.size.width*0.85, height: geo.size.height*0.10)
                         .background(Color.white)
                         .cornerRadius(40)
-                        .foregroundColor(Color.blue)
+                        .foregroundColor(Color(gameinfo.backgroundColor))
                         .padding()
                     }
                 }

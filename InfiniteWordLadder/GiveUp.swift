@@ -15,7 +15,7 @@ struct GiveUp: View {
     
     var body: some View {
         ZStack{
-            Color.blue
+            Color(gameinfo.backgroundColor)
             VStack{
                 VStack{
                     Text("Oops, the correct answer was:")

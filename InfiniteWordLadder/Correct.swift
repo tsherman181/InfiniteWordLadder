@@ -15,7 +15,7 @@ struct Correct: View {
     
     var body: some View {
         ZStack{
-            Color.blue
+            Color(gameinfo.backgroundColor)
             VStack{
                 Text("Correct! Good job!")
                     .foregroundColor(.white)

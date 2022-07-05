@@ -15,7 +15,7 @@ struct Gameover: View {
 
     var body: some View {
         ZStack{
-            Color.blue
+            Color(gameinfo.backgroundColor)
             VStack{
                 Text("Gameover!")
                     .foregroundColor(.white)

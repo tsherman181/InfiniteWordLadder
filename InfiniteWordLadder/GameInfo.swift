@@ -8,6 +8,7 @@
 import Foundation
 
 import AVFoundation
+import UIKit
 
 enum Page {
     case menu
@@ -43,7 +44,8 @@ class GameInfo: ObservableObject {
     var fiveLetters: String
     var tenLetters: String
     var fifteenLetters: String
-    
+    @Published var backgroundColor: UIColor
+    var backgroundColorNumber: Int
     
     init () {
         //we initialize our defaults
@@ -65,7 +67,6 @@ class GameInfo: ObservableObject {
         }
         currentClue = defaults.string(forKey: "Current Clue") ?? answerClues[currentACIndex].cluelist[currentClueIndex]
         currentWord = defaults.string(forKey: "Current Word") ?? answerClues[currentACIndex].answer
-        
         //creates our hashing method to deal with quick lookup for the JSON
         ACDict = defaults.object(forKey: "Hash") as? [String : Int] ?? [String : Int]()
         if (ACDict.isEmpty){
@@ -80,21 +81,24 @@ class GameInfo: ObservableObject {
         currPage = .menu
         lastWord = defaults.string(forKey: "Last Word") ?? ""
         //deal with music
-//        if let musicURL = Bundle.main.url(forResource: "PhantomFromSpace", withExtension: "mp3"){
-//            if let audioPlayer = try? AVAudioPlayer(contentsOf: musicURL){
-//                music = audioPlayer
-//                music.numberOfLoops = -1
-//                music.play()
-//            }
-//        }
-//        else{
-//            music = nil
-//        }
-        music = nil
+        if let musicURL = Bundle.main.url(forResource: "chill-abstract-intention-12099_11KGzeua", withExtension: "mp3"){
+            if let audioPlayer = try? AVAudioPlayer(contentsOf: musicURL){
+                music = audioPlayer
+                music.numberOfLoops = -1
+                music.play()
+                print("here")
+            }
+        }
+        else{
+            music = nil
+        }
         //deal with previous words
+        //backgroundColor = .systemBlue
+        backgroundColorNumber = defaults.integer(forKey: "Background Color")
+        backgroundColor = .systemBlue
+        
         prevWords = defaults.object(forKey: "Previous Words") as? [String] ?? [String]()
         saobj = SA()
-        
         
         diffDict = defaults.object(forKey: "Hash Difficulty") as? [String : Int] ?? [String : Int]()
         
@@ -121,14 +125,21 @@ class GameInfo: ObservableObject {
             lettersShown = 10
         }
         defaults.set(lettersShown, forKey: "Letters Shown")
-        
         if (fiveLetters.isEmpty || tenLetters.isEmpty || fifteenLetters.isEmpty){
             changeRelevantLetters()
         }
         defaults.set(fiveLetters, forKey: "Five Letters")
         defaults.set(tenLetters, forKey: "Ten Letters")
         defaults.set(fifteenLetters, forKey: "Fifteen Letters")
-        
+        if (backgroundColorNumber == 0){
+            backgroundColor = .systemBlue
+        }
+        else if (backgroundColorNumber == 1){
+            backgroundColor = .systemRed
+        }
+        else if (backgroundColorNumber == 2){
+            backgroundColor = .systemGreen
+        }
     }
     
     func insertSpaces(_ guess: String) -> String {
@@ -278,20 +289,23 @@ class GameInfo: ObservableObject {
         while L5Set.count < 5{
             L5Set.insert(Character(UnicodeScalar(Int.random(in: 65...90))!))
         }
-        L5Set = Set(Array(L5Set.shuffled()))//this shuold mix up the relevant Letters
-        fiveLetters = String(Array(L5Set))
+        var tempArr = Array(L5Set).sorted()
+        fiveLetters = String(tempArr)
+        defaults.set(fiveLetters, forKey: "Five Letters")
         
         while L5Set.count < 10{
             L5Set.insert(Character(UnicodeScalar(Int.random(in: 65...90))!))
         }
-        L5Set = Set(Array(L5Set.shuffled()))//this shuold mix up the relevant Letters
-        tenLetters = String(Array(L5Set))
+        tempArr = Array(L5Set).sorted()
+        tenLetters = String(Array(tempArr))
+        defaults.set(tenLetters, forKey: "Ten Letters")
         
         while L5Set.count < 15 {
             L5Set.insert(Character(UnicodeScalar(Int.random(in: 65...90))!))
         }
-        L5Set = Set(Array(L5Set.shuffled()))//this shuold mix up the relevant Letters
-        fifteenLetters = String(Array(L5Set))
+        tempArr = Array(L5Set).sorted()
+        fifteenLetters = String(Array(tempArr))
+        defaults.set(fifteenLetters, forKey: "Fifteen Letters")
         
     }//MARK: To be done AFTER the current word and previous word have been changed
     //MARK: Maybe make these strings alphabetical
@@ -302,7 +316,7 @@ class GameInfo: ObservableObject {
     }
     
     func playMusic() {
-        if let musicURL = Bundle.main.url(forResource: "motivational-day-112790", withExtension: "mp3") {
+        if let musicURL = Bundle.main.url(forResource: "chill-abstract-intention-12099_11KGzeua.mp3", withExtension: "mp3") {
             if let audioPlayer = try? AVAudioPlayer(contentsOf: musicURL) {
                 music = audioPlayer
                 music.numberOfLoops = -1
@@ -312,9 +326,3 @@ class GameInfo: ObservableObject {
     }
  
 }
-
-
-
-    
-
-

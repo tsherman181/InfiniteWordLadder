@@ -15,14 +15,15 @@ struct Settings: View {
     
     var body: some View {
         ZStack {
-            Color.blue
-                .ignoresSafeArea()
+            Color(gameinfo.backgroundColor).ignoresSafeArea()
             VStack{
             MenuButton()
                 .environmentObject(gameinfo)
             DifficultySlider()
                     .environmentObject(gameinfo)
             NumLetters()
+                    .environmentObject(gameinfo)
+            ColorPicker()
                     .environmentObject(gameinfo)
             /*
             VStack {
@@ -72,27 +73,69 @@ struct Settings: View {
         }
     }
 
+struct ColorPicker: View{
+    @EnvironmentObject var gameinfo: GameInfo
+    @State var color: Int = 0
+    
+    var body: some View{
+        HStack{
+            Spacer()
+            Text("Number of letters: ")
+                .font(.body)
+            Picker("Number of Letters", selection: $color){
+                Text("Blue").tag(0)
+                Text("Red").tag(1)
+                Text("Green").tag(2)
+            }
+            .pickerStyle(.segmented)
+            .foregroundColor(.white)
+            .onChange(of: color){ newValue in
+                if (color == 0){
+                    gameinfo.backgroundColor = UIColor.systemBlue
+                }
+                else if (color == 1){
+                    gameinfo.backgroundColor = UIColor.systemRed
+                }
+                else if (color == 2){
+                    gameinfo.backgroundColor = UIColor.systemGreen
+                }
+                gameinfo.defaults.set(color, forKey: "Background Color")
+            }
+            Spacer()
+        }
+        .onAppear{
+            color = gameinfo.backgroundColorNumber
+        }
+    }
+}
+
+
+
 
 struct NumLetters: View{
     @EnvironmentObject var gameinfo: GameInfo
     @State var num = 0
     
     var body: some View{
-        VStack{
+        HStack{
+            Spacer()
+            Text("Number of letters: ")
+                .font(.body)
             Picker("Number of Letters", selection: $num){
                 Text("5").tag(5)
                 Text("10").tag(10)
                 Text("15").tag(15)
             }
+            .pickerStyle(.segmented)
             .foregroundColor(.white)
-            .background(.red)
             .onChange(of: num){ newValue in
                 gameinfo.lettersShown = num
                 gameinfo.defaults.set(gameinfo.lettersShown, forKey: "Letters Shown")
             }
-        }
-        .onAppear{
-            num = gameinfo.lettersShown
+            .onAppear{
+                num = gameinfo.lettersShown
+            }
+            Spacer()
         }
     }
     
@@ -108,12 +151,9 @@ struct DifficultySlider: View{
     @State var diffColor = Color.blue
     
     var body: some View{
+        VStack{
         HStack{
-            Spacer()
-            Text("Difficulty")
-                .font(.largeTitle)
-            Spacer()
-        }
+        Spacer()
         Slider(value: $state2, in: 1.0...5.0)
             .onAppear{
                 state = gameinfo.difficulty
@@ -178,9 +218,14 @@ struct DifficultySlider: View{
             .foregroundColor(.white)
             .accentColor(.white)
             .padding(.horizontal)
+            Spacer()
+        }
+        Text("Difficulty: ")
+            .font(.body)
         Text(diffLevel)
             .foregroundColor(diffColor)
-            .font(.largeTitle)
+            .font(.body)
+        }
     }
 }
 

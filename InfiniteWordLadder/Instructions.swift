@@ -25,7 +25,7 @@ struct Instructions: View {
     
     var body: some View {
         ZStack{
-            Color.blue
+            Color(gameinfo.backgroundColor)
             VStack{
                 MenuButton()
                     .environmentObject(gameinfo)
@@ -61,7 +61,7 @@ struct Instructions: View {
                 .frame(width: deviceWidth/1.5, alignment: .center)
                 .background(Color.white)
                 .cornerRadius(40)
-                .foregroundColor(Color.blue)
+                .foregroundColor(Color(gameinfo.backgroundColor))
                 .padding()
             }
             .foregroundColor(.white)

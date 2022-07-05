@@ -11,8 +11,7 @@ struct Stats: View {
     @EnvironmentObject var gameinfo: GameInfo
     var body: some View {
         ZStack {
-            Color.blue
-                .ignoresSafeArea()
+            Color(gameinfo.backgroundColor).ignoresSafeArea()
             VStack{
                 MenuButton()
                     .environmentObject(gameinfo)

@@ -20,8 +20,7 @@ struct IWL: View {
     
     var body: some View {
         ZStack{
-            Color.blue
-                .ignoresSafeArea()
+            Color(gameinfo.backgroundColor).ignoresSafeArea()
             GeometryReader{ geo in
                 if (gameinfo.lettersShown != 26){
                 VStack{
@@ -42,9 +41,9 @@ struct IWL: View {
                     
                     if (gameinfo.lettersShown == 5){
                         Rectangle()
-                            .foregroundColor(.blue)
+                            .foregroundColor(Color(gameinfo.backgroundColor))
                             .frame(height: geo.size.height/15)
-                        FiveLine(start: 0, arr: gameinfo.tenLetters, username: $username)
+                        FiveLine(start: 0, arr: gameinfo.fiveLetters, username: $username)
                             .frame(height: geo.size.height/8)
                             .environmentObject(gameinfo)
                     }
@@ -54,7 +53,7 @@ struct IWL: View {
                             .frame(height: geo.size.height/8)
                             .environmentObject(gameinfo)
                         Rectangle()
-                            .foregroundColor(.blue)
+                            .foregroundColor(Color(gameinfo.backgroundColor))
                             .frame(height: geo.size.height/50)
                         FiveLine(start: 5, arr: gameinfo.tenLetters, username: $username)
                             .frame(height: geo.size.height/8)
@@ -66,13 +65,13 @@ struct IWL: View {
                             .frame(height: geo.size.height/12)
                             .environmentObject(gameinfo)
                         Rectangle()
-                            .foregroundColor(.blue)
+                            .foregroundColor(Color(gameinfo.backgroundColor))
                             .frame(height: geo.size.height/100)
                         FiveLine(start: 5, arr: gameinfo.fifteenLetters, username: $username)
                             .frame(height: geo.size.height/12)
                             .environmentObject(gameinfo)
                         Rectangle()
-                            .foregroundColor(.blue)
+                            .foregroundColor(Color(gameinfo.backgroundColor))
                             .frame(height: geo.size.height/100)
                         FiveLine(start: 10, arr: gameinfo.fifteenLetters, username: $username)
                             .frame(height: geo.size.height/12)
@@ -95,6 +94,7 @@ struct FiveLine: View{
     var start: Int
     var arr: String
     @Binding var username: String
+    @EnvironmentObject var gameinfo: GameInfo
     var body: some View{
         GeometryReader{ geo in
             HStack(spacing: 0){
@@ -106,9 +106,9 @@ struct FiveLine: View{
                         print(String(Array(arr)[start+i]))
                     }
                     .frame(width: geo.size.width*0.15, height: geo.size.height)
-                    .foregroundColor(.blue)
+                    .foregroundColor(Color(gameinfo.backgroundColor))
                     .background(.white)
-                    .font(.callout)
+                    .font(.title)
                     .cornerRadius(10)
                 }
                 }
@@ -256,7 +256,7 @@ struct MiddleInformation: View{
         VStack{
         HStack{
             Text("Last word:")
-            Text("LAST")
+            Text(gameinfo.lastWord)
         }
         .foregroundColor(.white)
         HStack{
