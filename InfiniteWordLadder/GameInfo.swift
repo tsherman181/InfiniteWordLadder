@@ -46,6 +46,7 @@ class GameInfo: ObservableObject {
     var fifteenLetters: String
     @Published var backgroundColor: UIColor
     var backgroundColorNumber: Int
+    @Published var font: String
     
     init () {
         //we initialize our defaults
@@ -94,8 +95,12 @@ class GameInfo: ObservableObject {
         }
         //deal with previous words
         //backgroundColor = .systemBlue
+        
+        //MARK: Color and font
         backgroundColorNumber = defaults.integer(forKey: "Background Color")
         backgroundColor = .systemBlue
+        //font = defaults.string(forKey: "Font") ?? "Comic Sans MS"
+        font = "Comic Sans MS"
         
         prevWords = defaults.object(forKey: "Previous Words") as? [String] ?? [String]()
         saobj = SA()
@@ -140,6 +145,7 @@ class GameInfo: ObservableObject {
         else if (backgroundColorNumber == 2){
             backgroundColor = .systemGreen
         }
+        defaults.set(font, forKey: "Font")
     }
     
     func insertSpaces(_ guess: String) -> String {

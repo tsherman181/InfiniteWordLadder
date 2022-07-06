@@ -61,6 +61,7 @@
 		F3D55566283C413300A34232 /* Correct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Correct.swift; sourceTree = "<group>"; };
 		F3D55568283DB76A00A34232 /* Instructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instructions.swift; sourceTree = "<group>"; };
 		F3E2E6D228566C5800F3850E /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		F3E9C142287523FE0093223E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F3F78450284D90C60043B69D /* StatsAchievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsAchievements.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +95,7 @@
 		F33BCCBD282C8BB400BDFB27 /* InfiniteWordLadder */ = {
 			isa = PBXGroup;
 			children = (
+				F3E9C142287523FE0093223E /* Info.plist */,
 				BC5E86C2286FD6DC0007E18D /* motivational-day-112790.mp3 */,
 				BC5E86BC286FD6B60007E18D /* inspirational-background-112290.mp3 */,
 				BC5E86BE286FD6C80007E18D /* jazzy-abstract-beat-11254.mp3 */,
@@ -356,6 +358,7 @@
 				DEVELOPMENT_TEAM = 77HPBTD89M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InfiniteWordLadder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -385,6 +388,7 @@
 				DEVELOPMENT_TEAM = 77HPBTD89M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InfiniteWordLadder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
