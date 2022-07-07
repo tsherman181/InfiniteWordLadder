@@ -30,14 +30,19 @@ struct Instructions: View {
                 MenuButton()
                     .environmentObject(gameinfo)
                 Text("What is a word ladder?")
-                    .font(.title)
+                    .font(Font.custom(gameinfo.font, size: 28))
                 Text("A word ladder is a word puzzle game where given a clue, you must guess its corresponding four letter word. After that, you are given another clue with an answer one letter different than the previous one. Here's an example:")
+                    .font(Font.custom(gameinfo.font, size: 17))
                     .padding()
                 HStack{
                     VStack{
                         Text("Clue: Pot starter")
-                        Text("Answer: ANT") + Text("E")
+                        Text("Answer: ANT")
+                            .font(Font.custom(gameinfo.font, size: 17))
+                        +
+                        Text("E")
                             .foregroundColor(.black)
+                            .font(Font.custom(gameinfo.font, size: 17))
                             .font(Font.body.bold())
                     }
                     Image(systemName: "arrow.forward")

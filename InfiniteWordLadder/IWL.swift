@@ -108,7 +108,7 @@ struct FiveLine: View{
                     .frame(width: geo.size.width*0.15, height: geo.size.height)
                     .foregroundColor(Color(gameinfo.backgroundColor))
                     .background(.white)
-                    .font(.title)
+                    .font(Font.custom(gameinfo.font, size: 28))
                     .cornerRadius(10)
                 }
                 }
@@ -134,6 +134,7 @@ struct MenuPoints: View{
             .padding()
             Spacer()
             Text("Points:")
+                .font(Font.custom(gameinfo.font, size: 17))
                 .foregroundColor(.white)
                 .padding(.leading)
             Text(String(gameinfo.points))
@@ -151,7 +152,7 @@ struct Clue: View{
     var body: some View{
         Text(gameinfo.currentClue)
             .foregroundColor(.white)
-            .font(.largeTitle)
+            .font(Font.custom(gameinfo.font, size: 34))
             .bold()
             .lineLimit(3)
             .multilineTextAlignment(.center)
@@ -160,7 +161,7 @@ struct Clue: View{
             .fixedSize(horizontal: false, vertical: true)
             .padding()
             .onChange(of: clue) { newValue in
-                print("onChangeCurrClue")
+                //print("onChangeCurrClue")
             }
     }
 }
@@ -176,7 +177,7 @@ struct TextFieldObject: View{
             Text(username)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.white)
-                .font(.system(size: 60))
+                .font(Font.custom(gameinfo.font, size: 60))
                 .font(Font.body.bold())
                 .textInputAutocapitalization(.characters)
                 .disableAutocorrection(true)
@@ -216,8 +217,9 @@ struct TextFieldFocus: View{
                 .focused($focus)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.white)
-                .font(.system(size: 60))
-                .font(Font.body.bold())
+                .font(Font.custom(gameinfo.font, size: 60))
+                //.font(.system(size: 60))
+                //.font(Font.body.bold())
                 .textInputAutocapitalization(.characters)
                 .disableAutocorrection(true)
                 .onChange(of: username){ newValue in
@@ -256,7 +258,9 @@ struct MiddleInformation: View{
         VStack{
         HStack{
             Text("Last word:")
+                .font(Font.custom(gameinfo.font, size: 17))
             Text(gameinfo.lastWord)
+                .font(Font.custom(gameinfo.font, size: 17))
         }
         .foregroundColor(.white)
         HStack{
@@ -267,7 +271,7 @@ struct MiddleInformation: View{
             print("hint")
         }
         .clipShape(Capsule())
-        .font(.title2)
+        .font(Font.custom(gameinfo.font, size: 22))
         .foregroundColor(.white)
         Spacer()
         Button("Give Up: -1 point") {
@@ -275,7 +279,7 @@ struct MiddleInformation: View{
             print("giveup")
         }
         .clipShape(Capsule())
-        .font(.title2)
+        .font(Font.custom(gameinfo.font, size: 22))
         .foregroundColor(.white)
         Spacer()
         }

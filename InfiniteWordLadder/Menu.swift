@@ -50,7 +50,9 @@ struct Menu: View {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 gameinfo.currPage = .IWL
                             }}
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .font(Font.custom(gameinfo.font, size: 20))
+                        .font(Font.body.bold())
+                        //.font(.system(size: 20, weight: .bold, design: .rounded))
                         .padding()
                         .frame(width: geo.size.width*0.85, height: geo.size.height*0.10)
                         .background(Color.white)
@@ -65,7 +67,9 @@ struct Menu: View {
                                 gameinfo.currPage = .instructions
                             }
                         }
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .font(Font.custom(gameinfo.font, size: 20))
+                        .font(Font.body.bold())
+                        //.font(.system(size: 20, weight: .bold, design: .rounded))
                         .padding()
                         .frame(width: geo.size.width*0.85, height: geo.size.height*0.10)
                         .background(Color.white)
@@ -80,7 +84,9 @@ struct Menu: View {
                                 gameinfo.currPage = .stats
                             }
                         }
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .font(Font.custom(gameinfo.font, size: 20))
+                        .font(Font.body.bold())
+                        //.font(.system(size: 20, weight: .bold, design: .rounded))
                         .padding()
                         .frame(width: geo.size.width*0.85, height: geo.size.height*0.10)
                         .background(Color.white)
@@ -95,7 +101,9 @@ struct Menu: View {
                                 gameinfo.currPage = .achievements
                             }
                         }
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .font(Font.custom(gameinfo.font, size: 20))
+                        .font(Font.body.bold())
+                        //.font(.system(size: 20, weight: .bold, design: .rounded))
                         .padding()
                         .frame(width: geo.size.width*0.85, height: geo.size.height*0.10)
                         .background(Color.white)
@@ -110,7 +118,9 @@ struct Menu: View {
                                 gameinfo.currPage = .settings
                             }
                         }
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .font(Font.custom(gameinfo.font, size: 20))
+                        .font(Font.body.bold())
+                        //.font(.system(size: 20, weight: .bold, design: .rounded))
                         .padding()
                         .frame(width: geo.size.width*0.85, height: geo.size.height*0.10)
                         .background(Color.white)

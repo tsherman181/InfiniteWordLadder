@@ -236,21 +236,22 @@ struct DifficultySlider: View{
 struct FontPicker: View{
     
     @EnvironmentObject var gameinfo: GameInfo
-    @State private var fontname = "Arial"
+    @State private var fontname = "Comic Sans MS"
     
     var body: some View{
         VStack{
             Picker("Pick font", selection: $fontname){
-                ForEach(["Arial", "Comic Sans MS", "Herculanum"], id: \.self){
+                ForEach(["San Fransisco", "Arial", "Comic Sans MS", "Herculanum"], id: \.self){
                     Text($0).tag($0)
-                        .font(Font.custom(String($0), size: 40))
                 }
             }
             .pickerStyle(.segmented)
-            }
         Text(fontname)
             Text("What I look like")
             .font(Font.custom(fontname, size: 40))
+            .onChange(of: fontname){ newValue in}
+            
+        }
         .onAppear{
             fontname = gameinfo.font
         }
