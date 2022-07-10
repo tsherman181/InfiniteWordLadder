@@ -27,6 +27,8 @@ struct Settings: View {
                     .environmentObject(gameinfo)
             FontPicker()
                     .environmentObject(gameinfo)
+            MusicOnOff()
+                    .environmentObject(gameinfo)
             /*
             VStack {
                 HStack{
@@ -223,10 +225,10 @@ struct DifficultySlider: View{
             Spacer()
         }
         Text("Difficulty: ")
-            .font(.body)
+            .font(Font.custom(gameinfo.font, size: 17))
         Text(diffLevel)
             .foregroundColor(diffColor)
-            .font(.body)
+            .font(Font.custom(gameinfo.font, size: 17))
         }
     }
 }
@@ -246,6 +248,14 @@ struct FontPicker: View{
                 }
             }
             .pickerStyle(.segmented)
+            .font(Font.custom(gameinfo.font, size: 17))
+            Picker("Pick font", selection: $fontname){
+                ForEach(["San Fransisco", "Arial", "Comic Sans MS", "Herculanum"], id: \.self){
+                    Text($0).tag($0)
+                }
+            }
+            .pickerStyle(.segmented)
+            .font(Font.custom(gameinfo.font, size: 17))
         Text(fontname)
             Text("What I look like")
             .font(Font.custom(fontname, size: 40))
@@ -262,7 +272,33 @@ struct FontPicker: View{
     }
 }
 
-
+struct MusicOnOff: View{
+    
+    @EnvironmentObject var gameinfo: GameInfo
+    @State private var onOff = true
+    
+    var body: some View{
+        VStack{
+            Toggle("Music Enabled", isOn: $onOff)
+                .toggleStyle(SwitchToggleStyle(tint: .gray))
+            }
+            .onChange(of: onOff){ newValue in
+                if (!onOff){
+                    print("off")
+                    gameinfo.music.pause()
+                }
+                else if (onOff){
+                    print("on")
+                    gameinfo.music.play()
+                }
+                gameinfo.defaults.set(onOff, forKey: "Music")
+            }
+            .onAppear{
+                onOff = gameinfo.onOff
+            }
+    }
+    
+}
 
 
 

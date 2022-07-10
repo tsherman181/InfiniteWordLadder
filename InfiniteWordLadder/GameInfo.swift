@@ -36,6 +36,7 @@ class GameInfo: ObservableObject {
     let defaults: UserDefaults
     @Published var currPage: Page
     var music: AVAudioPlayer!
+    var onOff: Bool
     var prevWords: [String]
     var saobj: SA
     var difficulty: Int
@@ -65,7 +66,10 @@ class GameInfo: ObservableObject {
             print(currentACIndex)
             print(answerClues.count)
             defaults.set(true, forKey: "First Time Download")
+            onOff = true
+            defaults.set(true, forKey: "Music")
         }
+        onOff = defaults.bool(forKey: "Music")
         currentClue = defaults.string(forKey: "Current Clue") ?? answerClues[currentACIndex].cluelist[currentClueIndex]
         currentWord = defaults.string(forKey: "Current Word") ?? answerClues[currentACIndex].answer
         //creates our hashing method to deal with quick lookup for the JSON
@@ -86,7 +90,8 @@ class GameInfo: ObservableObject {
             if let audioPlayer = try? AVAudioPlayer(contentsOf: musicURL){
                 music = audioPlayer
                 music.numberOfLoops = -1
-                music.play()
+                if (onOff){music.play()}
+                else {music.pause()}
                 print("here")
             }
         }

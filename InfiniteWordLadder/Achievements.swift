@@ -26,7 +26,7 @@ struct Achievements: View {
                 GeometryReader { geo in
                     ScrollView(.vertical){
                         Text("Acheivements")
-                            .font(.largeTitle)
+                            .font(Font.custom(gameinfo.font, size: 34))
                             .foregroundColor(.white)
                         HStack{
                             Spacer()
@@ -34,7 +34,7 @@ struct Achievements: View {
                                 VStack{
                                     ForEach(0..<gameinfo.saobj.numAch/3) {index2 in
                                         Text(gameinfo.saobj.achievementNames[index1+index2*3])
-                                            .font(.caption)
+                                            .font(Font.custom(gameinfo.font, size: 12))
                                             .frame(width: geo.size.width*0.3, height: geo.size.width*0.15, alignment: .center)
                                             .multilineTextAlignment(.center)
                                         Button(action: {

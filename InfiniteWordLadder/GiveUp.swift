@@ -19,11 +19,12 @@ struct GiveUp: View {
             VStack{
                 VStack{
                     Text("Oops, the correct answer was:")
+                        
                         .padding()
                     Text(gameinfo.currentWord)
                 }
                 .foregroundColor(.white)
-                .font(.largeTitle)
+                .font(Font.custom(gameinfo.font, size: 34))
             }
         }
         .ignoresSafeArea()

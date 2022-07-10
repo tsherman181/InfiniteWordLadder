@@ -19,7 +19,7 @@ struct Correct: View {
             VStack{
                 Text("Correct! Good job!")
                     .foregroundColor(.white)
-                    .font(.largeTitle)
+                    .font(Font.custom(gameinfo.font, size: 34))
             }
         }
         .ignoresSafeArea()

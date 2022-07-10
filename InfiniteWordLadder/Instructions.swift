@@ -48,20 +48,27 @@ struct Instructions: View {
                     Image(systemName: "arrow.forward")
                     VStack{
                         Text("Clue: Aardvark's diet")
-                        Text("Answer: ANT") + Text("S")
-                            .foregroundColor(.black)
+                            .font(Font.custom(gameinfo.font, size: 17))
+                        Text("Answer: ANT")
+                            .font(Font.custom(gameinfo.font, size: 17))
                             .font(Font.body.bold())
+                        + Text("S")
+                            .font(Font.custom(gameinfo.font, size: 17))
+                            .font(Font.body.bold())
+                            .foregroundColor(.black)
                     }
                     .padding()
                 }
                 Text("If you need help, hit the hint button and you will get a different hint for that word!")
+                    .font(Font.custom(gameinfo.font, size: 17))
                     .padding(.horizontal)
                 Text("If you are out of guesses, you can hit the give up button. It will tell you the word but deduct 1 point :(")
+                    .font(Font.custom(gameinfo.font, size: 17))
                     .padding()
                 Button("Ready to play the game?"){
                     gameinfo.currPage = .IWL
                 }
-                .font(.system(size: 15, weight: .bold, design: .rounded))
+                .font(Font.custom(gameinfo.font, size: 17))
                 .padding()
                 .frame(width: deviceWidth/1.5, alignment: .center)
                 .background(Color.white)
