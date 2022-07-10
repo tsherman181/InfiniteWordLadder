@@ -57,7 +57,7 @@ class GameInfo: ObservableObject {
         //we set our points
         points = defaults.integer(forKey: "Points")
         //we read the relevant JSON
-        let url = Bundle.main.url(forResource: "connected", withExtension: ".json")!
+        let url = Bundle.main.url(forResource: "noCycle", withExtension: ".json")!
         let data = try! Data(contentsOf: url)
         answerClues = try! JSONDecoder().decode([AnswerClue].self, from: data)
         //we read in the correct clues, indecies, etc.
