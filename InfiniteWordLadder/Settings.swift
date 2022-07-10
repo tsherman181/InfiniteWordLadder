@@ -29,6 +29,8 @@ struct Settings: View {
                     .environmentObject(gameinfo)
             MusicOnOff()
                     .environmentObject(gameinfo)
+            LadderColor()
+                    .environmentObject(gameinfo)
             /*
             VStack {
                 HStack{
@@ -298,6 +300,43 @@ struct MusicOnOff: View{
             }
     }
     
+}
+
+
+struct LadderColor: View{
+    @EnvironmentObject var gameinfo: GameInfo
+    @State var color: Int = 0
+    
+    var body: some View{
+        HStack{
+            Spacer()
+            Text("Number of letters: ")
+                .font(.body)
+            Picker("Number of Letters", selection: $color){
+                Text("White").tag(0)
+                Text("Black").tag(1)
+                Text("Gray").tag(2)
+            }
+            .pickerStyle(.segmented)
+            .foregroundColor(.white)
+            .onChange(of: color){ newValue in
+                if (color == 0){
+                    gameinfo.ladderColor = UIColor.white
+                }
+                else if (color == 1){
+                    gameinfo.ladderColor = UIColor.black
+                }
+                else if (color == 2){
+                    gameinfo.ladderColor = UIColor.systemGray
+                }
+                gameinfo.defaults.set(color, forKey: "Ladder Color")
+            }
+            Spacer()
+        }
+        .onAppear{
+            color = gameinfo.ladderColorNumber
+        }
+    }
 }
 
 

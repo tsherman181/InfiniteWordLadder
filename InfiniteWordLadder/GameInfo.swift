@@ -48,6 +48,8 @@ class GameInfo: ObservableObject {
     @Published var backgroundColor: UIColor
     var backgroundColorNumber: Int
     @Published var font: String
+    var ladderColor: UIColor
+    var ladderColorNumber: Int
     
     init () {
         //we initialize our defaults
@@ -107,6 +109,9 @@ class GameInfo: ObservableObject {
         //font = defaults.string(forKey: "Font") ?? "Comic Sans MS"
         font = "Comic Sans MS"
         
+        ladderColorNumber = defaults.integer(forKey: "Ladder Color")
+        ladderColor = .black
+        
         prevWords = defaults.object(forKey: "Previous Words") as? [String] ?? [String]()
         saobj = SA()
         
@@ -151,6 +156,15 @@ class GameInfo: ObservableObject {
             backgroundColor = .systemGreen
         }
         defaults.set(font, forKey: "Font")
+        if (ladderColorNumber == 0){
+            ladderColor = .white
+        }
+        else if (ladderColorNumber == 1){
+            ladderColor = .black
+        }
+        else if (ladderColorNumber == 2){
+            ladderColor = .systemGray
+        }
     }
     
     func insertSpaces(_ guess: String) -> String {
