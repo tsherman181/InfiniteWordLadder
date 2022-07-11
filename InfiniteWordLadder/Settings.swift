@@ -16,64 +16,36 @@ struct Settings: View {
     var body: some View {
         ZStack {
             Color(gameinfo.backgroundColor).ignoresSafeArea()
-            VStack{
+            GeometryReader{ geo in
+            VStack(spacing:0){
             MenuButton()
                 .environmentObject(gameinfo)
+                .frame(height: geo.size.height/15)
+            Text("Difficulty")
+                .frame(height: geo.size.height/10)
+                .font(Font.custom(gameinfo.font, size: 34))
             DifficultySlider()
                     .environmentObject(gameinfo)
+                    .frame(height: geo.size.height/15)
             NumLetters()
                     .environmentObject(gameinfo)
+                    .frame(height: geo.size.height/15)
+            Text("Aesthetics")
+                .frame(height: geo.size.height/10)
+                .font(Font.custom(gameinfo.font, size: 34))
             ColorPicker()
                     .environmentObject(gameinfo)
-            FontPicker()
-                    .environmentObject(gameinfo)
-            MusicOnOff()
-                    .environmentObject(gameinfo)
+                    .frame(height: geo.size.height/15)
             LadderColor()
                     .environmentObject(gameinfo)
-            /*
-            VStack {
-                HStack{
-                    Button{
-                        gameinfo.currPage = .menu
-                    }label:{
-                        Label("", systemImage: "list.dash")
-                            .font(.system(size: 20, weight: .bold, design: .default))
-                    Spacer()
-                    }
-                    .foregroundColor(.white)
-                    .padding()
-                }
-             */
-                /*
-                Picker("Difficulty", selection: $state){
-                    Text("Beginner").tag(95)
-                        .font(.system(size: 6))
-                    Text("Intermediate").tag(63)
-                        .font(.system(size: 6))
-                    Text("Hard").tag(56)
-                        .font(.system(size: 6))
-                    Text("Challenging").tag(50)
-                        .font(.system(size: 6))
-                    Text("Expert").tag(41)
-                        .font(.system(size: 6))
-                }
-                .pickerStyle(.segmented)
-                .foregroundColor(.white)
-                .onAppear{
-                    state = gameinfo.difficulty
-                    print(state)
-                }
-                .onChange(of: state){
-                    newValue in
-                    gameinfo.changeDiff(state)
-                    print(state)
-                    print(gameinfo.difficulty)
-                }
-                Text("Gameinfo Level: \(self.gameinfo.difficulty) Difficulty Level \(state)")
-                    .onChange(of: gameinfo.difficulty){newValue in}
-                Text("Settings go here")
-                 */
+                    .frame(height: geo.size.height/10)
+            FontPicker()
+                    .environmentObject(gameinfo)
+                    .frame(height: geo.size.height/7)
+            MusicOnOff()
+                    .environmentObject(gameinfo)
+                    .frame(height: geo.size.height/10)
+        }
         }
         }
         }
@@ -84,15 +56,17 @@ struct ColorPicker: View{
     @State var color: Int = 0
     
     var body: some View{
-        HStack{
-            Spacer()
-            Text("Number of letters: ")
-                .font(.body)
+        GeometryReader{ geo in
+        HStack(spacing:0){
+            Text("Background Color: ")
+                .font(Font.custom(gameinfo.font, size: 17))
+                .frame(width: geo.size.width/2, alignment: .leading)
             Picker("Number of Letters", selection: $color){
                 Text("Blue").tag(0)
                 Text("Red").tag(1)
                 Text("Green").tag(2)
             }
+            .frame(width: geo.size.width/2)
             .pickerStyle(.segmented)
             .foregroundColor(.white)
             .onChange(of: color){ newValue in
@@ -107,11 +81,13 @@ struct ColorPicker: View{
                 }
                 gameinfo.defaults.set(color, forKey: "Background Color")
             }
-            Spacer()
         }
         .onAppear{
+            gameinfo.backgroundColorNumber = gameinfo.defaults.integer(forKey: "Background Color")
             color = gameinfo.backgroundColorNumber
         }
+        }
+        .padding()
     }
 }
 
@@ -123,16 +99,18 @@ struct NumLetters: View{
     @State var num = 0
     
     var body: some View{
-        HStack{
-            Spacer()
+        GeometryReader{geo in
+        HStack(spacing: 0){
             Text("Number of letters: ")
-                .font(.body)
+                .font(Font.custom(gameinfo.font, size: 17))
+                .frame(width: geo.size.width/2, alignment: .leading)
             Picker("Number of Letters", selection: $num){
                 Text("5").tag(5)
                 Text("10").tag(10)
                 Text("15").tag(15)
             }
             .pickerStyle(.segmented)
+            .frame(width: geo.size.width/2)
             .foregroundColor(.white)
             .onChange(of: num){ newValue in
                 gameinfo.lettersShown = num
@@ -141,8 +119,9 @@ struct NumLetters: View{
             .onAppear{
                 num = gameinfo.lettersShown
             }
-            Spacer()
         }
+        }
+        .padding()
     }
     
 }
@@ -157,10 +136,18 @@ struct DifficultySlider: View{
     @State var diffColor = Color.blue
     
     var body: some View{
-        VStack{
-        HStack{
-        Spacer()
+        GeometryReader{geo in
+        HStack(spacing:0){
+            HStack(spacing:0){
+                Text("Words: ")
+                    .font(Font.custom(gameinfo.font, size: 17))
+                + Text(diffLevel)
+                    .font(Font.custom(gameinfo.font, size: 17))
+                    .foregroundColor(diffColor)
+            }
+            .frame(width: geo.size.width*0.55, height: geo.size.height, alignment: .leading)
         Slider(value: $state2, in: 1.0...5.0)
+            .frame(width: geo.size.width*0.45, height: geo.size.height)
             .onAppear{
                 state = gameinfo.difficulty
                 print(state)
@@ -223,15 +210,9 @@ struct DifficultySlider: View{
             }
             .foregroundColor(.white)
             .accentColor(.white)
-            .padding(.horizontal)
-            Spacer()
         }
-        Text("Difficulty: ")
-            .font(Font.custom(gameinfo.font, size: 17))
-        Text(diffLevel)
-            .foregroundColor(diffColor)
-            .font(Font.custom(gameinfo.font, size: 17))
-        }
+    }
+    .padding()
     }
 }
 
@@ -243,12 +224,18 @@ struct FontPicker: View{
     @State private var fontname = "Comic Sans MS"
     
     var body: some View{
-        VStack{
+        GeometryReader{ geo in
+        HStack(spacing:0){
+            Text("Fonts:")
+                .font(Font.custom(gameinfo.font, size: 17))
+                .frame(width: geo.size.width*0.20, height: geo.size.height, alignment: .leading)
+        VStack(spacing:0){
             Picker("Pick font", selection: $fontname){
                 ForEach(["San Fransisco", "Arial", "Comic Sans MS", "Herculanum"], id: \.self){
                     Text($0).tag($0)
                 }
             }
+            .frame(width: geo.size.width*0.80, height: geo.size.height/2)
             .pickerStyle(.segmented)
             .font(Font.custom(gameinfo.font, size: 17))
             Picker("Pick font", selection: $fontname){
@@ -257,12 +244,8 @@ struct FontPicker: View{
                 }
             }
             .pickerStyle(.segmented)
+            .frame(width: geo.size.width*0.80, height: geo.size.height/2)
             .font(Font.custom(gameinfo.font, size: 17))
-        Text(fontname)
-            Text("What I look like")
-            .font(Font.custom(fontname, size: 40))
-            .onChange(of: fontname){ newValue in}
-            
         }
         .onAppear{
             fontname = gameinfo.font
@@ -271,6 +254,9 @@ struct FontPicker: View{
             gameinfo.font = fontname
             gameinfo.defaults.set(fontname, forKey: "Font")
         }
+        }
+    }
+    .padding()
     }
 }
 
@@ -280,9 +266,14 @@ struct MusicOnOff: View{
     @State private var onOff = true
     
     var body: some View{
-        VStack{
-            Toggle("Music Enabled", isOn: $onOff)
+        GeometryReader{geo in
+        HStack(spacing:0){
+            Text("Music Enabled")
+                .frame(width: geo.size.width/2, alignment: .leading)
+                .font(Font.custom(gameinfo.font, size: 17))
+            Toggle("", isOn: $onOff)
                 .toggleStyle(SwitchToggleStyle(tint: .gray))
+                .frame(width: geo.size.width*0.5, alignment: .leading)
             }
             .onChange(of: onOff){ newValue in
                 if (!onOff){
@@ -299,6 +290,8 @@ struct MusicOnOff: View{
                 onOff = gameinfo.onOff
             }
     }
+        .padding()
+    }
     
 }
 
@@ -308,15 +301,17 @@ struct LadderColor: View{
     @State var color: Int = 0
     
     var body: some View{
-        HStack{
-            Spacer()
-            Text("Number of letters: ")
-                .font(.body)
+        GeometryReader{geo in
+            HStack(spacing:0){
+            Text("Ladder Color: ")
+                .frame(width: geo.size.width/2, alignment: .leading)
+                .font(Font.custom(gameinfo.font, size: 17))
             Picker("Number of Letters", selection: $color){
                 Text("White").tag(0)
                 Text("Black").tag(1)
                 Text("Gray").tag(2)
             }
+            .frame(width: geo.size.width/2, alignment: .leading)
             .pickerStyle(.segmented)
             .foregroundColor(.white)
             .onChange(of: color){ newValue in
@@ -331,11 +326,13 @@ struct LadderColor: View{
                 }
                 gameinfo.defaults.set(color, forKey: "Ladder Color")
             }
-            Spacer()
         }
         .onAppear{
+            gameinfo.ladderColorNumber = gameinfo.defaults.integer(forKey: "Ladder Color")
             color = gameinfo.ladderColorNumber
         }
+    }
+    .padding()
     }
 }
 
