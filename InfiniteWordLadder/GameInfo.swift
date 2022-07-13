@@ -166,13 +166,18 @@ class GameInfo: ObservableObject {
         else if (ladderColorNumber == 2){
             ladderColor = .systemGray
         }
+        
+        
+        if (lastWord == ""){
+            var chars = Array(currentWord)
+            while (String(chars) == currentWord || ACDict[String(chars)] == nil){
+                chars = Array(currentWord)
+                chars[Int.random(in: 0...3)] = Character(UnicodeScalar(Int.random(in: 65...90))!)
+            }
+            lastWord = String(chars)
+            addToPrev(lastWord)
+        }//to fill in our initial last word
     }
-    
-    func insertSpaces(_ guess: String) -> String {
-        let str = Array(guess)
-        return str.map { "\($0)" }.joined(separator: "\n")
-    }
-    
     
     func guessing(guess: String) {
         if guess == currentWord {

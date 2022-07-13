@@ -262,6 +262,13 @@ struct MiddleInformation: View{
                 .font(Font.custom(gameinfo.font, size: 17))
             Text(gameinfo.lastWord)
                 .font(Font.custom(gameinfo.font, size: 17))
+            Button{
+                gameinfo.currPage = .instructions
+            }label:{
+                Label("", systemImage: "questionmark.circle")
+                    .font(.system(size: 20, weight: .bold, design: .default))
+            }
+            .foregroundColor(.white)
         }
         .foregroundColor(.white)
         HStack{

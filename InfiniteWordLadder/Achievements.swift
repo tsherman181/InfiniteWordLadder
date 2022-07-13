@@ -78,7 +78,7 @@ struct Achievements: View {
             }//VStack
         }//ZStack
     }//View
-}//Achievements
+}//Achievements questionmark.circle
 
 
 

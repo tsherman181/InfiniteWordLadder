@@ -159,17 +159,17 @@ struct DifficultySlider: View{
                     diffLevel = "Basic"
                     diffColor = Color.green
                 }
-                else if (state == 63){
+                else if (state == 69){
                     state2 = 2
                     diffLevel = "Beginner"
                     diffColor = Color.yellow
                 }
-                else if (state == 56){
+                else if (state == 58){
                     state2 = 3
                     diffLevel = "Intermediate"
                     diffColor = Color.orange
                 }
-                else if (state == 50){
+                else if (state == 52){
                     state2 = 4
                     diffLevel = "Hard"
                     diffColor = Color.red
@@ -188,17 +188,17 @@ struct DifficultySlider: View{
                     diffColor = Color.green
                 }
                 else if (round(state2) == 2){
-                    state = 63
+                    state = 69
                     diffLevel = "Beginner"
                     diffColor = Color.yellow
                 }
                 else if (round(state2) == 3){
-                    state = 56
+                    state = 58
                     diffLevel = "Intermediate"
                     diffColor = Color.orange
                 }
                 else if (round(state2) == 4){
-                    state = 50
+                    state = 52
                     diffLevel = "Hard"
                     diffColor = Color.red
                 }
@@ -297,7 +297,7 @@ struct MusicOnOff: View{
                 gameinfo.defaults.set(onOff, forKey: "Music")
             }
             .onAppear{
-                onOff = gameinfo.onOff
+                onOff = gameinfo.defaults.bool(forKey: "Music")
             }
     }
         .padding()
