@@ -98,6 +98,7 @@ class GameInfo: ObservableObject {
             }
         }
         else{
+            print("music failed")
             music = nil
         }
         //deal with previous words
@@ -107,7 +108,7 @@ class GameInfo: ObservableObject {
         backgroundColorNumber = defaults.integer(forKey: "Background Color")
         backgroundColor = .systemBlue
         //font = defaults.string(forKey: "Font") ?? "Comic Sans MS"
-        font = "Comic Sans MS"
+        font = defaults.string(forKey: "Font") ?? "San Fransisco"
         
         ladderColorNumber = defaults.integer(forKey: "Ladder Color")
         ladderColor = .black

@@ -42,6 +42,9 @@ struct Settings: View {
             FontPicker()
                     .environmentObject(gameinfo)
                     .frame(height: geo.size.height/7)
+            Text("Sound")
+                .frame(height: geo.size.height/10)
+                .font(Font.custom(gameinfo.font, size: 34))
             MusicOnOff()
                     .environmentObject(gameinfo)
                     .frame(height: geo.size.height/10)
@@ -223,6 +226,12 @@ struct FontPicker: View{
     @EnvironmentObject var gameinfo: GameInfo
     @State private var fontname = "Comic Sans MS"
     
+    private var fonts1 = ["San Fransisco", "Courier New Bold", "Comic Sans MS", "SnellRoundhand"]
+    private var fonts2 = ["Copperplate", "Trattatello", "Phosphate", "Wingdings"]
+    private var names1 = ["Default", "Basic", "Comic", "Cursive"]
+    private var names2 = ["Engrave", "Paper", "Inline", "Picto"]
+    
+    
     var body: some View{
         GeometryReader{ geo in
         HStack(spacing:0){
@@ -231,16 +240,16 @@ struct FontPicker: View{
                 .frame(width: geo.size.width*0.20, height: geo.size.height, alignment: .leading)
         VStack(spacing:0){
             Picker("Pick font", selection: $fontname){
-                ForEach(["San Fransisco", "Arial", "Comic Sans MS", "Herculanum"], id: \.self){
-                    Text($0).tag($0)
+                ForEach(0..<4){ index in
+                    Text(names1[index]).tag(fonts1[index])
                 }
             }
             .frame(width: geo.size.width*0.80, height: geo.size.height/2)
             .pickerStyle(.segmented)
             .font(Font.custom(gameinfo.font, size: 17))
             Picker("Pick font", selection: $fontname){
-                ForEach(["San Fransisco", "Arial", "Comic Sans MS", "Herculanum"], id: \.self){
-                    Text($0).tag($0)
+                ForEach(0..<4){ index in
+                    Text(names2[index]).tag(fonts2[index])
                 }
             }
             .pickerStyle(.segmented)
@@ -248,6 +257,7 @@ struct FontPicker: View{
             .font(Font.custom(gameinfo.font, size: 17))
         }
         .onAppear{
+            gameinfo.font = gameinfo.defaults.string(forKey: "Font") ?? "Comic Sans MS"
             fontname = gameinfo.font
         }
         .onChange(of: fontname){ newValue in

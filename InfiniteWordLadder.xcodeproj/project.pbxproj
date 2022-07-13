@@ -34,6 +34,14 @@
 		F3D55567283C413300A34232 /* Correct.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D55566283C413300A34232 /* Correct.swift */; };
 		F3D55569283DB76A00A34232 /* Instructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D55568283DB76A00A34232 /* Instructions.swift */; };
 		F3E2E6D328566C5800F3850E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E2E6D228566C5800F3850E /* Settings.swift */; };
+		F3F6ECBF287E4C5700DD70C2 /* Courier New Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3F6ECB8287E4BA400DD70C2 /* Courier New Bold.ttf */; };
+		F3F6ECC0287E4C5D00DD70C2 /* Trattatello.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3F6ECBD287E4C2400DD70C2 /* Trattatello.ttf */; };
+		F3F6ECC1287E4C5D00DD70C2 /* PartyLET-plain.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3F6ECBA287E4BDC00DD70C2 /* PartyLET-plain.ttf */; };
+		F3F6ECC2287E4C5D00DD70C2 /* Luminari.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3F6ECB9287E4BBB00DD70C2 /* Luminari.ttf */; };
+		F3F6ECC3287E4C5D00DD70C2 /* SnellRoundhand.ttc in Resources */ = {isa = PBXBuildFile; fileRef = F3F6ECBC287E4C1800DD70C2 /* SnellRoundhand.ttc */; };
+		F3F6ECC4287E4C5D00DD70C2 /* Copperplate.ttc in Resources */ = {isa = PBXBuildFile; fileRef = F3F6ECB7287E4B8B00DD70C2 /* Copperplate.ttc */; };
+		F3F6ECC5287E4C5D00DD70C2 /* Phosphate.ttc in Resources */ = {isa = PBXBuildFile; fileRef = F3F6ECBB287E4BF400DD70C2 /* Phosphate.ttc */; };
+		F3F6ECC6287E4C5D00DD70C2 /* Wingdings.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3F6ECBE287E4C4F00DD70C2 /* Wingdings.ttf */; };
 		F3F78451284D90C60043B69D /* StatsAchievements.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F78450284D90C60043B69D /* StatsAchievements.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +75,15 @@
 		F3D55568283DB76A00A34232 /* Instructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instructions.swift; sourceTree = "<group>"; };
 		F3E2E6D228566C5800F3850E /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F3E9C142287523FE0093223E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F3F6ECB6287E4B5D00DD70C2 /* ChalkboardSE.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChalkboardSE.ttc; sourceTree = "<group>"; };
+		F3F6ECB7287E4B8B00DD70C2 /* Copperplate.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Copperplate.ttc; sourceTree = "<group>"; };
+		F3F6ECB8287E4BA400DD70C2 /* Courier New Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Courier New Bold.ttf"; sourceTree = "<group>"; };
+		F3F6ECB9287E4BBB00DD70C2 /* Luminari.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Luminari.ttf; sourceTree = "<group>"; };
+		F3F6ECBA287E4BDC00DD70C2 /* PartyLET-plain.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PartyLET-plain.ttf"; sourceTree = "<group>"; };
+		F3F6ECBB287E4BF400DD70C2 /* Phosphate.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Phosphate.ttc; sourceTree = "<group>"; };
+		F3F6ECBC287E4C1800DD70C2 /* SnellRoundhand.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = SnellRoundhand.ttc; sourceTree = "<group>"; };
+		F3F6ECBD287E4C2400DD70C2 /* Trattatello.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Trattatello.ttf; sourceTree = "<group>"; };
+		F3F6ECBE287E4C4F00DD70C2 /* Wingdings.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Wingdings.ttf; sourceTree = "<group>"; };
 		F3F78450284D90C60043B69D /* StatsAchievements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsAchievements.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +126,15 @@
 				F307FD362873D16B00D9D507 /* Comic Sans MS.ttf */,
 				F307FD382873D1BE00D9D507 /* Arial.ttf */,
 				F307FD372873D1A500D9D507 /* Herculanum.ttf */,
+				F3F6ECB6287E4B5D00DD70C2 /* ChalkboardSE.ttc */,
+				F3F6ECB8287E4BA400DD70C2 /* Courier New Bold.ttf */,
+				F3F6ECB9287E4BBB00DD70C2 /* Luminari.ttf */,
+				F3F6ECBA287E4BDC00DD70C2 /* PartyLET-plain.ttf */,
+				F3F6ECBC287E4C1800DD70C2 /* SnellRoundhand.ttc */,
+				F3F6ECBB287E4BF400DD70C2 /* Phosphate.ttc */,
+				F3F6ECBD287E4C2400DD70C2 /* Trattatello.ttf */,
+				F3F6ECBE287E4C4F00DD70C2 /* Wingdings.ttf */,
+				F3F6ECB7287E4B8B00DD70C2 /* Copperplate.ttc */,
 				F37C68F82842BBEB00820459 /* Menu.swift */,
 				F3D55568283DB76A00A34232 /* Instructions.swift */,
 				F33BCCBE282C8BB400BDFB27 /* InfiniteWordLadderApp.swift */,
@@ -202,17 +228,25 @@
 				F35EAE5828558584005388C5 /* connected.json in Resources */,
 				BC5E86C3286FD6DD0007E18D /* motivational-day-112790.mp3 in Resources */,
 				F303320D28766B6F00F927D4 /* Herculanum.ttf in Resources */,
+				F3F6ECC4287E4C5D00DD70C2 /* Copperplate.ttc in Resources */,
 				F303320C28766B6C00F927D4 /* Arial.ttf in Resources */,
 				F3B35A82283327EA0000796E /* full.json in Resources */,
 				F307FD352873609600D9D507 /* chill-abstract-intention-12099_11KGzeua.mp3 in Resources */,
 				BC5E86BD286FD6B60007E18D /* inspirational-background-112290.mp3 in Resources */,
 				F3361B68287B7D52009CD2DA /* noCycle.json in Resources */,
+				F3F6ECC3287E4C5D00DD70C2 /* SnellRoundhand.ttc in Resources */,
 				F33BCCC6282C8BB700BDFB27 /* Preview Assets.xcassets in Resources */,
 				BC5E86C1286FD6D30007E18D /* chill-abstract-intention-12099.mp3 in Resources */,
+				F3F6ECC1287E4C5D00DD70C2 /* PartyLET-plain.ttf in Resources */,
+				F3F6ECBF287E4C5700DD70C2 /* Courier New Bold.ttf in Resources */,
+				F3F6ECC0287E4C5D00DD70C2 /* Trattatello.ttf in Resources */,
+				F3F6ECC6287E4C5D00DD70C2 /* Wingdings.ttf in Resources */,
 				BC780C342831D3820080F758 /* TEST.json in Resources */,
 				F33BCCC3282C8BB700BDFB27 /* Assets.xcassets in Resources */,
 				F303320B28766B6800F927D4 /* Comic Sans MS.ttf in Resources */,
 				BC5E86BF286FD6C80007E18D /* jazzy-abstract-beat-11254.mp3 in Resources */,
+				F3F6ECC2287E4C5D00DD70C2 /* Luminari.ttf in Resources */,
+				F3F6ECC5287E4C5D00DD70C2 /* Phosphate.ttc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

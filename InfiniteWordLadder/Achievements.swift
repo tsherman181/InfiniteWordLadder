@@ -37,20 +37,20 @@ struct Achievements: View {
                                             .font(Font.custom(gameinfo.font, size: 12))
                                             .frame(width: geo.size.width*0.3, height: geo.size.width*0.15, alignment: .center)
                                             .multilineTextAlignment(.center)
-                                        Button(action: {
-                                            print("here")
-                                            if (min(Double(gameinfo.saobj.achievements[index1+index2*3])+0.5, 1.0) == 1.0){
-                                                print("here1")
-                                                rX = Double(Float.random(in: 0..<1))
-                                                rY = Double(Float.random(in: 0..<1))
-                                                withAnimation{animationAmount[index1+index2*3]+=Double(gameinfo.saobj.achievements[index1+index2*3]*360)
+                                            Button(action: {
+                                                print("here")
+                                                if (min(Double(gameinfo.saobj.achievements[index1+index2*3])+0.5, 1.0) == 1.0){
+                                                    print("here1")
+                                                    rX = Double(Float.random(in: 0..<1))
+                                                    rY = Double(Float.random(in: 0..<1))
+                                                    withAnimation{animationAmount[index1+index2*3]+=Double(gameinfo.saobj.achievements[index1+index2*3]*360)
+                                                    }
                                                 }
-                                            }
-                                            else{
-                                                print("dummy statement, fill in else later")
-                                                //show how to get achievement
-                                            }
-                                        })
+                                                else{
+                                                    print("dummy statement, fill in else later")
+                                                    //show how to get achievement
+                                                }
+                                            })
                                         {
                                         Image(systemName: "star.circle.fill")
                                             .resizable()
@@ -81,6 +81,14 @@ struct Achievements: View {
 }//Achievements
 
 
+
+
+
+
+
+
+
+
 struct MenuButton: View{
     @EnvironmentObject var gameinfo: GameInfo
     
@@ -99,6 +107,14 @@ struct MenuButton: View{
         .padding(.bottom)
 }
 }
+
+
+
+
+
+
+
+
 
 
 

@@ -37,6 +37,7 @@ struct Instructions: View {
                 HStack{
                     VStack{
                         Text("Clue: Pot starter")
+                            .font(Font.custom(gameinfo.font, size: 17))
                         Text("Answer: ANT")
                             .font(Font.custom(gameinfo.font, size: 17))
                         +
