@@ -24,19 +24,23 @@ enum Page {
 
 
 class GameInfo: ObservableObject {
+    
+    @Published var backgroundColor: UIColor
+    @Published var currPage: Page
+    @Published var font: String
 
-    var points: Int
-    let answerClues: [AnswerClue]
     var ACDict: [String: Int] = [:]
+    let answerClues: [AnswerClue]
+    var backgroundColorNumber: Int
     var currentClue: String
     var currentWord: String
     var currentClueIndex: Int
     var currentACIndex: Int
-    var lastWord: String
     let defaults: UserDefaults
-    @Published var currPage: Page
+    var lastWord: String
     var music: AVAudioPlayer!
     var onOff: Bool
+    var points: Int
     var prevWords: [String]
     var saobj: SA
     var difficulty: Int
@@ -45,9 +49,6 @@ class GameInfo: ObservableObject {
     var fiveLetters: String
     var tenLetters: String
     var fifteenLetters: String
-    @Published var backgroundColor: UIColor
-    var backgroundColorNumber: Int
-    @Published var font: String
     var ladderColor: UIColor
     var ladderColorNumber: Int
     

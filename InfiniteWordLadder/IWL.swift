@@ -237,6 +237,7 @@ struct TextFieldFocus: View{
                     if (username.count == 4){
                         gameinfo.guessing(guess: username)
                         username = ""
+                        //gameinfo.inRow = false
                     }
                 }
                 //.navigationBarHidden(true)

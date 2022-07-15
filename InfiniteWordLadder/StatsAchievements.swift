@@ -11,7 +11,7 @@ import Foundation
 class SA: ObservableObject{
     
     var achievements: [Int]
-    let achievementNames = ["Score 10 Points", "Score 50 Points", "Score 100 Points", "3 in a Row", "5 in a Row", "10 in a Row", "Wine and Dine", "Life is Good", "Stats Addict", "Coin Flipper", "Mr. Dictionary", "Something here", "Something here", "Something here", "Something here"]
+    let achievementNames = ["Score 10 Points", "Score 50 Points", "Score 100 Points", "5 in a Row", "10 in a Row", "20 in a Row", "Wine and Dine", "Life is Good", "Stats Addict", "Coin Flip", "Mr. Pictionary", "Picture Perfect", "Quarter of Everything", "Halfway There", "Done it all"]
     var highscore: Int
     var numInRow: Int
     var maxInRow: Int
@@ -48,7 +48,7 @@ class SA: ObservableObject{
     func check_achievements(_ guess: String, _ currPoints: Int){
         
         highscore = max(currPoints, highscore)
-        relevantWords = [""]
+        relevantWords.insert(guess)
         if highscore >= 10{
             achievements[0] = 1
         }
@@ -58,6 +58,19 @@ class SA: ObservableObject{
         if highscore >= 100{
             achievements[2] = 1
         }
+        if maxInRow >= 5{
+            achievements[3] = 1
+        }
+        if maxInRow >= 10{
+            achievements[4] = 1
+        }
+        if maxInRow >= 20{
+            achievements[5] = 1
+        }
+        
+        
+        
+        
         
         defaults.set(achievements, forKey: "Achievements")
         defaults.set(highscore, forKey: "High Score")
@@ -65,7 +78,8 @@ class SA: ObservableObject{
         
         //MARK: This code still needs work. We need to craft interesting acheivements and have them update as we go. This would be a good project to complete sometime.
         
-        
+        print("number in a row \(numInRow)")
+        print("max in row \(maxInRow)")
     }
     
     
