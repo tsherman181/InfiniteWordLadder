@@ -13,8 +13,14 @@ struct Stats: View {
         ZStack {
             Color(gameinfo.backgroundColor).ignoresSafeArea()
             VStack{
-                MenuButton()
-                    .environmentObject(gameinfo)
+                if (gameinfo.font == "Wingdings"){
+                    MenuBookButton()
+                        .environmentObject(gameinfo)
+                }
+                else{
+                    MenuButton()
+                        .environmentObject(gameinfo)
+                }
                 Text("Statistics")
                     .font(Font.custom(gameinfo.font, size: 34))
                     .foregroundColor(.white)

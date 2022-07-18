@@ -18,9 +18,16 @@ struct Settings: View {
             Color(gameinfo.backgroundColor).ignoresSafeArea()
             GeometryReader{ geo in
             VStack(spacing:0){
-            MenuButton()
-                .environmentObject(gameinfo)
-                .frame(height: geo.size.height/15)
+                if (gameinfo.font == "Wingdings"){
+                    MenuBookButton()
+                        .environmentObject(gameinfo)
+                        .frame(height: geo.size.height/15)
+                }
+                else{
+                    MenuButton()
+                        .environmentObject(gameinfo)
+                        .frame(height: geo.size.height/15)
+                }
             Text("Difficulty")
                 .frame(height: geo.size.height/10)
                 .font(Font.custom(gameinfo.font, size: 34))

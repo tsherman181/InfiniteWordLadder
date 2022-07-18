@@ -24,9 +24,16 @@ struct IWL: View {
             GeometryReader{ geo in
                 if (gameinfo.lettersShown != 26){
                 VStack{
-                    MenuPoints()
-                        .environmentObject(gameinfo)
-                        .frame(height: geo.size.height/10)
+                    if(gameinfo.font == "Wingdings"){
+                        MenuPointsBook()
+                            .environmentObject(gameinfo)
+                            .frame(height: geo.size.height/10)
+                    }
+                    else{
+                        MenuPoints()
+                            .environmentObject(gameinfo)
+                            .frame(height: geo.size.height/10)
+                    }
                     Clue(clue: $clue)
                         .frame(height: geo.size.height/6)
                         .environmentObject(gameinfo)
@@ -148,6 +155,116 @@ struct MenuPoints: View{
         }
         .padding(.bottom)
 }
+}
+
+//MARK: New code
+
+struct MenuPointsBook: View{
+    @EnvironmentObject var gameinfo: GameInfo
+
+    @State private var showingSheet = false
+
+    var body: some View{
+        HStack{
+            VStack{
+                Spacer()
+                Button{
+                    gameinfo.currPage = .menu
+                }label:{
+                    Label("", systemImage: "list.dash")
+                        .font(.system(size: 20, weight: .bold, design: .default))
+                }
+                    .foregroundColor(.white)
+                    .padding(.horizontal)
+                Spacer()
+                Button{
+                    showingSheet.toggle()
+                }label:{
+                    Label("", systemImage: "character.book.closed.fill")
+                        .font(.system(size: 20, weight: .bold, design: .default))
+                }
+                    .sheet(isPresented: $showingSheet) {
+                        SheetView()
+                            .environmentObject(gameinfo)
+                    }
+                    .foregroundColor(.white)
+                    .padding(.horizontal)
+                Spacer()
+            }
+            Spacer()
+            Text("Points:")
+                .font(Font.custom(gameinfo.font, size: 17))
+                .foregroundColor(.white)
+                .padding(.leading)
+            Text(String(gameinfo.points))
+                .font(Font.custom(gameinfo.font, size: 17))
+                .foregroundColor(.white)
+                .padding(.trailing)
+        }
+        .padding(.bottom)
+    }
+}
+
+struct SheetView: View {
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var gameinfo: GameInfo
+    let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    let lowerbet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    let numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    let grammer = [".", "!", "&"]
+    let all = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",".", "!", "&"]
+    var body: some View {
+        ZStack{
+            Color(gameinfo.backgroundColor)
+            VStack{
+                GeometryReader { geo in
+                    VStack{
+                            Rectangle()
+                                .frame(width: 0, height: geo.size.height*0.05, alignment: .center)
+                            HStack{
+                                ForEach(0..<5){ index1 in
+                                    VStack{
+                                        ForEach(0..<13) {index2 in
+                                            TextWingMatch(letter: all[index1+index2*5])
+                                            .frame(width: geo.size.width*0.15, height: geo.size.width*0.07, alignment: .center)
+                                        }//ForEach
+                                    }//VStack
+                                }//ForEach
+                            }//HStack
+                        .frame(width: geo.size.width, height: geo.size.height*0.60)
+                        Text("Use this screen as a reference to help solve these tricky clues. Slide down to close.")
+                            .font(Font.custom("Wingdings", size: 16))
+                            .frame(width: geo.size.width*0.9, height: geo.size.height*0.25, alignment: .center)
+                    }
+                }//GeometryReader
+//                Button("Press to dismiss") {
+//                    dismiss()
+//                }
+//                .font(.title)
+//                .padding()
+            }
+    }
+    }
+}
+
+struct TextWingMatch: View {
+    
+    @State var letter: String
+    
+    var body: some View {
+        HStack{
+            Text(letter)
+                .font(Font.custom("San Fransisco", size: 16))
+                .foregroundColor(.white)
+            +
+            Text(" ")
+                .font(Font.custom("San Fransisco", size: 16))
+            +
+            Text(letter)
+                .font(Font.custom("Wingdings", size: 16))
+                .foregroundColor(.white)
+        }
+    }
 }
 
 

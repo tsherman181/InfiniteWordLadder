@@ -25,10 +25,16 @@ struct Instructions: View {
     
     var body: some View {
         ZStack{
-            Color(gameinfo.backgroundColor)
+            Color(gameinfo.backgroundColor).ignoresSafeArea()
             VStack{
-                MenuButton()
-                    .environmentObject(gameinfo)
+                if (gameinfo.font == "Wingdings"){
+                    MenuBookButton()
+                        .environmentObject(gameinfo)
+                }
+                else{
+                    MenuButton()
+                        .environmentObject(gameinfo)
+                }
                 Text("What is a word ladder?")
                     .font(Font.custom(gameinfo.font, size: 28))
                 Text("A word ladder is a word puzzle game where given a clue, you must guess its corresponding four letter word. After that, you are given another clue with an answer one letter different than the previous one. Here's an example:")
@@ -83,7 +89,6 @@ struct Instructions: View {
             .scaleEffect(scale)
             .animation(.easeOut, value: scale)
         }
-        .ignoresSafeArea()
 }
 
 struct Instructions_Previews: PreviewProvider {

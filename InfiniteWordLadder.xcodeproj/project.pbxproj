@@ -21,6 +21,7 @@
 		F33BCCBF282C8BB400BDFB27 /* InfiniteWordLadderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33BCCBE282C8BB400BDFB27 /* InfiniteWordLadderApp.swift */; };
 		F33BCCC1282C8BB400BDFB27 /* IWL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33BCCC0282C8BB400BDFB27 /* IWL.swift */; };
 		F33BCCC6282C8BB700BDFB27 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F33BCCC5282C8BB700BDFB27 /* Preview Assets.xcassets */; };
+		F35F678D2885A67D00955D05 /* positive-logo-opener-13622.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F35F678C2885A67D00955D05 /* positive-logo-opener-13622.mp3 */; };
 		F37C68F72842663700820459 /* GiveUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37C68F62842663700820459 /* GiveUp.swift */; };
 		F37C68F92842BBEB00820459 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37C68F82842BBEB00820459 /* Menu.swift */; };
 		F37C68FB28438E9300820459 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37C68FA28438E9300820459 /* Stats.swift */; };
@@ -60,6 +61,7 @@
 		F33BCCC0282C8BB400BDFB27 /* IWL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWL.swift; sourceTree = "<group>"; };
 		F33BCCC2282C8BB700BDFB27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F33BCCC5282C8BB700BDFB27 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F35F678C2885A67D00955D05 /* positive-logo-opener-13622.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "positive-logo-opener-13622.mp3"; sourceTree = "<group>"; };
 		F37C68F62842663700820459 /* GiveUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveUp.swift; sourceTree = "<group>"; };
 		F37C68F82842BBEB00820459 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		F37C68FA28438E9300820459 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 		F390786A28845505007E3CBD /* Music */ = {
 			isa = PBXGroup;
 			children = (
+				F35F678C2885A67D00955D05 /* positive-logo-opener-13622.mp3 */,
 				BC5E86C2286FD6DC0007E18D /* motivational-day-112790.mp3 */,
 				BC5E86BC286FD6B60007E18D /* inspirational-background-112290.mp3 */,
 				BC5E86BE286FD6C80007E18D /* jazzy-abstract-beat-11254.mp3 */,
@@ -306,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC5E86C3286FD6DD0007E18D /* motivational-day-112790.mp3 in Resources */,
+				F35F678D2885A67D00955D05 /* positive-logo-opener-13622.mp3 in Resources */,
 				F303320D28766B6F00F927D4 /* Herculanum.ttf in Resources */,
 				F3F6ECC4287E4C5D00DD70C2 /* Copperplate.ttc in Resources */,
 				F390787A28845566007E3CBD /* Assets.xcassets in Resources */,

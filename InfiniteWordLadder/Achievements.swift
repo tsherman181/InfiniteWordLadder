@@ -21,8 +21,14 @@ struct Achievements: View {
         ZStack{
             Color(gameinfo.backgroundColor).ignoresSafeArea()
             VStack{
-                MenuButton()
-                    .environmentObject(gameinfo)
+                if (gameinfo.font == "Wingdings"){
+                    MenuBookButton()
+                        .environmentObject(gameinfo)
+                }
+                else{
+                    MenuButton()
+                        .environmentObject(gameinfo)
+                }
                 Text("Acheivements")
                     .font(Font.custom(gameinfo.font, size: 34))
                     .foregroundColor(.white)
@@ -220,9 +226,84 @@ struct MenuButton: View{
 }
 
 
+struct MenuBookButton: View{
+    @EnvironmentObject var gameinfo: GameInfo
+    @State private var showingSheet = false
+    var body: some View{
+        HStack{
+            VStack{
+                    Button{
+                        gameinfo.currPage = .menu
+                    }label:{
+                        Label("", systemImage: "list.dash")
+                            .font(.system(size: 20, weight: .bold, design: .default))
+                    }
+                        .foregroundColor(.white)
+                        .padding(.bottom)
+                    Button{
+                        showingSheet.toggle()
+                    }label:{
+                        Label("", systemImage: "character.book.closed.fill")
+                            .font(.system(size: 20, weight: .bold, design: .default))
+                    }
+                        .sheet(isPresented: $showingSheet) {
+                            SheetView()
+                                .environmentObject(gameinfo)
+                        }
+                        .foregroundColor(.white)
+                }
+            .foregroundColor(.white)
+            Spacer()
+        }
+        .padding()
+}
+}
 
-
-
+//struct MenuPointsBook: View{
+//    @EnvironmentObject var gameinfo: GameInfo
+//
+//    @State private var showingSheet = false
+//
+//    var body: some View{
+//        HStack{
+//            VStack{
+//                Spacer()
+//                Button{
+//                    gameinfo.currPage = .menu
+//                }label:{
+//                    Label("", systemImage: "list.dash")
+//                        .font(.system(size: 20, weight: .bold, design: .default))
+//                }
+//                    .foregroundColor(.white)
+//                    .padding(.horizontal)
+//                Spacer()
+//                Button{
+//                    showingSheet.toggle()
+//                }label:{
+//                    Label("", systemImage: "character.book.closed.fill")
+//                        .font(.system(size: 20, weight: .bold, design: .default))
+//                }
+//                    .sheet(isPresented: $showingSheet) {
+//                        SheetView()
+//                            .environmentObject(gameinfo)
+//                    }
+//                    .foregroundColor(.white)
+//                    .padding(.horizontal)
+//                Spacer()
+//            }
+//            Spacer()
+//            Text("Points:")
+//                .font(Font.custom(gameinfo.font, size: 17))
+//                .foregroundColor(.white)
+//                .padding(.leading)
+//            Text(String(gameinfo.points))
+//                .font(Font.custom(gameinfo.font, size: 17))
+//                .foregroundColor(.white)
+//                .padding(.trailing)
+//        }
+//        .padding(.bottom)
+//    }
+//}
 
 
 
