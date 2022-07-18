@@ -12,7 +12,7 @@ class SA: ObservableObject{
     
     var achievements: [Int]
     let achievementNames = ["Score 10 Points", "Score 50 Points", "Score 100 Points", "5 in a Row", "10 in a Row", "20 in a Row", "Wine and Dine", "Life is Good", "Coin Flip", "Stats Addict", "Mr. Pictionary", "Picture Perfect", "Quarter of Everything", "Halfway There", "Done it All"]
-    let achievementDesc = ["Score 10 points in IWL game", "Score 50 points in IWL game", "Score 100 points in IWL game", "Guess 5 words in a row without giving up", "Guess 10 words in a row without giving up", "Guess 20 words in a row without giving up", "Guess the words \"Wine\" and \"Dine\" correctly", "Guess the words \"Life\" and \"Good\" correctly", "Guess the words \"Coin\" and \"Flip\" correctly", "Check the statistics page over 50 times", "Guess 10 words using the \"Picto\" font", "Guess 5 words in a row using the \"Picto\" font", "Guess a quarter of all the words in the game correctly", "Guess half of all the words in the game correctly", "Guess all of the words in the game correctly"]
+    let achievementDesc = ["Score 10 points in IWL game", "Score 50 points in IWL game", "Score 100 points in IWL game", "Guess 5 words in a row without giving up", "Guess 10 words in a row without giving up", "Guess 20 words in a row without giving up", "Guess the words \"Wine\" and \"Dine\" correctly", "Guess the words \"Life\" and \"Good\" correctly", "Guess the words \"Coin\" and \"Flip\" correctly", "Check the statistics page over 50 times", "Guess 10 words using the \"Picto\" font (resets if you leave IWL page)", "Guess 5 words in a row using the \"Picto\" font (resets if you leave IWL page)", "Guess a quarter of all the words in the game correctly", "Guess half of all the words in the game correctly", "Guess all of the words in the game correctly"]
     var highscore: Int
     var numInRow: Int
     var maxInRow: Int
@@ -59,6 +59,9 @@ class SA: ObservableObject{
     func check_achievements(_ guess: String, _ currPoints: Int){
         
         highscore = max(currPoints, highscore)
+        print(guess)
+        print(Array(guess))
+        print(String(Array(guess)))
         relevantWords.insert(guess)
         if highscore >= 10{
             achievements[0] = 1

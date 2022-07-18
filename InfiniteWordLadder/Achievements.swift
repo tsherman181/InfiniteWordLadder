@@ -108,7 +108,7 @@ struct Coin: View{
                 .foregroundColor(.black)
                 .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
                 //.border(.red)
-                .font(Font.custom(gameinfo.font, size: 12))
+                .font(Font.custom(gameinfo.font, size: 10))
         }
         }
         
