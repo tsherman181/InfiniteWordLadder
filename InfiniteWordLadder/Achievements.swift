@@ -34,13 +34,14 @@ struct Achievements: View {
                                     ForEach(0..<gameinfo.saobj.numAch/3) {index2 in
                                         Text(gameinfo.saobj.achievementNames[index1+index2*3])
                                             .font(Font.custom(gameinfo.font, size: 12))
+                                            .foregroundColor(.white)
                                             .frame(width: geo.size.width*0.3, height: geo.size.width*0.15, alignment: .center)
                                             .multilineTextAlignment(.center)
                                         Coin(rX: $rX, rY: $rY, index1: index1, index2: index2, animationAmount: $animationAmount)
                                             .environmentObject(gameinfo)
                                         .opacity(min(Double(gameinfo.saobj.achievements[index1+index2*3])+0.5, 1.0))
                                         .rotation3DEffect(.degrees(animationAmount[index1+index2*3]), axis: (x:rX, y:rY, z:0))
-                                        .frame(width: geo.size.width*0.25, height: geo.size.width*0.25, alignment: .center)
+                                        .frame(width: geo.size.width*0.22, height: geo.size.width*0.22, alignment: .center)
                                         .padding([.bottom, .horizontal])
                                     }//ForEach
                                 }//VStack

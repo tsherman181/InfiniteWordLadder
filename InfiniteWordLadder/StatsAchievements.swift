@@ -16,7 +16,7 @@ class SA: ObservableObject{
     var highscore: Int
     var numInRow: Int
     var maxInRow: Int
-    var relevantWords: Set<String>
+    var relevantWords: [String:String]
     let defaults: UserDefaults
     let numAch: Int
     var statsCount: Int
@@ -29,7 +29,7 @@ class SA: ObservableObject{
         highscore = defaults.integer(forKey: "High Score")
         numInRow = defaults.integer(forKey: "Number In A Row")
         maxInRow = defaults.integer(forKey: "Max In A Row")
-        relevantWords = defaults.object(forKey: "Relevant Words") as? Set<String> ?? Set<String> ()
+        relevantWords = defaults.object(forKey: "Relevant Words") as? [String:String] ?? [String:String]()
         achievements = defaults.object(forKey: "Achievements") as? [Int] ?? [Int] ()
         statsCount = defaults.integer(forKey: "Stats Count")
         wingdingsRow = defaults.integer(forKey: "Wingdings Row")
@@ -62,7 +62,8 @@ class SA: ObservableObject{
         print(guess)
         print(Array(guess))
         print(String(Array(guess)))
-        relevantWords.insert(guess)
+        relevantWords[guess] = ""
+        print(relevantWords)
         if highscore >= 10{
             achievements[0] = 1
         }
@@ -82,15 +83,15 @@ class SA: ObservableObject{
             achievements[5] = 1
         }
         
-        if (relevantWords.contains("WINE") && relevantWords.contains("DINE")){
+        if (relevantWords["WINE"] != nil && relevantWords["DINE"] != nil){
             achievements[6] = 1
         }
         
-        if (relevantWords.contains("LIFE") && relevantWords.contains("GOOD")){
+        if (relevantWords["LIFE"] != nil && relevantWords["GOOD"] != nil){
             achievements[7] = 1
         }
         
-        if (relevantWords.contains("COIN") && relevantWords.contains("FLIP")){
+        if (relevantWords["COIN"] != nil && relevantWords["FLIP"] != nil){
             achievements[8] = 1
         }
         

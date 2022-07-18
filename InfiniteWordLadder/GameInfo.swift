@@ -121,7 +121,7 @@ class GameInfo: ObservableObject {
         
         if (diffDict.isEmpty){
             print("Diff dict is empty")
-            difficulty = 63
+            difficulty = 95
             for i in answerClues{
                 diffDict[i.answer] = i.difficulty
             }

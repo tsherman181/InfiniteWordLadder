@@ -24,6 +24,7 @@ struct Settings: View {
             Text("Difficulty")
                 .frame(height: geo.size.height/10)
                 .font(Font.custom(gameinfo.font, size: 34))
+                .foregroundColor(.white)
             DifficultySlider()
                     .environmentObject(gameinfo)
                     .frame(height: geo.size.height/15)
@@ -33,6 +34,7 @@ struct Settings: View {
             Text("Aesthetics")
                 .frame(height: geo.size.height/10)
                 .font(Font.custom(gameinfo.font, size: 34))
+                .foregroundColor(.white)
             ColorPicker()
                     .environmentObject(gameinfo)
                     .frame(height: geo.size.height/15)
@@ -45,6 +47,7 @@ struct Settings: View {
             Text("Sound")
                 .frame(height: geo.size.height/10)
                 .font(Font.custom(gameinfo.font, size: 34))
+                .foregroundColor(.white)
             MusicOnOff()
                     .environmentObject(gameinfo)
                     .frame(height: geo.size.height/10)
@@ -61,9 +64,10 @@ struct ColorPicker: View{
     var body: some View{
         GeometryReader{ geo in
         HStack(spacing:0){
-            Text("Background Color: ")
+            Text("Background: ")
                 .font(Font.custom(gameinfo.font, size: 17))
                 .frame(width: geo.size.width/2, alignment: .leading)
+                .foregroundColor(.white)
             Picker("Number of Letters", selection: $color){
                 Text("Blue").tag(0)
                 Text("Red").tag(1)
@@ -104,9 +108,10 @@ struct NumLetters: View{
     var body: some View{
         GeometryReader{geo in
         HStack(spacing: 0){
-            Text("Number of letters: ")
+            Text("Keyboard size: ")
                 .font(Font.custom(gameinfo.font, size: 17))
                 .frame(width: geo.size.width/2, alignment: .leading)
+                .foregroundColor(.white)
             Picker("Number of Letters", selection: $num){
                 Text("5").tag(5)
                 Text("10").tag(10)
@@ -142,9 +147,7 @@ struct DifficultySlider: View{
         GeometryReader{geo in
         HStack(spacing:0){
             HStack(spacing:0){
-                Text("Words: ")
-                    .font(Font.custom(gameinfo.font, size: 17))
-                + Text(diffLevel)
+                Text(diffLevel)
                     .font(Font.custom(gameinfo.font, size: 17))
                     .foregroundColor(diffColor)
             }
@@ -238,6 +241,7 @@ struct FontPicker: View{
             Text("Fonts:")
                 .font(Font.custom(gameinfo.font, size: 17))
                 .frame(width: geo.size.width*0.20, height: geo.size.height, alignment: .leading)
+                .foregroundColor(.white)
         VStack(spacing:0){
             Picker("Pick font", selection: $fontname){
                 ForEach(0..<4){ index in
@@ -281,6 +285,7 @@ struct MusicOnOff: View{
             Text("Music Enabled")
                 .frame(width: geo.size.width/2, alignment: .leading)
                 .font(Font.custom(gameinfo.font, size: 17))
+                .foregroundColor(.white)
             Toggle("", isOn: $onOff)
                 .toggleStyle(SwitchToggleStyle(tint: .gray))
                 .frame(width: geo.size.width*0.5, alignment: .leading)
@@ -313,9 +318,10 @@ struct LadderColor: View{
     var body: some View{
         GeometryReader{geo in
             HStack(spacing:0){
-            Text("Ladder Color: ")
+            Text("Ladder: ")
                 .frame(width: geo.size.width/2, alignment: .leading)
                 .font(Font.custom(gameinfo.font, size: 17))
+                .foregroundColor(.white)
             Picker("Number of Letters", selection: $color){
                 Text("White").tag(0)
                 Text("Black").tag(1)
