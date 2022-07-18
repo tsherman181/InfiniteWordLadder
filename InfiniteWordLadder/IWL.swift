@@ -81,6 +81,10 @@ struct IWL: View {
                 }//VStack
                 .onAppear{
                     clue = gameinfo.currentClue
+                    gameinfo.saobj.wingdingsRow = 0
+                    gameinfo.saobj.wingdingsTotal = 0
+                    gameinfo.saobj.defaults.set(gameinfo.saobj.wingdingsRow, forKey: "Wingdings Row")
+                    gameinfo.saobj.defaults.set(gameinfo.saobj.wingdingsTotal, forKey: "Wingdings Total")
                 }
                 }//if
                 }//geo

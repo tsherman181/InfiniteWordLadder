@@ -188,7 +188,10 @@ class GameInfo: ObservableObject {
                 self.currPage = .IWL
             }
             self.incrementPoint(1)
-            saobj.inRow(true)
+            saobj.inRow(true, font)
+            if (font == "Wingdings"){
+                saobj.wingdingsTotal += 1
+            }
             saobj.check_achievements(guess, points)
         }
     }
@@ -281,7 +284,7 @@ class GameInfo: ObservableObject {
     
     func giveUp( _ guess: String, _ last: String){
         //addToPrev(guess)
-        saobj.inRow(false)
+        saobj.inRow(false, font)
         currPage = .giveup
         if points > -10 {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {

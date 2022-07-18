@@ -34,6 +34,9 @@ struct Stats: View {
             }
             .foregroundColor(.white)
     }
+        .onAppear{
+            gameinfo.saobj.statsCount += 1
+        }
 }
 }
 struct Stats_Previews: PreviewProvider {
