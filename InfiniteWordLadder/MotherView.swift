@@ -49,6 +49,9 @@ struct MotherView: View {
         case .settings:
             Settings()
                 .matchedGeometryEffect(id: "Shape", in: animation)
+        case .credits:
+            Credits()
+                .matchedGeometryEffect(id: "Shape", in: animation)
         }
         }
         

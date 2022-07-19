@@ -55,9 +55,20 @@ struct Settings: View {
                 .frame(height: geo.size.height/10)
                 .font(Font.custom(gameinfo.font, size: 34))
                 .foregroundColor(.white)
+                Group{
             MusicOnOff()
                     .environmentObject(gameinfo)
                     .frame(height: geo.size.height/10)
+            Button("Credits"){
+                gameinfo.currPage = .credits
+            }
+            .font(Font.custom(gameinfo.font, size: 17))
+            .padding()
+            .background(Color.white)
+            .cornerRadius(40)
+            .foregroundColor(Color(gameinfo.backgroundColor))
+            .frame(height: geo.size.height/10, alignment: .center)
+            }
         }
         }
         }
@@ -236,7 +247,7 @@ struct FontPicker: View{
     @EnvironmentObject var gameinfo: GameInfo
     @State private var fontname = "Comic Sans MS"
     
-    private var fonts1 = ["San Fransisco", "Courier New Bold", "Comic Sans MS", "SnellRoundhand"]
+    private var fonts1 = ["GillSans", "Courier New Bold", "Comic Sans MS", "Apple Chancery"]
     private var fonts2 = ["Copperplate", "Trattatello", "Phosphate", "Wingdings"]
     private var names1 = ["Default", "Basic", "Comic", "Cursive"]
     private var names2 = ["Engrave", "Paper", "Inline", "Picto"]
@@ -268,7 +279,7 @@ struct FontPicker: View{
             .font(Font.custom(gameinfo.font, size: 17))
         }
         .onAppear{
-            gameinfo.font = gameinfo.defaults.string(forKey: "Font") ?? "Comic Sans MS"
+            gameinfo.font = gameinfo.defaults.string(forKey: "Font") ?? "GillSans"
             fontname = gameinfo.font
         }
         .onChange(of: fontname){ newValue in

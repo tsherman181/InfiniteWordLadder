@@ -20,6 +20,7 @@ enum Page {
     case achievements
     case stats
     case settings
+    case credits
 }
 
 
@@ -264,7 +265,7 @@ class GameInfo: ObservableObject {
                     newWord = bestDiffWord
                 }
             }//anything inside of this if statement is a valid word
-            currentMetric -= 0.0025
+            currentMetric -= 0.05 //MARK: THIS IS THE "CHANGE" METRIC. The higher this metric is the more variety of words you get. The lower, the closer the difficulty level is followed
             count += 1
             
         }

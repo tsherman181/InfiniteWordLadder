@@ -22,6 +22,10 @@
 		F33BCCC1282C8BB400BDFB27 /* IWL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33BCCC0282C8BB400BDFB27 /* IWL.swift */; };
 		F33BCCC6282C8BB700BDFB27 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F33BCCC5282C8BB700BDFB27 /* Preview Assets.xcassets */; };
 		F35F678D2885A67D00955D05 /* positive-logo-opener-13622.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F35F678C2885A67D00955D05 /* positive-logo-opener-13622.mp3 */; };
+		F35F6793288607FE00955D05 /* Credits.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35F6792288607FE00955D05 /* Credits.swift */; };
+		F35F679528860CFD00955D05 /* Savoye LET.ttc in Resources */ = {isa = PBXBuildFile; fileRef = F35F679428860CFD00955D05 /* Savoye LET.ttc */; };
+		F35F679728860D2700955D05 /* Arial Rounded Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F35F679628860D2700955D05 /* Arial Rounded Bold.ttf */; };
+		F35F679A288611FA00955D05 /* Apple Chancery.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F35F6799288611A800955D05 /* Apple Chancery.ttf */; };
 		F37C68F72842663700820459 /* GiveUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37C68F62842663700820459 /* GiveUp.swift */; };
 		F37C68F92842BBEB00820459 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37C68F82842BBEB00820459 /* Menu.swift */; };
 		F37C68FB28438E9300820459 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37C68FA28438E9300820459 /* Stats.swift */; };
@@ -62,6 +66,11 @@
 		F33BCCC2282C8BB700BDFB27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F33BCCC5282C8BB700BDFB27 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F35F678C2885A67D00955D05 /* positive-logo-opener-13622.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "positive-logo-opener-13622.mp3"; sourceTree = "<group>"; };
+		F35F6792288607FE00955D05 /* Credits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credits.swift; sourceTree = "<group>"; };
+		F35F679428860CFD00955D05 /* Savoye LET.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Savoye LET.ttc"; sourceTree = "<group>"; };
+		F35F679628860D2700955D05 /* Arial Rounded Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Arial Rounded Bold.ttf"; sourceTree = "<group>"; };
+		F35F679828860FB900955D05 /* GillSans.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = GillSans.ttc; sourceTree = "<group>"; };
+		F35F6799288611A800955D05 /* Apple Chancery.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Apple Chancery.ttf"; sourceTree = "<group>"; };
 		F37C68F62842663700820459 /* GiveUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveUp.swift; sourceTree = "<group>"; };
 		F37C68F82842BBEB00820459 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		F37C68FA28438E9300820459 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
@@ -130,6 +139,7 @@
 				BC5E86C4286FD7A60007E18D /* Gameover.swift */,
 				F3F78450284D90C60043B69D /* StatsAchievements.swift */,
 				F3D55564283C40A800A34232 /* MotherView.swift */,
+				F35F6792288607FE00955D05 /* Credits.swift */,
 				F37C68FA28438E9300820459 /* Stats.swift */,
 				F37C68FC28438EA600820459 /* Achievements.swift */,
 				F3D55566283C413300A34232 /* Correct.swift */,
@@ -160,13 +170,17 @@
 			children = (
 				F307FD362873D16B00D9D507 /* Comic Sans MS.ttf */,
 				F307FD382873D1BE00D9D507 /* Arial.ttf */,
+				F35F6799288611A800955D05 /* Apple Chancery.ttf */,
 				F307FD372873D1A500D9D507 /* Herculanum.ttf */,
 				F3F6ECB6287E4B5D00DD70C2 /* ChalkboardSE.ttc */,
+				F35F679828860FB900955D05 /* GillSans.ttc */,
 				F3F6ECB8287E4BA400DD70C2 /* Courier New Bold.ttf */,
 				F3F6ECB9287E4BBB00DD70C2 /* Luminari.ttf */,
 				F3F6ECBA287E4BDC00DD70C2 /* PartyLET-plain.ttf */,
 				F3F6ECBC287E4C1800DD70C2 /* SnellRoundhand.ttc */,
 				F3F6ECBB287E4BF400DD70C2 /* Phosphate.ttc */,
+				F35F679428860CFD00955D05 /* Savoye LET.ttc */,
+				F35F679628860D2700955D05 /* Arial Rounded Bold.ttf */,
 				F3F6ECBD287E4C2400DD70C2 /* Trattatello.ttf */,
 				F3F6ECBE287E4C4F00DD70C2 /* Wingdings.ttf */,
 				F3F6ECB7287E4B8B00DD70C2 /* Copperplate.ttc */,
@@ -321,7 +335,9 @@
 				F33BCCC6282C8BB700BDFB27 /* Preview Assets.xcassets in Resources */,
 				BC5E86C1286FD6D30007E18D /* chill-abstract-intention-12099.mp3 in Resources */,
 				F3F6ECC1287E4C5D00DD70C2 /* PartyLET-plain.ttf in Resources */,
+				F35F679A288611FA00955D05 /* Apple Chancery.ttf in Resources */,
 				F3F6ECBF287E4C5700DD70C2 /* Courier New Bold.ttf in Resources */,
+				F35F679728860D2700955D05 /* Arial Rounded Bold.ttf in Resources */,
 				F390787E28845566007E3CBD /* ic_launcher.png in Resources */,
 				F3F6ECC0287E4C5D00DD70C2 /* Trattatello.ttf in Resources */,
 				F3F6ECC6287E4C5D00DD70C2 /* Wingdings.ttf in Resources */,
@@ -329,6 +345,7 @@
 				BC5E86BF286FD6C80007E18D /* jazzy-abstract-beat-11254.mp3 in Resources */,
 				F3F6ECC2287E4C5D00DD70C2 /* Luminari.ttf in Resources */,
 				F3F6ECC5287E4C5D00DD70C2 /* Phosphate.ttc in Resources */,
+				F35F679528860CFD00955D05 /* Savoye LET.ttc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +369,7 @@
 				F3D55567283C413300A34232 /* Correct.swift in Sources */,
 				F37C68F92842BBEB00820459 /* Menu.swift in Sources */,
 				F3D55565283C40A800A34232 /* MotherView.swift in Sources */,
+				F35F6793288607FE00955D05 /* Credits.swift in Sources */,
 				F37C68F72842663700820459 /* GiveUp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
