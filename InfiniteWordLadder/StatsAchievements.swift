@@ -64,10 +64,13 @@ class SA: ObservableObject{
     func numWords(){
         totalNum += 1
         totalPercent = (((Double(totalNum)/5384) * 100) * 1000).rounded(.toNearestOrEven) / 1000
+        defaults.set(totalNum, forKey: "Total Words")
+        defaults.set(totalPercent, forKey: "Total Percentage")
     }
     
     func giveUp(){
         numGiveup += 1
+        defaults.set(numGiveup, forKey: "Times Given Up")
     }
     
     
