@@ -16,6 +16,9 @@ class SA: ObservableObject{
     var highscore: Int
     var numInRow: Int
     var maxInRow: Int
+    var totalNum: Int
+    var totalPercent: Double
+    var numGiveup: Int
     var relevantWords: [String:String]
     let defaults: UserDefaults
     let numAch: Int
@@ -29,6 +32,9 @@ class SA: ObservableObject{
         highscore = defaults.integer(forKey: "High Score")
         numInRow = defaults.integer(forKey: "Number In A Row")
         maxInRow = defaults.integer(forKey: "Max In A Row")
+        totalNum = defaults.integer(forKey: "Total Words")
+        totalPercent = defaults.double(forKey: "Total Percentage")
+        numGiveup = defaults.integer(forKey: "Times Given Up")
         relevantWords = defaults.object(forKey: "Relevant Words") as? [String:String] ?? [String:String]()
         achievements = defaults.object(forKey: "Achievements") as? [Int] ?? [Int] ()
         statsCount = defaults.integer(forKey: "Stats Count")
@@ -53,6 +59,15 @@ class SA: ObservableObject{
         defaults.set(numInRow, forKey: "Number In A Row")
         maxInRow = max(numInRow, maxInRow)
         defaults.set(maxInRow, forKey: "Max In A Row")
+    }
+    
+    func numWords(){
+        totalNum += 1
+        totalPercent = (((Double(totalNum)/5384) * 100) * 1000).rounded(.toNearestOrEven) / 1000
+    }
+    
+    func giveUp(){
+        numGiveup += 1
     }
     
     

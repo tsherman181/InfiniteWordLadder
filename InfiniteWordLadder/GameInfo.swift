@@ -183,6 +183,7 @@ class GameInfo: ObservableObject {
     
     func guessing(guess: String) {
         if guess == currentWord {
+            saobj.numWords()
             currPage = .correct
             change(currentWord, lastWord)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { // Change `2.0` to the desired number of seconds.
@@ -286,6 +287,7 @@ class GameInfo: ObservableObject {
     func giveUp( _ guess: String, _ last: String){
         //addToPrev(guess)
         saobj.inRow(false, font)
+        saobj.giveUp()
         currPage = .giveup
         if points > -10 {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
