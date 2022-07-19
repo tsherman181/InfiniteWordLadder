@@ -110,7 +110,7 @@ class GameInfo: ObservableObject {
         backgroundColorNumber = defaults.integer(forKey: "Background Color")
         backgroundColor = .systemBlue
         //font = defaults.string(forKey: "Font") ?? "Comic Sans MS"
-        font = defaults.string(forKey: "Font") ?? "San Fransisco"
+        font = defaults.string(forKey: "Font") ?? "Arial Rounded Bold"
         
         ladderColorNumber = defaults.integer(forKey: "Ladder Color")
         ladderColor = .black
