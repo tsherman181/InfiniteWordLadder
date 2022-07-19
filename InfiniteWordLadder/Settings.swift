@@ -249,7 +249,7 @@ struct FontPicker: View{
     
     private var fonts1 = ["GillSans", "Courier New Bold", "Comic Sans MS", "Apple Chancery"]
     private var fonts2 = ["Copperplate", "Trattatello", "Phosphate", "Wingdings"]
-    private var names1 = ["Default", "Basic", "Comic", "Cursive"]
+    private var names1 = ["Default", "Basic", "Comic", "Curvy"]
     private var names2 = ["Engrave", "Paper", "Inline", "Picto"]
     
     
