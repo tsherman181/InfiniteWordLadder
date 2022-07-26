@@ -41,9 +41,10 @@ struct Instructions: View {
                     Text("What is a word ladder?")
                         .font(Font.custom(gameinfo.font, size: 28))
                         .frame(width: geo.size.width*0.95, height: geo.size.height/8, alignment: .center)
-                    Text("A word ladder is a game when given a clue, you must guess the corresponding four letter word. After guessing the word correctly, you are given a new clue for a new word. That word is one letter different than the previous word. Here's an example:")
+                    Text("A word ladder is a game when given a clue, you must guess the corresponding four letter word. After guessing the word correctly, you are given a new clue for a new word. That word is one letter different than the previous word. Example:")
                         .font(Font.custom(gameinfo.font, size: 17))
                         .frame(width: geo.size.width*0.9, height: geo.size.height/7, alignment: .topLeading)
+                    //wont work for ipod unless 3.98
                     HStack{
                         VStack{
                             Text("Clue: Pot starter")

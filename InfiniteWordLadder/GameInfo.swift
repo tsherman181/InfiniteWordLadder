@@ -19,6 +19,7 @@ enum Page {
     case gameover
     case achievements
     case stats
+    case gameStats
     case settings
     case credits
 }
@@ -199,6 +200,7 @@ class GameInfo: ObservableObject {
     }
     
     func hint(){
+        saobj.hints()
         currentClueIndex += 1
         defaults.set(currentClue, forKey: "Current Clue Index")
         if currentClueIndex == answerClues[currentACIndex].cluelist.count {
@@ -299,6 +301,7 @@ class GameInfo: ObservableObject {
         else if points <= -10 {
             currPage = .giveup
             points = 0
+            saobj.setToZero()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 self.change(guess, last)
                 self.currPage = .gameover

@@ -46,6 +46,10 @@ struct MotherView: View {
             Stats()
                 .environmentObject(gameinfo)
                 .matchedGeometryEffect(id: "Shape", in: animation)
+        case .gameStats:
+            GameStats()
+                .environmentObject(gameinfo)
+                .matchedGeometryEffect(id: "Shape", in: animation)
         case .settings:
             Settings()
                 .matchedGeometryEffect(id: "Shape", in: animation)
