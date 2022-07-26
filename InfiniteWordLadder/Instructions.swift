@@ -26,62 +26,66 @@ struct Instructions: View {
     var body: some View {
         ZStack{
             Color(gameinfo.backgroundColor).ignoresSafeArea()
-            VStack{
-                if (gameinfo.font == "Wingdings"){
-                    MenuBookButton()
-                        .environmentObject(gameinfo)
-                }
-                else{
-                    MenuButton()
-                        .environmentObject(gameinfo)
-                }
-                Text("What is a word ladder?")
-                    .font(Font.custom(gameinfo.font, size: 28))
-                Text("A word ladder is a word puzzle game where given a clue, you must guess its corresponding four letter word. After that, you are given another clue with an answer one letter different than the previous one. Here's an example:")
-                    .font(Font.custom(gameinfo.font, size: 17))
-                    .padding()
-                HStack{
-                    VStack{
-                        Text("Clue: Pot starter")
-                            .font(Font.custom(gameinfo.font, size: 17))
-                        Text("Answer: ANT")
-                            .font(Font.custom(gameinfo.font, size: 17))
-                        +
-                        Text("E")
-                            .foregroundColor(.black)
-                            .font(Font.custom(gameinfo.font, size: 17))
-                            .font(Font.body.bold())
+            GeometryReader { geo in
+                VStack{
+                    if (gameinfo.font == "Wingdings"){
+                        MenuBookButton()
+                            .environmentObject(gameinfo)
+                            .frame(height: geo.size.height/12)
                     }
-                    Image(systemName: "arrow.forward")
-                    VStack{
-                        Text("Clue: Aardvark's diet")
-                            .font(Font.custom(gameinfo.font, size: 17))
-                        Text("Answer: ANT")
-                            .font(Font.custom(gameinfo.font, size: 17))
-                            .font(Font.body.bold())
-                        + Text("S")
-                            .font(Font.custom(gameinfo.font, size: 17))
-                            .font(Font.body.bold())
-                            .foregroundColor(.black)
+                    else{
+                        MenuButton()
+                            .environmentObject(gameinfo)
+                            .frame(height: geo.size.height/12)
                     }
-                    .padding()
-                }
-                Text("If you need help, hit the hint button and you will get a different hint for that word!")
+                    Text("What is a word ladder?")
+                        .font(Font.custom(gameinfo.font, size: 28))
+                        .frame(width: geo.size.width*0.95, height: geo.size.height/8, alignment: .center)
+                    Text("A word ladder is a game when given a clue, you must guess the corresponding four letter word. After guessing the word correctly, you are given a new clue for a new word. That word is one letter different than the previous word. Here's an example:")
+                        .font(Font.custom(gameinfo.font, size: 17))
+                        .frame(width: geo.size.width*0.9, height: geo.size.height/7, alignment: .topLeading)
+                    HStack{
+                        VStack{
+                            Text("Clue: Pot starter")
+                                .font(Font.custom(gameinfo.font, size: 17))
+                            Text("Answer: ANT")
+                                .font(Font.custom(gameinfo.font, size: 17))
+                            +
+                            Text("E")
+                                .foregroundColor(.black)
+                                .font(Font.custom(gameinfo.font, size: 17))
+                                .font(Font.body.bold())
+                        }
+                        Image(systemName: "arrow.forward")
+                        VStack{
+                            Text("Clue: Aardvark's diet")
+                                .font(Font.custom(gameinfo.font, size: 17))
+                            Text("Answer: ANT")
+                                .font(Font.custom(gameinfo.font, size: 17))
+                                .font(Font.body.bold())
+                            + Text("S")
+                                .font(Font.custom(gameinfo.font, size: 17))
+                                .font(Font.body.bold())
+                                .foregroundColor(.black)
+                        }
+                    }
+                    .frame(width: geo.size.width*0.95, height: geo.size.height/6, alignment: .center)
+                    Text("If you hit the hint button you will get a different clue for that word.")
+                        .font(Font.custom(gameinfo.font, size: 17))
+                        .frame(width: geo.size.width*0.9, height: geo.size.height/8, alignment: .topLeading)
+                    Text("If you hit the give up button it will tell you the word but deduct a point.")
+                        .font(Font.custom(gameinfo.font, size: 17))
+                        .frame(width: geo.size.width*0.9, height: geo.size.height/8, alignment: .topLeading)
+                    Button("Ready to play the game?"){
+                        gameinfo.currPage = .IWL
+                    }
                     .font(Font.custom(gameinfo.font, size: 17))
-                    .padding(.horizontal)
-                Text("If you are out of guesses, you can hit the give up button. It will tell you the word but deduct 1 point :(")
-                    .font(Font.custom(gameinfo.font, size: 17))
-                    .padding()
-                Button("Ready to play the game?"){
-                    gameinfo.currPage = .IWL
+                    .frame(width: deviceWidth/1.5, height: geo.size.height/12, alignment: .center)
+                    .background(Color.white)
+                    .cornerRadius(40)
+                    .foregroundColor(Color(gameinfo.backgroundColor))
+                    .frame(width: geo.size.width*0.95, height: geo.size.height/8, alignment: .center)
                 }
-                .font(Font.custom(gameinfo.font, size: 17))
-                .padding()
-                .frame(width: deviceWidth/1.5, alignment: .center)
-                .background(Color.white)
-                .cornerRadius(40)
-                .foregroundColor(Color(gameinfo.backgroundColor))
-                .padding()
             }
             .foregroundColor(.white)
             .opacity(opacity)

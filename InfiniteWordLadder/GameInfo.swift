@@ -210,8 +210,8 @@ class GameInfo: ObservableObject {
 
     
     func addToPrev(_ word: String){
-        var count = min(9, prevWords.count)
-        if (count < 10){
+        var count = min(24, prevWords.count)
+        if (count < 25){
             let empty = ""
             prevWords.append(empty)
         }
@@ -266,7 +266,7 @@ class GameInfo: ObservableObject {
                     newWord = bestDiffWord
                 }
             }//anything inside of this if statement is a valid word
-            currentMetric -= 0.05 //MARK: THIS IS THE "CHANGE" METRIC. The higher this metric is the more variety of words you get. The lower, the closer the difficulty level is followed
+            currentMetric -= 0.1 //MARK: THIS IS THE "CHANGE" METRIC. The higher this metric is the more variety of words you get. The lower, the closer the difficulty level is followed
             count += 1
             
         }

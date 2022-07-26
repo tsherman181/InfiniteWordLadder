@@ -42,6 +42,9 @@ struct Stats: View {
                 Text("Number of times given up: " + String(gameinfo.saobj.numGiveup))
                     .font(Font.custom(gameinfo.font, size: 20))
                     .padding()
+                //number of hints
+                //average hits per word
+                //
                 Spacer()
             }
             .foregroundColor(.white)

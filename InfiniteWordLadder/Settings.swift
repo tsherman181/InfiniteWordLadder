@@ -178,7 +178,7 @@ struct DifficultySlider: View{
                 if (state == 95){
                     state2 = 1
                     diffLevel = "Basic"
-                    diffColor = Color.green
+                    diffColor = Color.white
                 }
                 else if (state == 69){
                     state2 = 2
@@ -193,7 +193,7 @@ struct DifficultySlider: View{
                 else if (state == 52){
                     state2 = 4
                     diffLevel = "Hard"
-                    diffColor = Color.red
+                    diffColor = Color.gray
                 }
                 else{
                     state2 = 5
@@ -206,7 +206,7 @@ struct DifficultySlider: View{
                 if (round(state2) == 1){
                     state = 95
                     diffLevel = "Basic"
-                    diffColor = Color.green
+                    diffColor = Color.white
                 }
                 else if (round(state2) == 2){
                     state = 69
@@ -221,7 +221,7 @@ struct DifficultySlider: View{
                 else if (round(state2) == 4){
                     state = 52
                     diffLevel = "Hard"
-                    diffColor = Color.red
+                    diffColor = Color.gray
                 }
                 else{
                     state = 41
