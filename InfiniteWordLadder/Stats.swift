@@ -22,7 +22,11 @@ struct Stats: View {
                         MenuButton()
                             .environmentObject(gameinfo)
                     }
-                    Text("Overall Stats")
+                    HStack {
+                        Image(systemName: "bolt.fill")
+                        Text("Overall Stats")
+                        Image(systemName: "bolt.fill")
+                    }
                         .font(Font.custom(gameinfo.font, size: 34))
                         .frame(height: geo.size.height/13.5)
                         .foregroundColor(.white)
@@ -31,29 +35,54 @@ struct Stats: View {
                                 RoundedRectangle(cornerRadius: 5)
                                     .stroke(.white, style: StrokeStyle(lineWidth: 3, dash: [20, 5]))
                             )
-                    Text("High Score: " + String(gameinfo.saobj.highscore))
+                    HStack {
+                        Image(systemName: "hands.sparkles")
+                        Text("High Score: " + String(gameinfo.saobj.highscore))
+                    }
                         .font(Font.custom(gameinfo.font, size: 20))
                         .frame(height: geo.size.height/13.5)
-                    Text("Current number in a row: " + String(gameinfo.saobj.numInRow))
+                    HStack {
+                        Image(systemName: "paperclip.circle.fill")
+                        Text("Current number in a row: " + String(gameinfo.saobj.numInRow))
+                    }
                         .font(Font.custom(gameinfo.font, size: 20))
                         .frame(height: geo.size.height/13.5)
-                    Text("Most guesses in a row: " + String(gameinfo.saobj.maxInRow))
+                    HStack {
+                        Image(systemName: "brain.head.profile")
+                        Text("Most guesses in a row: " + String(gameinfo.saobj.maxInRow))
+                    }
                         .font(Font.custom(gameinfo.font, size: 20))
                         .frame(height: geo.size.height/13.5)
-                    Text("Total correct words: " + String(gameinfo.saobj.totalNum))
+                    HStack {
+                        Image(systemName: "star.bubble.fill")
+                        Text("Total correct words: " + String(gameinfo.saobj.totalNum))
+                    }
                         .font(Font.custom(gameinfo.font, size: 20))
                         .frame(height: geo.size.height/13.5)
-                    Text("% of correct words: " + String(gameinfo.saobj.totalPercent) + " %")
+                    HStack {
+                        Image(systemName: "flame")
+                        Text("% of correct words: " + String(gameinfo.saobj.totalPercent) + " %")
+                    }
                         .font(Font.custom(gameinfo.font, size: 20))
                         .frame(height: geo.size.height/13.5)
-                    Text("Number of times given up: " + String(gameinfo.saobj.numGiveup))
+                    HStack {
+                        Image(systemName: "bolt.heart.fill")
+                        Text("Give up count: " + String(gameinfo.saobj.numGiveup))
+                    }
                         .font(Font.custom(gameinfo.font, size: 20))
                         .frame(height: geo.size.height/13.5)
-                    Text("Number of hints used: " + String(gameinfo.saobj.numHints))
+                    HStack {
+                        Image(systemName: "eyes")
+                        Text("Hint count: " + String(gameinfo.saobj.numHints))
+                    }
                         .font(Font.custom(gameinfo.font, size: 20))
                         .frame(height: geo.size.height/13.5)
-                    Button("~ Game Statistics ~"){
-                        gameinfo.currPage = .gameStats
+                    HStack {
+                        Image(systemName: "sparkles")
+                        Button("Game Statistics"){
+                            gameinfo.currPage = .gameStats
+                        }
+                        Image(systemName: "sparkles")
                     }
                     .font(Font.custom(gameinfo.font, size: 17))
                     .frame(height: geo.size.height/13.5)
@@ -62,11 +91,6 @@ struct Stats: View {
                     .foregroundColor(Color(gameinfo.backgroundColor))
                     
                 }
-                .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(.white, lineWidth: 3)
-                    )
             }
             .foregroundColor(.white)
     }
