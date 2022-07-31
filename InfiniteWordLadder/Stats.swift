@@ -85,7 +85,7 @@ struct Stats: View {
                         Image(systemName: "sparkles")
                     }
                     .font(Font.custom(gameinfo.font, size: 17))
-                    .frame(height: geo.size.height/13.5)
+                    .frame(width: geo.size.width/1.5, height: geo.size.height/13.5)
                     .background(Color.white)
                     .cornerRadius(40)
                     .foregroundColor(Color(gameinfo.backgroundColor))

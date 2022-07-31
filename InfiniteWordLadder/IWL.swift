@@ -114,7 +114,7 @@ struct FiveLine: View{
                 Spacer()
                     Button(String(Array(arr)[start+i])){
                         username.append(contentsOf: String(Array(arr)[start+i]))
-                        print(String(Array(arr)[start+i]))
+                        //print(String(Array(arr)[start+i]))
                     }
                     .frame(width: geo.size.width*0.15, height: geo.size.height)
                     .foregroundColor(Color(gameinfo.backgroundColor))
@@ -398,7 +398,7 @@ struct MiddleInformation: View{
         Button("Hint") {
             gameinfo.hint()
             clue = gameinfo.currentClue
-            print("hint")
+            //print("hint")
         }
         .clipShape(Rectangle())
         .font(Font.custom(gameinfo.font, size: 22))
@@ -406,7 +406,7 @@ struct MiddleInformation: View{
         Spacer()
         Button("Give Up: -1 point") {
             gameinfo.giveUp(gameinfo.currentWord, gameinfo.lastWord)
-            print("giveup")
+            //print("giveup")
         }
         .clipShape(Rectangle())
         .font(Font.custom(gameinfo.font, size: 22))

@@ -59,15 +59,16 @@ struct Settings: View {
             MusicOnOff()
                     .environmentObject(gameinfo)
                     .frame(height: geo.size.height/10)
-            Button("Credits"){
-                gameinfo.currPage = .credits
-            }
-            .font(Font.custom(gameinfo.font, size: 17))
-            .padding()
-            .background(Color.white)
-            .cornerRadius(40)
-            .foregroundColor(Color(gameinfo.backgroundColor))
-            .frame(height: geo.size.height/10, alignment: .center)
+//            Button("Credits"){
+//                gameinfo.currPage = .credits
+//            }
+//            .font(Font.custom(gameinfo.font, size: 17))
+//            .padding()
+//            .background(Color.white)
+//            .cornerRadius(40)
+//            .foregroundColor(Color(gameinfo.backgroundColor))
+//            .frame(height: geo.size.height/10, alignment: .center)
+//MARK: Implement Credits Section Later
             }
         }
         }
@@ -174,7 +175,7 @@ struct DifficultySlider: View{
             .frame(width: geo.size.width*0.45, height: geo.size.height)
             .onAppear{
                 state = gameinfo.difficulty
-                print(state)
+                //print(state)
                 if (state == 95){
                     state2 = 1
                     diffLevel = "Basic"
@@ -229,8 +230,8 @@ struct DifficultySlider: View{
                     diffColor = Color.black
                 }
                 gameinfo.changeDiff(state)
-                print(state)
-                print(gameinfo.difficulty)
+                //print(state)
+                //print(gameinfo.difficulty)
             }
             .foregroundColor(.white)
             .accentColor(.white)
@@ -310,11 +311,11 @@ struct MusicOnOff: View{
             }
             .onChange(of: onOff){ newValue in
                 if (!onOff){
-                    print("off")
+                    //print("off")
                     gameinfo.music.pause()
                 }
                 else if (onOff){
-                    print("on")
+                    //print("on")
                     gameinfo.music.play()
                 }
                 gameinfo.defaults.set(onOff, forKey: "Music")

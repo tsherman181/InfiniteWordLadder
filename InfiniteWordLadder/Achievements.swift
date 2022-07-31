@@ -37,7 +37,7 @@ struct Achievements: View {
                         HStack{
                             ForEach(0..<3){ index1 in
                                 VStack{
-                                    ForEach(0..<gameinfo.saobj.numAch/3) {index2 in
+                                    ForEach(0..<5/*gameinfo.saobj.numAch/3*//*MARK: Change done to avoid warning*/) {index2 in
                                         Text(gameinfo.saobj.achievementNames[index1+index2*3])
                                             .font(Font.custom(gameinfo.font, size: 12))
                                             .foregroundColor(.white)
@@ -77,9 +77,9 @@ struct Coin: View{
         GeometryReader{ geo in
         ZStack{
             Button(action: {
-                print("here \(rX) and \(rY)")
+                //print("here \(rX) and \(rY)")
                 if (min(Double(gameinfo.saobj.achievements[index1+index2*3])+0.5, 1.0) == 1.0){
-                    print("here1")
+                    //print("here1")
                     rX = Double(Float.random(in: 0..<1))
                     rY = Double(Float.random(in: 0..<1))
                     withAnimation{animationAmount[index1+index2*3]+=Double(gameinfo.saobj.achievements[index1+index2*3]*360)

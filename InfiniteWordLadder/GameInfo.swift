@@ -97,7 +97,6 @@ class GameInfo: ObservableObject {
                 music.numberOfLoops = -1
                 if (onOff){music.play()}
                 else {music.pause()}
-                print("here")
             }
         }
         else{
@@ -226,7 +225,7 @@ class GameInfo: ObservableObject {
         }
         prevWords[0] = word
         defaults.set(prevWords, forKey: "Previous Words")
-        print("START")
+        //print("START")
         for i in prevWords{
             if (i != ""){
                 print(i)
