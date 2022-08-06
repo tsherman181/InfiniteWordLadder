@@ -122,11 +122,11 @@ class SA: ObservableObject{
         
         highscore = max(currPoints, highscore)
         gameHighscore = max(currPoints, gameHighscore)
-        print(guess)
-        print(Array(guess))
-        print(String(Array(guess)))
+        //print(guess)
+        //print(Array(guess))
+        //print(String(Array(guess)))
         relevantWords[guess] = ""
-        print(relevantWords)
+        //print(relevantWords)
         if highscore >= 10{
             achievements[0] = 1
         }
@@ -188,8 +188,8 @@ class SA: ObservableObject{
         
         //MARK: This code still needs work. We need to craft interesting acheivements and have them update as we go. This would be a good project to complete sometime.
         
-        print("number in a row \(numInRow)")
-        print("max in row \(maxInRow)")
+        //print("number in a row \(numInRow)")
+        //print("max in row \(maxInRow)")
     }
     
     

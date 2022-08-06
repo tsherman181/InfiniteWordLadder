@@ -44,9 +44,9 @@ struct Correct: View {
             }
         }
         .onAppear{
-            var num = Int.random(in: 0..<2)
-            print(num)
-            print(angle)
+            let num = Int.random(in: 0..<2)
+            //print(num)
+            //print(angle)
             if (num == 1){
                 withAnimation{
                     angle += 720.0
