@@ -59,15 +59,15 @@ struct Settings: View {
             MusicOnOff()
                     .environmentObject(gameinfo)
                     .frame(height: geo.size.height/10)
-//            Button("Credits"){
-//                gameinfo.currPage = .credits
-//            }
-//            .font(Font.custom(gameinfo.font, size: 17))
-//            .padding()
-//            .background(Color.white)
-//            .cornerRadius(40)
-//            .foregroundColor(Color(gameinfo.backgroundColor))
-//            .frame(height: geo.size.height/10, alignment: .center)
+            Button("Credits"){
+                gameinfo.currPage = .credits
+            }
+            .font(Font.custom(gameinfo.font, size: 17))
+            .padding()
+            .background(Color.white)
+            .cornerRadius(40)
+            .foregroundColor(Color(gameinfo.backgroundColor))
+            .frame(height: geo.size.height/10, alignment: .center)
 //MARK: Implement Credits Section Later
             }
         }
